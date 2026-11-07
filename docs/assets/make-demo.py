@@ -93,8 +93,8 @@ fix = pick(load("fix2.txt"), [
 
 scenes = [
     ("xcblame analyze fixtures/logs/cli-xcode26 --index 1 --redact", analyze),
-    ("xcblame doctor fixtures/projects/AcmeApp --offline", doctor),
-    ("cd AcmeFixWin && xcblame fix --rules SET-004,SET-005 --offline", fix),
+    ("xcblame doctor fixtures/projects/AcmeApp", doctor),
+    ("cd AcmeFixWin && xcblame fix --rules SET-004,SET-005", fix),
 ]
 
 T = 24.0          # loop length, seconds

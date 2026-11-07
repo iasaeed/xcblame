@@ -28,43 +28,43 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;fon
 @keyframes l0_17{0%{opacity:0}16.625%{opacity:0}16.708%{opacity:1}100%{opacity:1}}
 @keyframes s1{0%{opacity:0}33.333%{opacity:0}33.958%{opacity:1}65.208%{opacity:1}66.458%{opacity:0}100%{opacity:0}}
 .s1{animation:s1 24.0s linear infinite both}
-@keyframes t1{0%{transform:translateX(0)}35.000%{transform:translateX(0);animation-timing-function:steps(50,end)}42.292%{transform:translateX(361.2px)}100%{transform:translateX(361.2px)}}
+@keyframes t1{0%{transform:translateX(0)}35.000%{transform:translateX(0);animation-timing-function:steps(40,end)}40.833%{transform:translateX(289.0px)}100%{transform:translateX(289.0px)}}
 .t1{animation:t1 24.0s linear infinite both}
-@keyframes l1_0{0%{opacity:0}43.542%{opacity:0}43.625%{opacity:1}100%{opacity:1}}
-@keyframes l1_1{0%{opacity:0}43.833%{opacity:0}43.917%{opacity:1}100%{opacity:1}}
-@keyframes l1_3{0%{opacity:0}44.417%{opacity:0}44.500%{opacity:1}100%{opacity:1}}
-@keyframes l1_4{0%{opacity:0}44.708%{opacity:0}44.792%{opacity:1}100%{opacity:1}}
-@keyframes l1_5{0%{opacity:0}45.000%{opacity:0}45.083%{opacity:1}100%{opacity:1}}
-@keyframes l1_6{0%{opacity:0}45.292%{opacity:0}45.375%{opacity:1}100%{opacity:1}}
-@keyframes l1_7{0%{opacity:0}45.583%{opacity:0}45.667%{opacity:1}100%{opacity:1}}
-@keyframes l1_8{0%{opacity:0}45.875%{opacity:0}45.958%{opacity:1}100%{opacity:1}}
-@keyframes l1_9{0%{opacity:0}46.167%{opacity:0}46.250%{opacity:1}100%{opacity:1}}
-@keyframes l1_10{0%{opacity:0}46.458%{opacity:0}46.542%{opacity:1}100%{opacity:1}}
-@keyframes l1_11{0%{opacity:0}46.750%{opacity:0}46.833%{opacity:1}100%{opacity:1}}
-@keyframes l1_12{0%{opacity:0}47.042%{opacity:0}47.125%{opacity:1}100%{opacity:1}}
-@keyframes l1_13{0%{opacity:0}47.333%{opacity:0}47.417%{opacity:1}100%{opacity:1}}
-@keyframes l1_14{0%{opacity:0}47.625%{opacity:0}47.708%{opacity:1}100%{opacity:1}}
-@keyframes l1_16{0%{opacity:0}48.208%{opacity:0}48.292%{opacity:1}100%{opacity:1}}
-@keyframes l1_17{0%{opacity:0}48.500%{opacity:0}48.583%{opacity:1}100%{opacity:1}}
+@keyframes l1_0{0%{opacity:0}42.083%{opacity:0}42.167%{opacity:1}100%{opacity:1}}
+@keyframes l1_1{0%{opacity:0}42.375%{opacity:0}42.458%{opacity:1}100%{opacity:1}}
+@keyframes l1_3{0%{opacity:0}42.958%{opacity:0}43.042%{opacity:1}100%{opacity:1}}
+@keyframes l1_4{0%{opacity:0}43.250%{opacity:0}43.333%{opacity:1}100%{opacity:1}}
+@keyframes l1_5{0%{opacity:0}43.542%{opacity:0}43.625%{opacity:1}100%{opacity:1}}
+@keyframes l1_6{0%{opacity:0}43.833%{opacity:0}43.917%{opacity:1}100%{opacity:1}}
+@keyframes l1_7{0%{opacity:0}44.125%{opacity:0}44.208%{opacity:1}100%{opacity:1}}
+@keyframes l1_8{0%{opacity:0}44.417%{opacity:0}44.500%{opacity:1}100%{opacity:1}}
+@keyframes l1_9{0%{opacity:0}44.708%{opacity:0}44.792%{opacity:1}100%{opacity:1}}
+@keyframes l1_10{0%{opacity:0}45.000%{opacity:0}45.083%{opacity:1}100%{opacity:1}}
+@keyframes l1_11{0%{opacity:0}45.292%{opacity:0}45.375%{opacity:1}100%{opacity:1}}
+@keyframes l1_12{0%{opacity:0}45.583%{opacity:0}45.667%{opacity:1}100%{opacity:1}}
+@keyframes l1_13{0%{opacity:0}45.875%{opacity:0}45.958%{opacity:1}100%{opacity:1}}
+@keyframes l1_14{0%{opacity:0}46.167%{opacity:0}46.250%{opacity:1}100%{opacity:1}}
+@keyframes l1_16{0%{opacity:0}46.750%{opacity:0}46.833%{opacity:1}100%{opacity:1}}
+@keyframes l1_17{0%{opacity:0}47.042%{opacity:0}47.125%{opacity:1}100%{opacity:1}}
 @keyframes s2{0%{opacity:0}66.667%{opacity:0}67.292%{opacity:1}98.542%{opacity:1}99.792%{opacity:0}100%{opacity:0}}
 .s2{animation:s2 24.0s linear infinite both}
-@keyframes t2{0%{transform:translateX(0)}68.333%{transform:translateX(0);animation-timing-function:steps(62,end)}77.375%{transform:translateX(447.9px)}100%{transform:translateX(447.9px)}}
+@keyframes t2{0%{transform:translateX(0)}68.333%{transform:translateX(0);animation-timing-function:steps(52,end)}75.917%{transform:translateX(375.6px)}100%{transform:translateX(375.6px)}}
 .t2{animation:t2 24.0s linear infinite both}
-@keyframes l2_0{0%{opacity:0}78.625%{opacity:0}78.708%{opacity:1}100%{opacity:1}}
-@keyframes l2_1{0%{opacity:0}78.917%{opacity:0}79.000%{opacity:1}100%{opacity:1}}
-@keyframes l2_3{0%{opacity:0}79.500%{opacity:0}79.583%{opacity:1}100%{opacity:1}}
-@keyframes l2_4{0%{opacity:0}79.792%{opacity:0}79.875%{opacity:1}100%{opacity:1}}
-@keyframes l2_5{0%{opacity:0}80.083%{opacity:0}80.167%{opacity:1}100%{opacity:1}}
-@keyframes l2_6{0%{opacity:0}80.375%{opacity:0}80.458%{opacity:1}100%{opacity:1}}
-@keyframes l2_7{0%{opacity:0}80.667%{opacity:0}80.750%{opacity:1}100%{opacity:1}}
-@keyframes l2_8{0%{opacity:0}80.958%{opacity:0}81.042%{opacity:1}100%{opacity:1}}
-@keyframes l2_9{0%{opacity:0}81.250%{opacity:0}81.333%{opacity:1}100%{opacity:1}}
-@keyframes l2_11{0%{opacity:0}81.833%{opacity:0}81.917%{opacity:1}100%{opacity:1}}
-@keyframes l2_12{0%{opacity:0}82.125%{opacity:0}82.208%{opacity:1}100%{opacity:1}}
-@keyframes l2_13{0%{opacity:0}82.417%{opacity:0}82.500%{opacity:1}100%{opacity:1}}
-@keyframes l2_14{0%{opacity:0}82.708%{opacity:0}82.792%{opacity:1}100%{opacity:1}}
-@keyframes l2_15{0%{opacity:0}83.000%{opacity:0}83.083%{opacity:1}100%{opacity:1}}
-@keyframes l2_17{0%{opacity:0}83.583%{opacity:0}83.667%{opacity:1}100%{opacity:1}}
+@keyframes l2_0{0%{opacity:0}77.167%{opacity:0}77.250%{opacity:1}100%{opacity:1}}
+@keyframes l2_1{0%{opacity:0}77.458%{opacity:0}77.542%{opacity:1}100%{opacity:1}}
+@keyframes l2_3{0%{opacity:0}78.042%{opacity:0}78.125%{opacity:1}100%{opacity:1}}
+@keyframes l2_4{0%{opacity:0}78.333%{opacity:0}78.417%{opacity:1}100%{opacity:1}}
+@keyframes l2_5{0%{opacity:0}78.625%{opacity:0}78.708%{opacity:1}100%{opacity:1}}
+@keyframes l2_6{0%{opacity:0}78.917%{opacity:0}79.000%{opacity:1}100%{opacity:1}}
+@keyframes l2_7{0%{opacity:0}79.208%{opacity:0}79.292%{opacity:1}100%{opacity:1}}
+@keyframes l2_8{0%{opacity:0}79.500%{opacity:0}79.583%{opacity:1}100%{opacity:1}}
+@keyframes l2_9{0%{opacity:0}79.792%{opacity:0}79.875%{opacity:1}100%{opacity:1}}
+@keyframes l2_11{0%{opacity:0}80.375%{opacity:0}80.458%{opacity:1}100%{opacity:1}}
+@keyframes l2_12{0%{opacity:0}80.667%{opacity:0}80.750%{opacity:1}100%{opacity:1}}
+@keyframes l2_13{0%{opacity:0}80.958%{opacity:0}81.042%{opacity:1}100%{opacity:1}}
+@keyframes l2_14{0%{opacity:0}81.250%{opacity:0}81.333%{opacity:1}100%{opacity:1}}
+@keyframes l2_15{0%{opacity:0}81.542%{opacity:0}81.625%{opacity:1}100%{opacity:1}}
+@keyframes l2_17{0%{opacity:0}82.125%{opacity:0}82.208%{opacity:1}100%{opacity:1}}
 @media (prefers-reduced-motion: reduce){*{animation:none!important} .s1,.s2,.cover{display:none}}
 </style>
 <rect width="960" height="412" rx="10" fill="#0F172A"/>
@@ -94,7 +94,7 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;fon
 <text x="18" y="378" class="h" style="animation:l0_17 24.0s linear infinite both">checks 12 pass, 1 warn, 0 fail, 2 n/a</text>
 </g>
 <g class="s1">
-<text x="18" y="64"><tspan class="p">$</tspan> <tspan class="c">xcblame doctor fixtures/projects/AcmeApp --offline</tspan></text>
+<text x="18" y="64"><tspan class="p">$</tspan> <tspan class="c">xcblame doctor fixtures/projects/AcmeApp</tspan></text>
 <g class="t1 cover"><rect x="32.4" y="51" width="960" height="18" fill="#0F172A"/><rect class="cur" x="32.4" y="52" width="7.2" height="16" fill="#F97316"/></g>
 <text x="18" y="89" class="h" style="animation:l1_0 24.0s linear infinite both">xcblame 0.6.0 doctor · AcmeApp.xcodeproj (objectVersion 77, pbxproj) · Xcode 26.0.1 · 245 ms</text>
 <text x="18" y="106" class="" style="animation:l1_1 24.0s linear infinite both">  graph      4 project targets, 1 local package, 2 remote packages · spm · 1 scheme</text>
@@ -114,7 +114,7 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;fon
 <text x="18" y="378" class="" style="animation:l1_17 24.0s linear infinite both">      1. `xcblame verify --rules SET-001 --kind clean --mechanism cli`</text>
 </g>
 <g class="s2">
-<text x="18" y="64"><tspan class="p">$</tspan> <tspan class="c">cd AcmeFixWin &amp;&amp; xcblame fix --rules SET-004,SET-005 --offline</tspan></text>
+<text x="18" y="64"><tspan class="p">$</tspan> <tspan class="c">cd AcmeFixWin &amp;&amp; xcblame fix --rules SET-004,SET-005</tspan></text>
 <g class="t2 cover"><rect x="32.4" y="51" width="960" height="18" fill="#0F172A"/><rect class="cur" x="32.4" y="52" width="7.2" height="16" fill="#F97316"/></g>
 <text x="18" y="89" class="h" style="animation:l2_0 24.0s linear infinite both">xcblame fix plan 022062df · AcmeFixWin.xcodeproj · Debug, Release</text>
 <text x="18" y="106" class="" style="animation:l2_1 24.0s linear infinite both">  2 steps: 2 overlay · verify: 2 unverified</text>
