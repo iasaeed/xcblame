@@ -1,11 +1,12 @@
-<img src="docs/assets/icon.svg" alt="" width="88" align="left">
+<p align="center">
+  <img src="docs/assets/icon.svg" alt="" width="96">
+</p>
 
-# xcblame
+<h1 align="center">xcblame</h1>
 
-**Find out why your Xcode build is slow, and fix it safely.**
+<p align="center"><strong>Find out why your Xcode build is slow, and fix it safely.</strong></p>
 
-<br clear="left">
-
+<p align="center">
 [![Release](https://img.shields.io/badge/release-0.6.0-F97316)](https://github.com/iasaeed/xcblame/releases)
 [![CI](https://github.com/iasaeed/xcblame/actions/workflows/ci.yml/badge.svg)](https://github.com/iasaeed/xcblame/actions/workflows/ci.yml)
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-lightgrey)
@@ -13,6 +14,7 @@
 ![Swift 6.2](https://img.shields.io/badge/Swift-6.2-F05138)
 [![Homebrew](https://img.shields.io/badge/Homebrew-iasaeed%2Ftap-FBB040)](https://github.com/iasaeed/homebrew-tap)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2EA44F)](LICENSE)
+</p>
 
 <p align="center">
   <img src="docs/assets/demo.svg" alt="Terminal demo: xcblame analyze on a clean build, xcblame doctor on a project, and xcblame fix printing a plan" width="100%">
