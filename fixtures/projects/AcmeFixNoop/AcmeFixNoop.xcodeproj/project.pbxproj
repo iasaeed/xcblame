@@ -1,0 +1,185 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXFileReference section */
+		AF0200000000000000000010 /* AcmeFixNoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcmeFixNoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0200000000000000000011 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		AF0200000000000000000012 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		AF0200000000000000000013 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AF0200000000000000000020 /* AcmeFixNoop */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AcmeFixNoop;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF0200000000000000000041 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF0200000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				AF0200000000000000000020 /* AcmeFixNoop */,
+				AF0200000000000000000004 /* Config */,
+				AF0200000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF0200000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF0200000000000000000010 /* AcmeFixNoop.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF0200000000000000000004 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AF0200000000000000000011 /* Shared.xcconfig */,
+				AF0200000000000000000012 /* Debug.xcconfig */,
+				AF0200000000000000000013 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF0200000000000000000030 /* AcmeFixNoop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF02000000000000000000A5 /* Build configuration list for PBXNativeTarget "AcmeFixNoop" */;
+			buildPhases = (
+				AF0200000000000000000040 /* Sources */,
+				AF0200000000000000000041 /* Frameworks */,
+				AF0200000000000000000042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AF0200000000000000000020 /* AcmeFixNoop */,
+			);
+			name = AcmeFixNoop;
+			productName = AcmeFixNoop;
+			productReference = AF0200000000000000000010 /* AcmeFixNoop.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF0200000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+			};
+			buildConfigurationList = AF02000000000000000000A2 /* Build configuration list for PBXProject "AcmeFixNoop" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF0200000000000000000002;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AF0200000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF0200000000000000000030 /* AcmeFixNoop */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF0200000000000000000042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF0200000000000000000040 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AF02000000000000000000A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF0200000000000000000012 /* Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		AF02000000000000000000A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF0200000000000000000013 /* Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		AF02000000000000000000A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		AF02000000000000000000A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF02000000000000000000A2 /* Build configuration list for PBXProject "AcmeFixNoop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF02000000000000000000A0 /* Debug */,
+				AF02000000000000000000A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF02000000000000000000A5 /* Build configuration list for PBXNativeTarget "AcmeFixNoop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF02000000000000000000A3 /* Debug */,
+				AF02000000000000000000A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF0200000000000000000001 /* Project object */;
+}

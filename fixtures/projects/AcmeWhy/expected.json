@@ -1,0 +1,9 @@
+[
+  {"scenario": "zeroChange", "backtraces": false, "tasks": {"target": "AcmeWhyApp", "rule": "PhaseScriptExecution"},
+   "primaryCause": {"class": "scriptPhase", "source": "script", "subject": "AcmeWhyApp/Stamp", "ruleId": "PHASE-001"}, "minShare": 0.9},
+  {"scenario": "touch", "touch": "WhyCore/Core.swift", "backtraces": true, "tasks": {"target": "WhyCore"},
+   "primaryCause": {"class": "inputChanged", "source": "backtrace", "subject": "WhyCore/Core.swift", "ruleId": null}, "minShare": 0.9},
+  {"scenario": "flip", "backtraces": true, "tasks": {"target": "WhyCore"},
+   "primaryCause": {"class": "settingsChanged", "source": "backtrace", "subject": "WhyCore", "ruleId": null}, "minShare": 0.9},
+  {"scenario": "macroPlugins", "static": true, "module": "WhyKit", "plugins": 2, "package": "Packages/WhyMacros"}
+]

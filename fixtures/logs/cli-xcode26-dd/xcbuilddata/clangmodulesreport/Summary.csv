@@ -1,0 +1,13 @@
+Name,Variants
+Darwin,1
+_AvailabilityInternal,1
+_Builtin_inttypes,1
+_Builtin_limits,1
+_Builtin_stdarg,1
+_Builtin_stdbool,1
+_Builtin_stddef,1
+_Builtin_stdint,1
+_DarwinFoundation1,1
+_DarwinFoundation2,1
+_DarwinFoundation3,1
+ptrcheck,1

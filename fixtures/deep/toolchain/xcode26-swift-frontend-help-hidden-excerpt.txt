@@ -1,0 +1,24 @@
+                          Fine-grained debug output from the generics implementation
+  -debug-time-expression-type-checking
+                          Dumps the time it takes to type-check each expression
+  -debug-time-function-bodies
+                          Dumps the time it takes to type-check each function body
+--
+                          Supply sampling-based profiling data from llvm-profdata to enable profile-guided optimization
+  -profile-stats-entities Profile changes to stats in -stats-output-dir, subdivided by source entity
+  -profile-stats-events   Profile changes to stats in -stats-output-dir
+  -profile-use=<profdata> Supply a profdata file to enable profile-guided optimization
+--
+  -static                 Make this module statically linkable and make the output of -emit-library a static library.
+  -stats-output-dir <value>
+                          Directory to write unified compilation-statistics files to
+--
+                          Look for external executables (ld, clang, binutils) in <directory>
+  -trace-stats-events     Trace changes to stats in -stats-output-dir
+  -track-system-dependencies
+--
+                          Warn about implicit overrides of protocol members
+  -warn-long-expression-type-checking <n>
+                          Warns when type-checking an expression takes longer than <n> ms
+  -warn-long-function-bodies <n>
+                          Warns when type-checking a function takes longer than <n> ms

@@ -1,0 +1,128 @@
+name: Release
+
+# Pushing a tag such as v0.4.0 builds a universal macOS binary, signs and notarizes it when the Apple secrets are
+# configured, and attaches the tarball and its sha256 to a GitHub release. The last step prints the Homebrew formula
+# for the tap: publishing the formula is a manual step.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    name: Universal binary and release
+    runs-on: macos-15
+    timeout-minutes: 60
+    env:
+      TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Select the latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: latest-stable
+
+      - name: Test
+        run: swift test
+
+      # Same commands as `make dist-binary`.
+      - name: Build the universal release binary
+        run: |
+          swift build -c release --arch arm64 --arch x86_64
+          mkdir -p dist
+          cp "$(swift build -c release --arch arm64 --arch x86_64 --show-bin-path)/xcblame" dist/xcblame
+          lipo -info dist/xcblame
+
+      - name: Check the tag against the binary
+        run: |
+          built="$(dist/xcblame --version)"
+          if [ "v${built}" != "${TAG}" ]; then
+            echo "::error title=Tag does not match the binary::tag ${TAG} but xcblame --version prints ${built}; bump XcblameVersion.current or retag"
+            exit 1
+          fi
+
+      # The Apple secrets are step-level `env` on the two steps that use them, so no other step (third-party actions,
+      # `swift test`) can read them. Secrets are not readable in `if:`; the steps test the variables and say so when
+      # they are empty.
+      - name: Codesign
+        id: sign
+        env:
+          APPLE_CERT_P12: ${{ secrets.APPLE_CERT_P12 }}
+          APPLE_CERT_PASSWORD: ${{ secrets.APPLE_CERT_PASSWORD }}
+        run: |
+          if [ -z "$APPLE_CERT_P12" ] || [ -z "$APPLE_CERT_PASSWORD" ]; then
+            echo "::notice title=Codesign skipped::APPLE_CERT_P12 or APPLE_CERT_PASSWORD is not set; the binary is released unsigned"
+            echo "signed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          keychain="$RUNNER_TEMP/xcblame-release.keychain-db"
+          keychain_password="$(uuidgen)"
+          echo "$APPLE_CERT_P12" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          security create-keychain -p "$keychain_password" "$keychain"
+          security set-keychain-settings -lut 3600 "$keychain"
+          security unlock-keychain -p "$keychain_password" "$keychain"
+          security import "$RUNNER_TEMP/cert.p12" -P "$APPLE_CERT_PASSWORD" -A -t cert -f pkcs12 -k "$keychain"
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$keychain_password" "$keychain"
+          security list-keychains -d user -s "$keychain" login.keychain-db
+          identity="$(security find-identity -v -p codesigning "$keychain" | sed -n 's/.*"\(Developer ID Application:.*\)"/\1/p' | head -n 1)"
+          if [ -z "$identity" ]; then
+            echo "::error title=Codesign failed::no Developer ID Application identity in APPLE_CERT_P12"
+            exit 1
+          fi
+          codesign --force --options runtime --timestamp --sign "$identity" dist/xcblame
+          codesign --verify --strict --verbose=2 dist/xcblame
+          rm -f "$RUNNER_TEMP/cert.p12"
+          echo "signed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Notarize
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+        run: |
+          if [ "${{ steps.sign.outputs.signed }}" != "true" ]; then
+            echo "::notice title=Notarization skipped::the binary is not signed (see the Codesign step)"
+            exit 0
+          fi
+          if [ -z "$APPLE_ID" ] || [ -z "$APPLE_TEAM_ID" ] || [ -z "$APPLE_APP_PASSWORD" ]; then
+            echo "::notice title=Notarization skipped::APPLE_ID, APPLE_TEAM_ID or APPLE_APP_PASSWORD is not set; the binary is signed but not notarized"
+            exit 0
+          fi
+          # A bare binary cannot be stapled; Gatekeeper checks the ticket online.
+          ditto -c -k --keepParent dist/xcblame "$RUNNER_TEMP/xcblame-notarize.zip"
+          xcrun notarytool submit "$RUNNER_TEMP/xcblame-notarize.zip" \
+            --apple-id "$APPLE_ID" --team-id "$APPLE_TEAM_ID" --password "$APPLE_APP_PASSWORD" --wait
+
+      - name: Tarball and sha256
+        run: make dist-tarball
+
+      - name: GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          flags=""
+          case "$TAG" in *-*) flags="--prerelease" ;; esac
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release upload "$TAG" dist/*.tar.gz dist/*.sha256 --clobber
+          else
+            gh release create "$TAG" dist/*.tar.gz dist/*.sha256 --title "$TAG" --generate-notes --verify-tag $flags
+          fi
+
+      - name: Homebrew formula
+        run: |
+          tarball="$(ls dist/xcblame-*-macos-universal.tar.gz)"
+          url="https://github.com/${{ github.repository }}/releases/download/${TAG}/$(basename "$tarball")"
+          make formula TARBALL="$tarball" URL="$url"
+          {
+            echo '### Homebrew formula'
+            echo 'Copy this into the tap as `Formula/xcblame.rb`:'
+            echo
+            echo '```ruby'
+            cat dist/xcblame.rb
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

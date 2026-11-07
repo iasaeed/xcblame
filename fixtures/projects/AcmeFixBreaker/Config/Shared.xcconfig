@@ -1,0 +1,11 @@
+// Shared by Debug.xcconfig and Release.xcconfig (synthetic xcblame fix fixture).
+SDKROOT = macosx
+MACOSX_DEPLOYMENT_TARGET = 14.0
+SWIFT_VERSION = 5.0
+PRODUCT_NAME = $(TARGET_NAME)
+PRODUCT_BUNDLE_IDENTIFIER = com.example.acme.acmefixbreaker
+GENERATE_INFOPLIST_FILE = YES
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = -
+ENABLE_USER_SCRIPT_SANDBOXING = NO
+FUSE_BUILD_SCRIPT_PHASES = YES

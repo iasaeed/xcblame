@@ -1,0 +1,13 @@
+// Project-level base xcconfig of Debug (xcblame fix --install-hook appends its #include? here).
+// Planted real wins: SET-005 (Debug builds every architecture, ONLY_ACTIVE_ARCH = NO: about twice the compile
+// work of the 40 synthetic sources) and SET-004 (Debug writes a dSYM on every build).
+#include "Shared.xcconfig"
+
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
+GCC_OPTIMIZATION_LEVEL = 0
+ONLY_ACTIVE_ARCH = NO
+ENABLE_TESTABILITY = YES
+COPY_PHASE_STRIP = NO
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+VALIDATE_PRODUCT = NO

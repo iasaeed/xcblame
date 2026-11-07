@@ -1,0 +1,13 @@
+.build/
+.swiftpm/
+*.xcodeproj
+.DS_Store
+.xcblame/
+.claude/worktrees/
+# Fixture projects are committed (the global *.xcconfig / *.xcodeproj ignores do not apply); Xcode's per-user state is not.
+!fixtures/projects/**/*.xcodeproj
+!fixtures/projects/**/*.xcconfig
+fixtures/projects/**/xcuserdata/
+fixtures/projects/**/.swiftpm/
+fixtures/projects/**/.build/
+dist/

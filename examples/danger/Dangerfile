@@ -1,0 +1,166 @@
+# Example Dangerfile: report the build time of a pull request from xcblame's JSON report (xcblame.report/1).
+#
+# Produce the report before running danger, with the same xcodebuild arguments as your normal build:
+#
+#   xcblame build --format json -o xcblame-report.json \
+#     --baseline .xcblame/baseline.json --fail-if-slower 10 -- \
+#     -project AcmeApp.xcodeproj -scheme AcmeApp -destination 'platform=iOS Simulator,name=iPhone 17' build
+#   bundle exec danger
+#
+# `xcblame build` keeps xcodebuild's exit code (3 when --fail-if-slower fired), so run danger in a step that also runs
+# when the build step failed. Set XCBLAME_REPORT to read another path. The json report is not redacted by default, so
+# `diagnostics[].file` is absolute: the paths below are made relative to the checkout (GITHUB_WORKSPACE, else the working
+# directory) for Danger's inline comments, and every message is mention-safe (an `@name` in a compiler message must not
+# notify that account). Every member used here is part of the frozen
+# v1 schema (`xcblame schema --document report`); a member that is unknown is null, never 0.
+require "json"
+
+def seconds(value)
+  value.nil? ? "unknown" : format("%.1f s", value)
+end
+
+def signed_percent(fraction)
+  fraction.nil? ? "n/a" : format("%+.1f %%", fraction * 100)
+end
+
+# `@user` becomes `@user` in backticks outside code spans, so a message never notifies the account it happens to name
+# (`@MainActor`, `@available` included). Scanned left to right like CommonMark: a backslash escapes punctuation outside
+# a span only, a span closes at a backtick string of its own length, an opener without a closer is plain text.
+MENTION = %r{(?<![\w`@/.])@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:/[A-Za-z0-9_.-]+)?}
+LITERAL_TICK = "\u{E000}"
+ASCII_PUNCTUATION = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+
+def mention_safe(text)
+  chars = text.to_s.chars
+  out = +""
+  plain = +""
+  flush = lambda do
+    out << plain.gsub(MENTION) { |mention| "`#{mention}`" }
+    plain = +""
+  end
+  tick_run = lambda do |start|
+    size = 0
+    size += 1 while chars[start + size] == "`"
+    size
+  end
+  index = 0
+  while index < chars.length
+    char = chars[index]
+    if char == "\\" && index + 1 < chars.length && ASCII_PUNCTUATION.include?(chars[index + 1])
+      plain << (chars[index + 1] == "`" ? LITERAL_TICK : char + chars[index + 1])
+      index += 2
+    elsif char == "`"
+      size = tick_run.call(index)
+      scan = index + size
+      closer = nil
+      while scan < chars.length && closer.nil?
+        if chars[scan] == "`"
+          other = tick_run.call(scan)
+          closer = scan if other == size
+          scan += other
+        else
+          scan += 1
+        end
+      end
+      if closer
+        flush.call
+        out << chars[index...(closer + size)].join
+        index = closer + size
+      else
+        plain << "`" * size
+        index += size
+      end
+    else
+      plain << char
+      index += 1
+    end
+  end
+  flush.call
+  out.gsub(LITERAL_TICK) { "\\`" }
+end
+
+# A path under the checkout as a repo-relative one; nil for anything else (outside the checkout, `..`, `~`), so Danger
+# gets no `file:` it cannot attach.
+def repo_relative(path)
+  return nil if path.nil? || path.empty?
+  root = ENV.fetch("GITHUB_WORKSPACE", Dir.pwd).chomp("/")
+  relative = path.start_with?("#{root}/") ? path.delete_prefix("#{root}/") : path
+  relative = relative.delete_prefix("./")
+  return nil if relative.empty? || relative.start_with?("/", "~", "$") || relative.split("/").include?("..")
+  relative
+end
+
+# The parsed report, or nil after a warning (a top-level `return` is not allowed in a Dangerfile).
+def xcblame_report(path)
+  unless File.exist?(path)
+    warn("xcblame: #{path} not found. Run `xcblame build --format json -o #{path} -- <xcodebuild arguments>` before danger.")
+    return nil
+  end
+  report = JSON.parse(File.read(path, encoding: "UTF-8"))
+  unless report["schemaVersion"].to_s.start_with?("xcblame.report/1")
+    warn("xcblame: #{path} is #{report['schemaVersion'].inspect}, not an xcblame.report/1 document.")
+    return nil
+  end
+  report
+end
+
+report = xcblame_report(ENV.fetch("XCBLAME_REPORT", "xcblame-report.json"))
+if report
+  build = report["build"] || {}
+  regression = report["regression"]
+  label = [build["scheme"], build["kind"]].compact.join(" ")
+  label = "build" if label.empty?
+
+  # One markdown table: wall, busy, critical path, with the baseline columns only when a baseline was given.
+  rows = []
+  if regression
+    %w[wall busy criticalPath].each do |metric|
+      delta = regression[metric] || {}
+      rows << "| #{metric} | #{seconds(delta['current'])} | #{seconds(delta['baseline'])} | " \
+              "#{seconds(delta['delta'])} (#{signed_percent(delta['deltaPct'])}) |"
+    end
+    table = "| Metric | Now | Baseline | Delta |\n|---|---|---|---|\n" + rows.join("\n")
+  else
+    rows << "| wall | #{seconds(build['span'])} |"
+    rows << "| busy | #{seconds(build['busy'])} |"
+    rows << "| critical path | #{seconds(report.dig('criticalPath', 'span'))} |"
+    table = "| Metric | Now |\n|---|---|\n" + rows.join("\n")
+  end
+
+  markdown("### xcblame: #{mention_safe(label)}, #{seconds(build['span'])} wall\n\n#{table}")
+
+  # The verdict: fail on the threshold that `xcblame build --fail-if-slower` already evaluated, warn on a slower build
+  # that is still inside it.
+  if regression
+    verdict = regression["verdict"]
+    headline = "Build is #{verdict} than the baseline: #{seconds(regression.dig('wall', 'delta'))} " \
+               "(#{signed_percent(regression.dig('wall', 'deltaPct'))}), #{regression.dig('noiseBand', 'runsBaseline')} baseline run(s)."
+    if regression["failed"]
+      fail("#{headline} Over the #{regression['thresholdPct'].to_f * 100}% threshold.")
+    elsif verdict == "slower" || (verdict == "indicative" && regression.dig("wall", "delta").to_f > 0)
+      warn(headline)
+    end
+    (regression["attribution"] || []).first(3).each do |why|
+      message(mention_safe("#{why['kind']}: #{why['subject']}: #{why['detail']}"))
+    end
+  else
+    message("xcblame: no baseline, so no verdict. Commit one with `xcblame baseline save`.")
+  end
+
+  # Compiler errors and warnings, deduped by xcblame; the first few as inline Danger messages.
+  (report["diagnostics"] || []).select { |d| d["severity"] == "error" }.first(5).each do |d|
+    file = repo_relative(d["file"])
+    if file && d["line"]
+      fail(mention_safe(d["message"]), file: file, line: d["line"])
+    else
+      fail(mention_safe(d["file"] ? "#{File.basename(d['file'])}: #{d['message']}" : d["message"]))
+    end
+  end
+
+  # The top findings, highest impact first as ordered by the report.
+  (report["findings"] || []).first(3).each do |finding|
+    seconds_saved = finding["impactSeconds"]
+    suffix = seconds_saved ? " (about #{seconds(seconds_saved)})" : ""
+    message(mention_safe("xcblame #{finding['ruleId']}: #{finding['title']}#{suffix}"))
+  end
+end

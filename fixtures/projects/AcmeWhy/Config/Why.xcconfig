@@ -1,0 +1,3 @@
+// Planted cause 3 (settingsChanged): `Scripts/make-why-fixture.sh --flip` toggles this value; WhyCore reads it through
+// OTHER_SWIFT_FLAGS = $(inherited) -D$(WHY_FLAG).
+WHY_FLAG = WHY_A

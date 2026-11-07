@@ -1,0 +1,8 @@
+// Target-level baseConfigurationReference of Probe (Debug and Release).
+ACME_PROBE_TARGET_XCCONFIG = target-xcconfig
+ACME_PROBE_LAYER = target-xcconfig
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) FROM_TARGET_XCCONFIG
+OTHER_SWIFT_FLAGS = $(inherited) -DTARGET_XCCONFIG
+// No $(inherited): drops every lower level.
+GCC_PREPROCESSOR_DEFINITIONS = TARGET_XCCONFIG=1
+PRODUCT_NAME = ProbeFromTargetXCConfig

@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # A real clean build log of the repository's own fixtures: the reports below are made from it, no Xcode build runs.
+  FIXTURE_LOG: fixtures/logs/cli-xcode26/20E8B73D-96FE-4232-8A33-311BFD02F961.xcactivitylog
+
+jobs:
+  build-and-test:
+    name: Build, test and report
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Select the latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: latest-stable
+
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Build
+        run: swift build
+
+      - name: Test
+        run: swift test
+
+      # The three steps below dogfood the CLI on the fixture log. Each writes into out/ and keeps its state folder
+      # (history, snapshots) in the runner's temp directory, so the checkout stays clean.
+      - name: HTML report of the fixture build
+        run: |
+          mkdir -p out
+          "$(swift build --show-bin-path)/xcblame" analyze "$FIXTURE_LOG" \
+            --format html -o out/report.html --no-history --xcblame-dir "$RUNNER_TEMP/xcblame"
+
+      # `--format github` prints annotations as workflow commands on stderr, writes the PR comment body to -o and
+      # appends it to the step summary ($GITHUB_STEP_SUMMARY is set by the runner).
+      - name: Comment body, annotations and step summary
+        run: |
+          "$(swift build --show-bin-path)/xcblame" analyze "$FIXTURE_LOG" \
+            --format github -o out/comment.md --no-history --xcblame-dir "$RUNNER_TEMP/xcblame"
+
+      - name: JSON Schema of the report
+        run: |
+          "$(swift build --show-bin-path)/xcblame" schema --document report > out/schema.json
+
+      - name: Upload the HTML report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: xcblame-report
+          path: out/report.html
+          if-no-files-found: error
+
+      - name: Upload the comment body and the JSON Schema
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: xcblame-comment-and-schema
+          path: |
+            out/comment.md
+            out/schema.json
+          if-no-files-found: error

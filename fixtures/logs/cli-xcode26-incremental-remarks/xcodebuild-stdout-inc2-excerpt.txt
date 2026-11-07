@@ -1,0 +1,862 @@
+SwiftDriver LocalizeCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+remark: Incremental compilation: Read dependency graph '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/inc26/Build/Intermediates.noindex/AcmeApp.build/Debug/LocalizeCore.build/Objects-normal/arm64/LocalizeCore-primary.priors'
+remark: Incremental compilation: May skip current input:  {compile: Analyzer.o <= Analyzer.swift}
+remark: Incremental compilation: May skip current input:  {compile: Diff.o <= Diff.swift}
+remark: Incremental compilation: May skip current input:  {compile: Discovery.o <= Discovery.swift}
+remark: Incremental compilation: May skip current input:  {compile: FilePreview.o <= FilePreview.swift}
+remark: Incremental compilation: May skip current input:  {compile: FindingHidePatterns.o <= FindingHidePatterns.swift}
+remark: Incremental compilation: May skip current input:  {compile: FindingKeyEditor.o <= FindingKeyEditor.swift}
+remark: Incremental compilation: May skip current input:  {compile: FindingSearch.o <= FindingSearch.swift}
+remark: Incremental compilation: May skip current input:  {compile: ImportPlanner.o <= ImportPlanner.swift}
+remark: Incremental compilation: May skip current input:  {compile: Lokalise.o <= Lokalise.swift}
+remark: Incremental compilation: Scheduling changed input  {compile: Models.o <= Models.swift}
+remark: Incremental compilation: May skip current input:  {compile: Planner.o <= Planner.swift}
+remark: Incremental compilation: May skip current input:  {compile: ReplacementTemplate.o <= ReplacementTemplate.swift}
+remark: Incremental compilation: May skip current input:  {compile: ResourceRegistration.o <= ResourceRegistration.swift}
+remark: Incremental compilation: May skip current input:  {compile: Resources.o <= Resources.swift}
+remark: Incremental compilation: May skip current input:  {compile: TechnicalString.o <= TechnicalString.swift}
+remark: Incremental compilation: May skip current input:  {compile: Transactions.o <= Transactions.swift}
+remark: Incremental compilation: May skip current input:  {compile: TranslationCache.o <= TranslationCache.swift}
+remark: Incremental compilation: May skip current input:  {compile: XcodeSourceLocation.o <= XcodeSourceLocation.swift}
+remark: Incremental compilation: Queuing (initial):  {compile: Models.o <= Models.swift}
+remark: Incremental compilation: not scheduling dependents of Models.swift; unknown changes
+remark: Incremental compilation: Skipping input:  {compile: Analyzer.o <= Analyzer.swift}
+remark: Incremental compilation: Skipping input:  {compile: Diff.o <= Diff.swift}
+remark: Incremental compilation: Skipping input:  {compile: Discovery.o <= Discovery.swift}
+remark: Incremental compilation: Skipping input:  {compile: FilePreview.o <= FilePreview.swift}
+remark: Incremental compilation: Skipping input:  {compile: FindingHidePatterns.o <= FindingHidePatterns.swift}
+remark: Incremental compilation: Skipping input:  {compile: FindingKeyEditor.o <= FindingKeyEditor.swift}
+remark: Incremental compilation: Skipping input:  {compile: FindingSearch.o <= FindingSearch.swift}
+remark: Incremental compilation: Skipping input:  {compile: ImportPlanner.o <= ImportPlanner.swift}
+remark: Incremental compilation: Skipping input:  {compile: Lokalise.o <= Lokalise.swift}
+remark: Incremental compilation: Skipping input:  {compile: Planner.o <= Planner.swift}
+remark: Incremental compilation: Skipping input:  {compile: ReplacementTemplate.o <= ReplacementTemplate.swift}
+remark: Incremental compilation: Skipping input:  {compile: ResourceRegistration.o <= ResourceRegistration.swift}
+remark: Incremental compilation: Skipping input:  {compile: Resources.o <= Resources.swift}
+remark: Incremental compilation: Skipping input:  {compile: TechnicalString.o <= TechnicalString.swift}
+remark: Incremental compilation: Skipping input:  {compile: Transactions.o <= Transactions.swift}
+remark: Incremental compilation: Skipping input:  {compile: TranslationCache.o <= TranslationCache.swift}
+remark: Incremental compilation: Skipping input:  {compile: XcodeSourceLocation.o <= XcodeSourceLocation.swift}
+note: Incremental compilation: Read dependency graph '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/inc26/Build/Intermediates.noindex/AcmeApp.build/Debug/LocalizeCore.build/Objects-normal/arm64/LocalizeCore-primary.priors' (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: Analyzer.o <= Analyzer.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: Diff.o <= Diff.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: Discovery.o <= Discovery.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: FilePreview.o <= FilePreview.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: FindingHidePatterns.o <= FindingHidePatterns.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: FindingKeyEditor.o <= FindingKeyEditor.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: FindingSearch.o <= FindingSearch.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: ImportPlanner.o <= ImportPlanner.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: Lokalise.o <= Lokalise.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Scheduling changed input  {compile: Models.o <= Models.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: Planner.o <= Planner.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: ReplacementTemplate.o <= ReplacementTemplate.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: ResourceRegistration.o <= ResourceRegistration.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: Resources.o <= Resources.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: TechnicalString.o <= TechnicalString.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: Transactions.o <= Transactions.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: TranslationCache.o <= TranslationCache.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: May skip current input:  {compile: XcodeSourceLocation.o <= XcodeSourceLocation.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Queuing (initial):  {compile: Models.o <= Models.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: not scheduling dependents of Models.swift; unknown changes (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: Analyzer.o <= Analyzer.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: Diff.o <= Diff.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: Discovery.o <= Discovery.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: FilePreview.o <= FilePreview.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: FindingHidePatterns.o <= FindingHidePatterns.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: FindingKeyEditor.o <= FindingKeyEditor.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: FindingSearch.o <= FindingSearch.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: ImportPlanner.o <= ImportPlanner.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: Lokalise.o <= Lokalise.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: Planner.o <= Planner.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: ReplacementTemplate.o <= ReplacementTemplate.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: ResourceRegistration.o <= ResourceRegistration.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: Resources.o <= Resources.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: TechnicalString.o <= TechnicalString.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: Transactions.o <= Transactions.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: TranslationCache.o <= TranslationCache.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+note: Incremental compilation: Skipping input:  {compile: XcodeSourceLocation.o <= XcodeSourceLocation.swift} (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftEmitModule normal arm64 Emitting\ module\ for\ LocalizeCore (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ Models.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Models.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Models.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+remark: Incremental compilation: Reading dependencies from Models.swift
+SwiftDriverJobDiscovery normal arm64 Compiling Models.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+remark: Incremental compilation: Fingerprint changed for existing interface of source file from Models.swiftdeps in Models.swift
+remark: Incremental compilation: Fingerprint changed for existing implementation of source file from Models.swiftdeps in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'digest' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'digest' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'stableID' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'stableID' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'relativePath' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'relativePath' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'inside' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'inside' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name '_xcblameProbe1' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name '_xcblameProbe1' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name '_xcblameProbe2' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name '_xcblameProbe2' in Models.swift
+remark: Incremental compilation: New definition: interface of top-level name '_xcblameProbe3' in Models.swift
+remark: Incremental compilation: New definition: implementation of top-level name '_xcblameProbe3' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift -> implementation of source file from Planner.swiftdeps in Planner.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in Models.swift -> implementation of source file from ImportPlanner.swiftdeps in ImportPlanner.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'KeyGenerator' in Models.swift -> implementation of source file from FindingKeyEditor.swiftdeps in FindingKeyEditor.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'KeyGenerator' in Models.swift -> implementation of source file from ReplacementTemplate.swiftdeps in ReplacementTemplate.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'KeyGenerator' in Models.swift -> implementation of source file from Analyzer.swiftdeps in Analyzer.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'KeyGenerator' in Models.swift -> implementation of source file from ResourceRegistration.swiftdeps in ResourceRegistration.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'KeyGenerator' in Models.swift -> implementation of source file from Resources.swiftdeps in Resources.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'StudioError' in Models.swift -> implementation of source file from Transactions.swiftdeps in Transactions.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'StudioError' in Models.swift -> implementation of source file from Discovery.swiftdeps in Discovery.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'StudioError' in Models.swift -> implementation of source file from XcodeSourceLocation.swiftdeps in XcodeSourceLocation.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'StudioError' in Models.swift -> implementation of source file from Lokalise.swiftdeps in Lokalise.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of type '12LocalizeCore10FileChangeV' in Models.swift -> implementation of source file from FilePreview.swiftdeps in FilePreview.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of type '12LocalizeCore10FileChangeV' in Models.swift -> implementation of source file from Diff.swiftdeps in Diff.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'Finding' in Models.swift -> implementation of source file from FindingHidePatterns.swiftdeps in FindingHidePatterns.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'Finding' in Models.swift -> implementation of source file from FindingSearch.swiftdeps in FindingSearch.swift
+remark: Incremental compilation: Traced: interface of source file from Models.swiftdeps in Models.swift -> interface of top-level name 'stableID' in Models.swift -> implementation of source file from TranslationCache.swiftdeps in TranslationCache.swift
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: ResourceRegistration.o <= ResourceRegistration.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: ReplacementTemplate.o <= ReplacementTemplate.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: FindingHidePatterns.o <= FindingHidePatterns.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: Diff.o <= Diff.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: TranslationCache.o <= TranslationCache.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: FindingSearch.o <= FindingSearch.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: Discovery.o <= Discovery.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: FilePreview.o <= FilePreview.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: Analyzer.o <= Analyzer.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: Planner.o <= Planner.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: Resources.o <= Resources.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: FindingKeyEditor.o <= FindingKeyEditor.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: Lokalise.o <= Lokalise.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: ImportPlanner.o <= ImportPlanner.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: XcodeSourceLocation.o <= XcodeSourceLocation.swift}
+remark: Incremental compilation: Queuing because of dependencies discovered later:  {compile: Transactions.o <= Transactions.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: ResourceRegistration.o <= ResourceRegistration.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: ReplacementTemplate.o <= ReplacementTemplate.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: FindingHidePatterns.o <= FindingHidePatterns.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: Diff.o <= Diff.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: TranslationCache.o <= TranslationCache.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: FindingSearch.o <= FindingSearch.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: Discovery.o <= Discovery.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: FilePreview.o <= FilePreview.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: Analyzer.o <= Analyzer.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: Planner.o <= Planner.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: Resources.o <= Resources.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: FindingKeyEditor.o <= FindingKeyEditor.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: Lokalise.o <= Lokalise.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: ImportPlanner.o <= ImportPlanner.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: XcodeSourceLocation.o <= XcodeSourceLocation.swift}
+remark: Incremental compilation: Scheduling invalidated  {compile: Transactions.o <= Transactions.swift}
+SwiftCompile normal arm64 Compiling\ Analyzer.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Analyzer.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Analyzer.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+remark: Incremental compilation: Reading dependencies from XcodeSourceLocation.swift
+remark: Incremental compilation: Reading dependencies from FindingSearch.swift
+remark: Incremental compilation: Reading dependencies from ReplacementTemplate.swift
+remark: Incremental compilation: Reading dependencies from FindingKeyEditor.swift
+remark: Incremental compilation: Reading dependencies from TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'directory' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'directory' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'load' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'load' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'refresh' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'refresh' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'unownedExecutor' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'unownedExecutor' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'url' in TranslationCache.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'url' in TranslationCache.swift
+remark: Incremental compilation: Reading dependencies from Diff.swift
+remark: Incremental compilation: Reading dependencies from FilePreview.swift
+remark: Incremental compilation: Reading dependencies from FindingHidePatterns.swift
+remark: Incremental compilation: Reading dependencies from ImportPlanner.swift
+remark: Incremental compilation: Reading dependencies from Planner.swift
+remark: Incremental compilation: Reading dependencies from Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'assignments' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'assignments' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'chars' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'chars' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'index' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'index' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'keys' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'keys' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'skip' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'skip' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'token' in Resources.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'token' in Resources.swift
+remark: Incremental compilation: Reading dependencies from Transactions.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in Transactions.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in Transactions.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in Transactions.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in Transactions.swift
+remark: Incremental compilation: Reading dependencies from Discovery.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'targets' in Discovery.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'targets' in Discovery.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'visit' in Discovery.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'visit' in Discovery.swift
+remark: Incremental compilation: Reading dependencies from Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'allows' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'allows' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'base' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'base' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'keys' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'keys' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'languages' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'languages' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'origin' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'origin' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'paged' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'paged' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'privateConfiguration' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'privateConfiguration' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'projectPath' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'projectPath' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'projects' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'projects' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'request' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'request' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'session' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'session' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'token' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'token' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'unownedExecutor' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'unownedExecutor' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'urlSession' in Lokalise.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'urlSession' in Lokalise.swift
+remark: Incremental compilation: Reading dependencies from ResourceRegistration.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'calls' in ResourceRegistration.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'calls' in ResourceRegistration.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'visit' in ResourceRegistration.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'visit' in ResourceRegistration.swift
+remark: Incremental compilation: Reading dependencies from Analyzer.swift
+SwiftCompile normal arm64 Compiling\ FindingKeyEditor.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FindingKeyEditor.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FindingKeyEditor.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ Diff.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Diff.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Diff.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ Lokalise.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Lokalise.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Lokalise.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ ReplacementTemplate.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/ReplacementTemplate.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/ReplacementTemplate.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ ImportPlanner.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/ImportPlanner.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/ImportPlanner.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ ResourceRegistration.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/ResourceRegistration.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/ResourceRegistration.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ Discovery.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Discovery.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Discovery.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ Planner.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Planner.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Planner.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ FindingHidePatterns.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FindingHidePatterns.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FindingHidePatterns.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ TranslationCache.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/TranslationCache.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/TranslationCache.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ Resources.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Resources.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Resources.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ Transactions.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Transactions.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/Transactions.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ FindingSearch.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FindingSearch.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FindingSearch.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ FilePreview.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FilePreview.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/FilePreview.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 Compiling\ XcodeSourceLocation.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/XcodeSourceLocation.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/LocalizeCore/XcodeSourceLocation.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling XcodeSourceLocation.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling FindingSearch.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling ReplacementTemplate.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling FindingKeyEditor.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling TranslationCache.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling Diff.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling FilePreview.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling FindingHidePatterns.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling ImportPlanner.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling Planner.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling Resources.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling Transactions.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling Discovery.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling Lokalise.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling ResourceRegistration.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Compiling Analyzer.swift (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'candidates' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'candidates' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'file' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'file' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'isCodingKeyRawValue' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'isCodingKeyRawValue' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'replacementTemplate' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'replacementTemplate' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'source' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'source' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'visit' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'visit' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'wrappers' in Analyzer.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'wrappers' in Analyzer.swift
+SwiftDriver\ Compilation LocalizeCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriverJobDiscovery normal arm64 Emitting module for LocalizeCore (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriver\ Compilation\ Requirements LocalizeCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LocalizeCore' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Package.swift')
+SwiftDriver AcmeApp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+remark: Incremental compilation: Read dependency graph '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/inc26/Build/Intermediates.noindex/AcmeApp.build/Debug/AcmeApp.build/Objects-normal/arm64/AcmeApp-primary.priors'
+remark: Incremental compilation: Reading dependencies from LocalizeCore.swiftmodule
+remark: Incremental compilation: Integrating newer incremental import: LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint changed for existing interface of source file from LocalizeCore in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint changed for existing implementation of source file from LocalizeCore in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'digest' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'digest' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'stableID' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'stableID' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'relativePath' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'relativePath' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name 'inside' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'inside' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name '_xcblameProbe1' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name '_xcblameProbe1' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of top-level name '_xcblameProbe2' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of top-level name '_xcblameProbe2' in LocalizeCore.swiftmodule
+remark: Incremental compilation: New definition: interface of top-level name '_xcblameProbe3' in LocalizeCore.swiftmodule
+remark: Incremental compilation: New definition: implementation of top-level name '_xcblameProbe3' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule
+remark: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node
+remark: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node
+remark: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node
+remark: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node
+remark: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of type '12LocalizeCore14ReportExporterO' -> implementation of source file from StudioModel.swiftdeps in StudioModel.swift
+remark: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of type '12LocalizeCore19ReplacementTemplateO' -> implementation of source file from StudioView.swiftdeps in StudioView.swift
+remark: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of type '12LocalizeCore13RemoteProjectV' -> implementation of source file from WorkflowViews.swiftdeps in WorkflowViews.swift
+remark: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of potential members of '12LocalizeCore11StudioErrorO' -> implementation of source file from Security.swiftdeps in Security.swift
+remark: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of top-level name 'Finding' -> implementation of source file from AcmeAppApp.swiftdeps in AcmeAppApp.swift
+remark: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of top-level name 'Finding' -> implementation of source file from TranslationCacheView.swiftdeps in TranslationCacheView.swift
+remark: Incremental compilation: May skip current input:  {compile: AcmeAppApp.o <= AcmeAppApp.swift}
+remark: Incremental compilation: May skip current input:  {compile: Security.o <= Security.swift}
+remark: Incremental compilation: May skip current input:  {compile: StudioModel.o <= StudioModel.swift}
+remark: Incremental compilation: May skip current input:  {compile: StudioView.o <= StudioView.swift}
+remark: Incremental compilation: May skip current input:  {compile: TableSelectionHeader.o <= TableSelectionHeader.swift}
+remark: Incremental compilation: May skip current input:  {compile: TranslationCacheView.o <= TranslationCacheView.swift}
+remark: Incremental compilation: May skip current input:  {compile: WorkflowViews.o <= WorkflowViews.swift}
+remark: Incremental compilation: May skip current input:  {compile: GeneratedAssetSymbols.o <= GeneratedAssetSymbols.swift}
+remark: Incremental compilation: Invalidated externally; will queue  {compile: WorkflowViews.o <= WorkflowViews.swift}
+remark: Incremental compilation: Invalidated externally; will queue  {compile: Security.o <= Security.swift}
+remark: Incremental compilation: Invalidated externally; will queue  {compile: TranslationCacheView.o <= TranslationCacheView.swift}
+remark: Incremental compilation: Invalidated externally; will queue  {compile: StudioView.o <= StudioView.swift}
+remark: Incremental compilation: Invalidated externally; will queue  {compile: StudioModel.o <= StudioModel.swift}
+remark: Incremental compilation: Invalidated externally; will queue  {compile: AcmeAppApp.o <= AcmeAppApp.swift}
+remark: Incremental compilation: Queuing (initial):  {compile: AcmeAppApp.o <= AcmeAppApp.swift}
+remark: Incremental compilation: Queuing (initial):  {compile: Security.o <= Security.swift}
+remark: Incremental compilation: Queuing (initial):  {compile: StudioModel.o <= StudioModel.swift}
+remark: Incremental compilation: Queuing (initial):  {compile: StudioView.o <= StudioView.swift}
+remark: Incremental compilation: Queuing (initial):  {compile: TranslationCacheView.o <= TranslationCacheView.swift}
+remark: Incremental compilation: Queuing (initial):  {compile: WorkflowViews.o <= WorkflowViews.swift}
+remark: Incremental compilation: Skipping input:  {compile: TableSelectionHeader.o <= TableSelectionHeader.swift}
+remark: Incremental compilation: Skipping input:  {compile: GeneratedAssetSymbols.o <= GeneratedAssetSymbols.swift}
+note: Incremental compilation: Read dependency graph '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/inc26/Build/Intermediates.noindex/AcmeApp.build/Debug/AcmeApp.build/Objects-normal/arm64/AcmeApp-primary.priors' (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Reading dependencies from LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Integrating newer incremental import: LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint changed for existing interface of source file from LocalizeCore in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint changed for existing implementation of source file from LocalizeCore in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of top-level name 'digest' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'digest' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of top-level name 'stableID' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'stableID' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of top-level name 'relativePath' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'relativePath' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of top-level name 'inside' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of top-level name 'inside' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of top-level name '_xcblameProbe1' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of top-level name '_xcblameProbe1' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of top-level name '_xcblameProbe2' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of top-level name '_xcblameProbe2' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: New definition: interface of top-level name '_xcblameProbe3' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: New definition: implementation of top-level name '_xcblameProbe3' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of type '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of type '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore13RemoteProjectV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore14RemoteLanguageV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore17RemoteTranslationV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore9RemoteKeyV10CodingKeys33_F33ECD1EA00A7BB3E5C25ED700573FA8LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore6ModuleV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore13ModuleOptionsV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore7FindingV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10FileChangeV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10ChangePlanV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore9ReportRowV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore15OperationReportV10CodingKeys33_65A8C512A80F044BF102374CA6253178LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore12TransactionsO7JournalV10CodingKeys33_34F3F5A116DAC02284733424799AD791LLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing interface of potential members of '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Fingerprint missing for existing implementation of potential members of '12LocalizeCore10CachedKeysV06CodingD033_0788751191543AD3F8200D32E982605BLLO' in LocalizeCore.swiftmodule (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Newer: LocalizeCore.swiftmodule -> SwiftDriver.ModuleDependencyGraph.Node (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of type '12LocalizeCore14ReportExporterO' -> implementation of source file from StudioModel.swiftdeps in StudioModel.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of type '12LocalizeCore19ReplacementTemplateO' -> implementation of source file from StudioView.swiftdeps in StudioView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of type '12LocalizeCore13RemoteProjectV' -> implementation of source file from WorkflowViews.swiftdeps in WorkflowViews.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of potential members of '12LocalizeCore11StudioErrorO' -> implementation of source file from Security.swiftdeps in Security.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of top-level name 'Finding' -> implementation of source file from AcmeAppApp.swiftdeps in AcmeAppApp.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Traced: interface of source file from LocalizeCore -> interface of top-level name 'Finding' -> implementation of source file from TranslationCacheView.swiftdeps in TranslationCacheView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: AcmeAppApp.o <= AcmeAppApp.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: Security.o <= Security.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: StudioModel.o <= StudioModel.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: StudioView.o <= StudioView.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: TableSelectionHeader.o <= TableSelectionHeader.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: TranslationCacheView.o <= TranslationCacheView.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: WorkflowViews.o <= WorkflowViews.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: May skip current input:  {compile: GeneratedAssetSymbols.o <= GeneratedAssetSymbols.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Invalidated externally; will queue  {compile: WorkflowViews.o <= WorkflowViews.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Invalidated externally; will queue  {compile: Security.o <= Security.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Invalidated externally; will queue  {compile: TranslationCacheView.o <= TranslationCacheView.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Invalidated externally; will queue  {compile: StudioView.o <= StudioView.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Invalidated externally; will queue  {compile: StudioModel.o <= StudioModel.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Invalidated externally; will queue  {compile: AcmeAppApp.o <= AcmeAppApp.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Queuing (initial):  {compile: AcmeAppApp.o <= AcmeAppApp.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Queuing (initial):  {compile: Security.o <= Security.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Queuing (initial):  {compile: StudioModel.o <= StudioModel.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Queuing (initial):  {compile: StudioView.o <= StudioView.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Queuing (initial):  {compile: TranslationCacheView.o <= TranslationCacheView.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Queuing (initial):  {compile: WorkflowViews.o <= WorkflowViews.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Skipping input:  {compile: TableSelectionHeader.o <= TableSelectionHeader.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+note: Incremental compilation: Skipping input:  {compile: GeneratedAssetSymbols.o <= GeneratedAssetSymbols.swift} (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 Compiling\ AcmeAppApp.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/AcmeAppApp.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/AcmeAppApp.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+remark: Incremental compilation: Reading dependencies from AcmeAppApp.swift
+SwiftEmitModule normal arm64 Emitting\ module\ for\ AcmeApp (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+remark: Incremental compilation: Reading dependencies from Security.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of type '7AcmeApp12SavedProjectV10CodingKeys33_0DA37045C12FF076D9E5B0D2F34186BDLLO' in Security.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of type '7AcmeApp12SavedProjectV10CodingKeys33_0DA37045C12FF076D9E5B0D2F34186BDLLO' in Security.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of potential members of '7AcmeApp12SavedProjectV10CodingKeys33_0DA37045C12FF076D9E5B0D2F34186BDLLO' in Security.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of potential members of '7AcmeApp12SavedProjectV10CodingKeys33_0DA37045C12FF076D9E5B0D2F34186BDLLO' in Security.swift
+SwiftCompile normal arm64 Compiling\ TranslationCacheView.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/TranslationCacheView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/TranslationCacheView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+remark: Incremental compilation: Reading dependencies from TranslationCacheView.swift
+SwiftCompile normal arm64 Compiling\ Security.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/Security.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/Security.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 Compiling\ StudioModel.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/StudioModel.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/StudioModel.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+remark: Incremental compilation: Reading dependencies from StudioModel.swift
+SwiftCompile normal arm64 Compiling\ StudioView.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/StudioView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/StudioView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$activity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$activity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$analysis' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$analysis' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$busy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$busy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$cacheActivity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$cacheActivity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$cacheDate' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$cacheDate' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$cacheIssues' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$cacheIssues' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$cacheKeyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$cacheKeyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$cacheMessage' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$cacheMessage' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$cacheProgress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$cacheProgress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$cacheRefreshing' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$cacheRefreshing' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$connected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$connected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$defaultBranch' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$defaultBranch' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$defaultProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$defaultProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$error' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$error' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$findings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$findings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$languageMap' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$languageMap' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$languages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$languages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$matchingKeys' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$matchingKeys' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$modules' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$modules' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$notice' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$notice' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$page' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$page' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$plan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$plan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$progress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$progress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$projects' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$projects' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$recoveryNeeded' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$recoveryNeeded' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$replaceExisting' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$replaceExisting' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$reports' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$reports' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$requireReviewed' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$requireReviewed' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$root' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$root' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$saved' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$saved' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$sourceLocale' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$sourceLocale' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$token' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$token' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '$useCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '$useCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_activity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_activity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_analysis' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_analysis' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_busy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_busy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_cacheActivity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_cacheActivity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_cacheDate' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_cacheDate' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_cacheIssues' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_cacheIssues' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_cacheKeyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_cacheKeyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_cacheMessage' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_cacheMessage' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_cacheProgress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_cacheProgress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_cacheRefreshing' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_cacheRefreshing' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_connected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_connected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_defaultBranch' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_defaultBranch' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_defaultProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_defaultProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_error' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_error' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_findings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_findings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_languageMap' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_languageMap' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_languages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_languages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_matchingKeys' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_matchingKeys' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_modules' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_modules' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_notice' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_notice' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_page' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_page' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_plan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_plan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_progress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_progress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_projects' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_projects' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_recoveryNeeded' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_recoveryNeeded' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_replaceExisting' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_replaceExisting' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_reports' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_reports' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_requireReviewed' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_requireReviewed' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_root' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_root' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_saved' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_saved' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_sourceLocale' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_sourceLocale' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_token' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_token' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member '_useCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member '_useCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'accessURL' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'accessURL' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'activity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'activity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'addReport' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'addReport' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'analysis' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'analysis' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'analyze' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'analyze' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'applyPlan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'applyPlan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'busy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'busy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheActiveProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheActiveProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheActivity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheActivity' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheDate' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheDate' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheIssues' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheIssues' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheKeyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheKeyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheMessage' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheMessage' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheProgress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheProgress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheRefreshing' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheRefreshing' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cacheTask' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cacheTask' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cancel' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cancel' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'cancelCacheRefresh' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'cancelCacheRefresh' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'chooseProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'chooseProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'clearCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'clearCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'closeProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'closeProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'connected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'connected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'copy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'copy' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'defaultBranch' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'defaultBranch' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'defaultProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'defaultProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'didStart' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'didStart' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'disconnect' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'disconnect' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'discover' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'discover' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'editFindingKey' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'editFindingKey' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'error' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'error' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'exclude' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'exclude' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'export' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'export' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'exportFindings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'exportFindings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'findings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'findings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'languageMap' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'languageMap' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'languages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'languages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'loadLanguages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'loadLanguages' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'matchingKeys' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'matchingKeys' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'modules' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'modules' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'notice' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'notice' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'openInXcode' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'openInXcode' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'openProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'openProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'page' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'page' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'persist' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'persist' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'plan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'plan' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'previewImport' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'previewImport' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'previewRegistration' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'previewRegistration' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'progress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'progress' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'projects' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'projects' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'readyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'readyCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'recover' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'recover' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'recoveryNeeded' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'recoveryNeeded' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'refreshTranslationCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'refreshTranslationCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'remoteID' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'remoteID' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'removeModule' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'removeModule' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'replaceExisting' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'replaceExisting' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'reports' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'reports' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'requireReviewed' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'requireReviewed' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'restoreModule' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'restoreModule' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'restoreProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'restoreProject' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'root' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'root' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'run' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'run' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'saveSettings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'saveSettings' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'saved' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'saved' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'selected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'selected' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'sourceLocale' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'sourceLocale' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'start' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'start' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'task' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'task' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'testConnection' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'testConnection' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'token' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'token' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'translationCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'translationCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'undo' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'undo' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'unresolvedCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'unresolvedCount' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'useCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'useCache' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'work' in StudioModel.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'work' in StudioModel.swift
+remark: Incremental compilation: Reading dependencies from WorkflowViews.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'isDiff' in WorkflowViews.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'isDiff' in WorkflowViews.swift
+remark: Incremental compilation: Fingerprint missing for existing interface of AnyObject member 'text' in WorkflowViews.swift
+remark: Incremental compilation: Fingerprint missing for existing implementation of AnyObject member 'text' in WorkflowViews.swift
+remark: Incremental compilation: Reading dependencies from StudioView.swift
+SwiftCompile normal arm64 Compiling\ WorkflowViews.swift /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/WorkflowViews.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftCompile normal arm64 /tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/Sources/AcmeApp/WorkflowViews.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriverJobDiscovery normal arm64 Compiling AcmeAppApp.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriverJobDiscovery normal arm64 Compiling Security.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriverJobDiscovery normal arm64 Emitting module for AcmeApp (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriver\ Compilation\ Requirements AcmeApp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriverJobDiscovery normal arm64 Compiling TranslationCacheView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriverJobDiscovery normal arm64 Compiling StudioModel.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriverJobDiscovery normal arm64 Compiling WorkflowViews.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriverJobDiscovery normal arm64 Compiling StudioView.swift (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')
+SwiftDriver\ Compilation AcmeApp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'AcmeApp' from project 'AcmeApp' at path '/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj')

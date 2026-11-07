@@ -1,0 +1,218 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXFileReference section */
+		CA0000000000000000000010 /* ProbeFromTargetXCConfig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProbeFromTargetXCConfig.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA0000000000000000000011 /* base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = base.xcconfig; sourceTree = "<group>"; };
+		CA0000000000000000000012 /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
+		CA0000000000000000000013 /* target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = target.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CA0000000000000000000020 /* Probe */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Probe;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA0000000000000000000041 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CA0000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				CA0000000000000000000020 /* Probe */,
+				CA0000000000000000000004 /* Config */,
+				CA0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA0000000000000000000010 /* ProbeFromTargetXCConfig.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA0000000000000000000004 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CA0000000000000000000011 /* base.xcconfig */,
+				CA0000000000000000000012 /* project.xcconfig */,
+				CA0000000000000000000013 /* target.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CA0000000000000000000030 /* Probe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA00000000000000000000A5 /* Build configuration list for PBXNativeTarget "Probe" */;
+			buildPhases = (
+				CA0000000000000000000040 /* Sources */,
+				CA0000000000000000000041 /* Frameworks */,
+				CA0000000000000000000042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CA0000000000000000000020 /* Probe */,
+			);
+			name = Probe;
+			productName = Probe;
+			productReference = CA0000000000000000000010 /* ProbeFromTargetXCConfig.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CA0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+			};
+			buildConfigurationList = CA00000000000000000000A2 /* Build configuration list for PBXProject "Precedence" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CA0000000000000000000002;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CA0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA0000000000000000000030 /* Probe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA0000000000000000000042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CA0000000000000000000040 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CA00000000000000000000A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA0000000000000000000012 /* project.xcconfig */;
+			buildSettings = {
+				ACME_PROBE_LAYER = "project-settings";
+				ACME_PROBE_PROJECT_SETTINGS = "project-settings";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DPROJECT_SETTINGS";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG FROM_PROJECT_SETTINGS";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CA00000000000000000000A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA0000000000000000000012 /* project.xcconfig */;
+			buildSettings = {
+				ACME_PROBE_LAYER = "project-settings";
+				ACME_PROBE_PROJECT_SETTINGS = "project-settings";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DPROJECT_SETTINGS";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) FROM_PROJECT_SETTINGS";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CA00000000000000000000A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA0000000000000000000013 /* target.xcconfig */;
+			buildSettings = {
+				ACME_PROBE_LAYER = "target-settings";
+				ACME_PROBE_TARGET_SETTINGS = "target-settings";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				OTHER_SWIFT_FLAGS = "-DTARGET_SETTINGS_ONLY";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.acme.probe;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) FROM_TARGET_SETTINGS";
+			};
+			name = Debug;
+		};
+		CA00000000000000000000A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA0000000000000000000013 /* target.xcconfig */;
+			buildSettings = {
+				ACME_PROBE_TARGET_SETTINGS = "target-settings";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.acme.probe;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) FROM_TARGET_SETTINGS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CA00000000000000000000A2 /* Build configuration list for PBXProject "Precedence" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA00000000000000000000A0 /* Debug */,
+				CA00000000000000000000A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA00000000000000000000A5 /* Build configuration list for PBXNativeTarget "Probe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA00000000000000000000A3 /* Debug */,
+				CA00000000000000000000A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CA0000000000000000000001 /* Project object */;
+}

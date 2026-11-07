@@ -1,0 +1,9 @@
+  -fthinlto-index=<value> Perform ThinLTO importing using provided function summary index
+  -ftime-report=<value>   (For new pass manager) 'per-pass': one report for each pass; 'per-pass-run': one report for each pass invocation
+  -ftime-trace-granularity=<value>
+                          Minimum time granularity (in microseconds) traced by time profiler
+  -ftime-trace-verbose<value>
+                          Make time trace capture verbose event details (e.g. source filenames). This can increase the size of the output by 2-3 times
+  -ftime-trace=<value>    Similar to -ftime-trace. Specify the JSON file or a directory which will contain the JSON file
+  -ftime-trace            Turn on time profiler. Generates JSON file based on output filename.
+  -ftrap-function-returns The trap function specified by -ftrap-function may return normally

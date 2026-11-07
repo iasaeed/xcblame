@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>11</integer>
+	<key>logs</key>
+	<dict>
+		<key>7F0635EB-768E-4BD5-9D5B-5B2A2780EA9D</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>7F0635EB-768E-4BD5-9D5B-5B2A2780EA9D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>AcmeApp project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>AcmeApp</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>815301698.47752798</real>
+			<key>timeStoppedRecording</key>
+			<real>815301699.683097</real>
+			<key>title</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>7F0635EB-768E-4BD5-9D5B-5B2A2780EA9D</string>
+		</dict>
+		<key>B7E7D8C0-537E-45CC-B0B8-EB0D4310022B</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>B7E7D8C0-537E-45CC-B0B8-EB0D4310022B.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>AcmeApp project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>AcmeApp</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>815301696.15092003</real>
+			<key>timeStoppedRecording</key>
+			<real>815301696.57907796</real>
+			<key>title</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>B7E7D8C0-537E-45CC-B0B8-EB0D4310022B</string>
+		</dict>
+		<key>CAFEC72B-3BF0-419B-BA3F-A06D8015B139</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>CAFEC72B-3BF0-419B-BA3F-A06D8015B139.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>AcmeApp project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>AcmeApp</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>815301677.73786104</real>
+			<key>timeStoppedRecording</key>
+			<real>815301694.24319398</real>
+			<key>title</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>CAFEC72B-3BF0-419B-BA3F-A06D8015B139</string>
+		</dict>
+		<key>F7EF5469-BA72-4756-916B-1BC6F1E5D04B</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>F7EF5469-BA72-4756-916B-1BC6F1E5D04B.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>AcmeApp project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>AcmeApp</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>815301762.67295694</real>
+			<key>timeStoppedRecording</key>
+			<real>815301766.86669397</real>
+			<key>title</key>
+			<string>Building project AcmeApp with scheme AcmeApp and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>F7EF5469-BA72-4756-916B-1BC6F1E5D04B</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

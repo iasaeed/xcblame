@@ -1,0 +1,417 @@
+import Foundation
+
+// v0.6 lane A (docs/SCHEMA-v0.6.md "Hook"): two lines appended at the end of each configuration's project-level base
+// xcconfig, a marker comment and `#include? "<relative path>/overlay-<C>.xcconfig"`, bytes backed up first;
+// `--uninstall-hook` restores them, or (no local backup: a teammate's clone) removes exactly those two trailing lines.
+// A symlinked base xcconfig is edited at its target, the include path stays relative to the link's folder (Xcode
+// resolves includes there; fix round 1 probe, 2026-11-06).
+public enum HookInstaller {
+    public static let marker = "// xcblame hook (fix --install-hook); remove with: xcblame fix --uninstall-hook"
+    /// Keys `-showBuildSettings` over the generated all-targets scheme reports from the scheme itself (no destination:
+    /// `ONLY_ACTIVE_ARCH = NO`), so the hook check reads them from the project files instead.
+    static let oracleBlindKeys: Set<String> = ["ONLY_ACTIVE_ARCH"]
+
+    /// The marker written before fix round 1 (cbf8d90), after a blank line; `--install-hook` upgrades it in place.
+    public static let legacyMarker = "// xcblame hook: xcblame fix --uninstall-hook removes these lines"
+
+    /// The pre-fix-round hook text: a blank line, `legacyMarker`, the `#include?`.
+    static func legacyHookText(include: String) -> String {
+        "\n" + legacyMarker + "\n" + "#include? \"\(include)\"\n"
+    }
+
+    /// Reads one target's effective value of `key` with the hook in place; nil when it could not be read.
+    public typealias Verifier = @Sendable (_ project: ProjectModel.Project, _ target: String, _ configuration: String,
+                                           _ key: String) -> String?
+    /// True when the file has uncommitted git changes, false when clean, nil outside git.
+    public typealias DirtyCheck = @Sendable (URL) -> Bool?
+
+    /// One project's base xcconfig of one configuration.
+    struct Site {
+        var project: ProjectModel.Project
+        var configuration: String
+        /// The path the project names (includes resolve against its folder).
+        var xcconfig: URL
+        /// The file read and written: `xcconfig` with symlinks resolved (the same file when it is no link).
+        var target: URL
+
+        init(project: ProjectModel.Project, configuration: String, xcconfig: URL) {
+            self.project = project
+            self.configuration = configuration
+            self.xcconfig = xcconfig
+            target = FixPaths.isSymlink(xcconfig) ? xcconfig.resolvingSymlinksInPath() : xcconfig
+        }
+
+        var isLink: Bool { target.standardizedFileURL != xcconfig.standardizedFileURL }
+    }
+
+    /// What `--install-hook` / `--uninstall-hook` did for one configuration of one project.
+    public struct Outcome: Sendable, Equatable {
+        public enum Status: String, Sendable { case installed, alreadyInstalled, uninstalled, notInstalled, refused, unavailable, failed }
+        public var configuration: String
+        /// Repository-relative xcconfig path; nil when there is none.
+        public var file: String?
+        public var status: Status
+        public var message: String
+
+        /// Statuses that make `fix` exit 1 (refused: commit first; failed: rolled back or edited by hand).
+        public var isFailure: Bool { status == .refused || status == .failed }
+    }
+
+    // MARK: - State
+
+    /// `hook[]` of the plan: one state per configuration.
+    public static func states(project model: ProjectModel, configurations: [String], xcblameDir: URL)
+        -> [FixPlanDocument.HookState] {
+        configurations.map { configuration in
+            switch sites(model, configuration: configuration) {
+            case let .failure(reason):
+                return FixPlanDocument.HookState(configuration: configuration,
+                                                 status: model.generator == nil ? "unavailable" : "generated",
+                                                 baseXCConfig: nil, reason: reason.text)
+            case let .success(sites):
+                let base = sites.first.map { FixPaths.display($0.target, root: model.root) }
+                let installed = sites.allSatisfy { isInstalled($0, xcblameDir: xcblameDir) }
+                return FixPlanDocument.HookState(configuration: configuration, status: installed ? "installed" : "notInstalled",
+                                                 baseXCConfig: base, reason: nil)
+            }
+        }
+    }
+
+    struct Unavailable: Error { var text: String }
+
+    /// The base xcconfigs a configuration's hook goes into, or why there is none (generated project, no base xcconfig,
+    /// a CocoaPods file, a file outside the project folder (a symlink's target included), or one file shared by
+    /// several configurations).
+    static func sites(_ model: ProjectModel, configuration: String) -> Result<[Site], Unavailable> {
+        if let generator = model.generator {
+            return .failure(Unavailable(text: "generated by \(FindingBuilder.displayName(generator)): add "
+                + "#include? \"<path>/.xcblame/overlay-\(configuration).xcconfig\" to the xcconfig "
+                + "\(FindingBuilder.sourceFile(generator)) gives \(configuration); nothing is written"))
+        }
+        let projects = model.projects.filter { $0.configurations.contains(configuration) }
+        guard !projects.isEmpty else { return .failure(Unavailable(text: "no project has a configuration \(configuration)")) }
+        var sites: [Site] = []
+        for project in projects {
+            guard let url = project.projectXCConfig[configuration] else {
+                return .failure(Unavailable(text: "\(project.name) has no project-level base xcconfig for \(configuration): "
+                    + "create Config/\(configuration).xcconfig holding the #include? line and set it in Project › Info › "
+                    + "Configurations (xcodebuild builds can use verify --mechanism cli); --edit-project waits for 0.7"))
+            }
+            let site = Site(project: project, configuration: configuration, xcconfig: url)
+            if FindingBuilder.isPodsXCConfig(url.path) || FindingBuilder.isPodsXCConfig(site.target.path) {
+                return .failure(Unavailable(text: "\(url.lastPathComponent) is CocoaPods-generated (pod install rewrites it)"))
+            }
+            if FixPaths.display(site.target, root: model.root).hasPrefix("/") {
+                return .failure(Unavailable(text: "\(site.target.path) is outside the project folder"
+                    + (site.isLink ? " (\(url.lastPathComponent) is a symlink to it)" : "")))
+            }
+            let shared = project.projectXCConfig.filter { $0.key != configuration && $0.value.standardizedFileURL == url.standardizedFileURL }
+            if !shared.isEmpty {
+                return .failure(Unavailable(text: "\(url.lastPathComponent) is the base xcconfig of "
+                    + ([configuration] + shared.keys.sorted()).joined(separator: " and ")
+                    + ": one #include? cannot name each configuration's overlay; give each configuration its own file"))
+            }
+            sites.append(site)
+        }
+        return .success(sites)
+    }
+
+    /// The include path written into `site`'s xcconfig (relative to the folder of the path the project names).
+    static func includePath(_ site: Site, xcblameDir: URL) -> String {
+        FixPaths.relative(to: OverlayFile.url(xcblameDir: xcblameDir, configuration: site.configuration),
+                          fromDirectory: site.xcconfig.deletingLastPathComponent())
+    }
+
+    /// The two lines appended (after a newline that terminates an unterminated last line).
+    static func hookText(include: String) -> String {
+        marker + "\n" + "#include? \"\(include)\"\n"
+    }
+
+    static func isInstalled(_ site: Site, xcblameDir: URL) -> Bool {
+        guard let text = try? String(contentsOf: site.target, encoding: .utf8) else { return false }
+        return text.contains(hookText(include: includePath(site, xcblameDir: xcblameDir)))
+    }
+
+    /// Hooked files whose hook lines are no longer the last lines (`fix --apply` warns: later lines win).
+    public static func notLast(project model: ProjectModel, configurations: [String], xcblameDir: URL) -> [String] {
+        configurations.flatMap { configuration -> [String] in
+            guard case let .success(sites) = sites(model, configuration: configuration) else { return [] }
+            return sites.compactMap { site in
+                guard isInstalled(site, xcblameDir: xcblameDir),
+                      let text = try? String(contentsOf: site.target, encoding: .utf8) else { return nil }
+                let tail = hookText(include: includePath(site, xcblameDir: xcblameDir))
+                let trimmed = text.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression) + "\n"
+                return trimmed.hasSuffix(tail) ? nil : FixPaths.display(site.target, root: model.root)
+            }
+        }
+    }
+
+    // MARK: - Install
+
+    /// Appends the hook to each configuration's base xcconfig. A file with uncommitted changes is refused; the record
+    /// goes to `backup/hooks.json` before the file is written (so an interrupted install can still be undone), and
+    /// after writing the include target is linted and, when the overlay has lines, `verify` must see one of them in a
+    /// project target that does not shadow it, else the backup is restored and the record dropped.
+    public static func install(project model: ProjectModel, configurations: [String], xcblameDir: URL,
+                               isDirty: DirtyCheck, verify: Verifier) -> [Outcome] {
+        var outcomes: [Outcome] = []
+        for configuration in configurations {
+            switch sites(model, configuration: configuration) {
+            case let .failure(reason):
+                outcomes.append(Outcome(configuration: configuration, file: nil, status: .unavailable,
+                                        message: "no hook for \(configuration): \(reason.text)"))
+            case let .success(sites):
+                for site in sites {
+                    outcomes.append(installOne(site, model: model, xcblameDir: xcblameDir, isDirty: isDirty, verify: verify))
+                }
+            }
+        }
+        return outcomes
+    }
+
+    private static func installOne(_ site: Site, model: ProjectModel, xcblameDir: URL, isDirty: DirtyCheck,
+                                   verify: Verifier) -> Outcome {
+        let file = FixPaths.display(site.target, root: model.root)
+        let link = site.isLink ? FixPaths.displayLink(site.xcconfig, root: model.root) : nil
+        let shown = link.map { "\(file) (the target of \($0))" } ?? file
+        func outcome(_ status: Outcome.Status, _ message: String) -> Outcome {
+            Outcome(configuration: site.configuration, file: file, status: status, message: message)
+        }
+        if isInstalled(site, xcblameDir: xcblameDir) { return outcome(.alreadyInstalled, "hook already in \(shown)") }
+        if isDirty(site.target) == true || (site.isLink && isDirty(site.xcconfig) == true) {
+            return outcome(.refused, "\(shown) has uncommitted changes: commit first, then run xcblame fix --install-hook")
+        }
+        guard let current = FileManager.default.contents(atPath: site.target.path) else {
+            return outcome(.failed, "cannot read \(shown)")
+        }
+        let include = includePath(site, xcblameDir: xcblameDir)
+        // A hook in the pre-fix-round format (blank line, old marker, #include?) is upgraded in place: the file without
+        // it is the original that is backed up (fix round 2, nit 8), never a second hook appended.
+        var original = current
+        var upgraded = false
+        let legacy = legacyHookText(include: include)
+        var currentText = String(decoding: current, as: UTF8.self)
+        if let range = currentText.range(of: legacy, options: .backwards) {
+            currentText.removeSubrange(range)
+            original = Data(currentText.utf8)
+            upgraded = true
+        }
+        var records = Backups.hooks(xcblameDir: xcblameDir)
+        let before = records
+        var text = String(decoding: original, as: UTF8.self)
+        if !text.isEmpty, !text.hasSuffix("\n") { text += "\n" }
+        text += hookText(include: include)
+        let hooked = Data(text.utf8)
+        do {
+            try XcblameError.requireXCConfigPath(include)
+            let backup = try Backups.storeBytes(original, xcblameDir: xcblameDir)
+            records.removeAll { $0.path == file && $0.configuration == site.configuration }
+            records.append(Backups.Hook(path: file, link: link, configuration: site.configuration,
+                                        originalSHA256: Backups.sha256(original), hookedSHA256: Backups.sha256(hooked),
+                                        backup: backup))
+            try Backups.saveHooks(records, xcblameDir: xcblameDir)
+        } catch {
+            return outcome(.failed, "could not back up \(shown) or record the hook in backup/hooks.json (\(error)); "
+                + "nothing written")
+        }
+        func rollBack() {
+            try? current.write(to: site.target, options: .atomic)
+            try? Backups.saveHooks(before, xcblameDir: xcblameDir)
+        }
+        do {
+            try hooked.write(to: site.target, options: .atomic)
+            if site.isLink, !FixPaths.isSymlink(site.xcconfig) {
+                rollBack()
+                return outcome(.failed, "\(link ?? file) stopped being a symlink while the hook was written; restored")
+            }
+            if let failure = check(site, include: include, model: model, xcblameDir: xcblameDir, verify: verify) {
+                rollBack()
+                return outcome(.failed, "\(failure); \(shown) restored")
+            }
+            if upgraded {
+                return outcome(.installed, "hook in \(shown) upgraded to the two-line format: #include? \"\(include)\"")
+            }
+            return outcome(.installed, "hook appended to \(shown): #include? \"\(include)\"")
+        } catch {
+            rollBack()
+            return outcome(.failed, "could not write the hook into \(shown) (\(error)); \(file) restored")
+        }
+    }
+
+    /// Nil when the hook works: the include resolves (from the including file's folder) to the overlay path, and
+    /// a key of the overlay reaches a project target that does not shadow it. Otherwise why not.
+    static func check(_ site: Site, include: String, model: ProjectModel, xcblameDir: URL, verify: Verifier) -> String? {
+        let overlay = OverlayFile.url(xcblameDir: xcblameDir, configuration: site.configuration)
+        let resolved = site.xcconfig.deletingLastPathComponent().appendingPathComponent(include)
+        guard FixPaths.canonical(resolved) == FixPaths.canonical(overlay) else {
+            return "the #include? path \(include) does not resolve to \(overlay.path)"
+        }
+        guard let text = try? String(contentsOf: overlay, encoding: .utf8),
+              let blocks = try? OverlayFile.blocks(in: text, path: overlay.path) else { return nil }
+        let assignments = blocks.filter { !$0.temporary }.flatMap(\.lines).compactMap { line -> (key: String, value: String)? in
+            guard let key = OverlayFile.key(of: line), !line.contains("["),
+                  let eq = line.firstIndex(of: "=") else { return nil }
+            let value = XCConfigChain.stripComment(String(line[line.index(after: eq)...])).trimmingCharacters(in: .whitespaces)
+            return (key, value)
+        }
+        for (key, value) in assignments {
+            for target in site.project.targets.map(\.name) where SettingsOracle.isShadowed(
+                project: model, target: target, key: key, configuration: site.configuration,
+                byLevelAbove: .projectXCConfig) == nil {
+                // The generated-scheme oracle reports some keys from its own scheme, not the project (ONLY_ACTIVE_ARCH
+                // is NO there whatever the files say): those are read from the project files (fix round 3).
+                let effective = oracleBlindKeys.contains(key)
+                    ? (try? ProjectModel.load(container: model.container.url, scheme: nil)).flatMap {
+                        OfflineResolver.resolve(project: $0, configuration: site.configuration).targets[target]?[key]
+                    }
+                    : verify(site.project, target, site.configuration, key)
+                guard let effective else { return nil }
+                return FixPlanner.matches(effective: effective, written: value) ? nil
+                    : "the overlay's \(key) = \(value) did not reach \(target) (\(site.configuration) has \(effective))"
+            }
+        }
+        return nil
+    }
+
+    // MARK: - Uninstall
+
+    /// Restores each hooked xcconfig of `configurations`: the backup bytes when the file is unchanged since the hook
+    /// went in, else the hook lines are removed textually (the rest of the file is kept as edited). A configuration
+    /// with no record here (a teammate's clone: `backup/` is git-ignored, the hook lines are committed) loses exactly
+    /// the two trailing hook lines when they match byte for byte; anything else is a hand edit (failed).
+    public static func uninstall(project model: ProjectModel, configurations: [String], xcblameDir: URL) -> [Outcome] {
+        var records = Backups.hooks(xcblameDir: xcblameDir)
+        let stored = records
+        var outcomes: [Outcome] = []
+        for record in stored where configurations.contains(record.configuration) {
+            func outcome(_ status: Outcome.Status, _ message: String) -> Outcome {
+                Outcome(configuration: record.configuration, file: record.path, status: status, message: message)
+            }
+            func absolute(_ path: String) -> URL {
+                path.hasPrefix("/") ? URL(fileURLWithPath: path) : model.root.appendingPathComponent(path)
+            }
+            // The link as the project names it (includes resolve there), the file at its target as install wrote it.
+            let named = record.link.map(absolute) ?? absolute(record.path)
+            let site = Site(project: model.projects.first { $0.projectXCConfig[record.configuration] != nil } ?? model.projects[0],
+                            configuration: record.configuration, xcconfig: named)
+            let url = record.link == nil || !FixPaths.isSymlink(named) ? absolute(record.path) : site.target
+            guard let current = FileManager.default.contents(atPath: url.path) else {
+                outcomes.append(outcome(.failed, "\(record.path) is missing; the hook record stays in backup/hooks.json"))
+                continue
+            }
+            do {
+                if Backups.sha256(current) == record.hookedSHA256,
+                   let original = FileManager.default.contents(atPath: xcblameDir.appendingPathComponent(record.backup).path) {
+                    try original.write(to: url, options: .atomic)
+                    outcomes.append(outcome(.uninstalled, "hook removed from \(record.path) (bytes restored)"))
+                } else {
+                    let hook = hookText(include: includePath(site, xcblameDir: xcblameDir))
+                    var text = String(decoding: current, as: UTF8.self)
+                    guard let range = text.range(of: hook, options: .backwards) else {
+                        outcomes.append(outcome(.failed, "\(record.path) was edited by hand and the xcblame hook lines "
+                            + "were not found; remove them yourself"))
+                        continue
+                    }
+                    text.removeSubrange(range)
+                    try Data(text.utf8).write(to: url, options: .atomic)
+                    outcomes.append(outcome(.uninstalled, "hook lines removed from \(record.path); the rest of the file "
+                        + "was kept as edited"))
+                }
+                records.removeAll { $0 == record }
+                if !records.contains(where: { $0.backup == record.backup }) {
+                    try? FileManager.default.removeItem(at: xcblameDir.appendingPathComponent(record.backup))
+                }
+            } catch {
+                outcomes.append(outcome(.failed, "could not restore \(record.path): \(error)"))
+            }
+        }
+        for configuration in configurations where !outcomes.contains(where: { $0.configuration == configuration }) {
+            outcomes += unrecorded(model, configuration: configuration, xcblameDir: xcblameDir)
+        }
+        if records != stored {
+            do {
+                try Backups.saveHooks(records, xcblameDir: xcblameDir)
+            } catch {
+                outcomes.append(Outcome(configuration: configurations.first ?? "", file: nil, status: .failed,
+                                        message: "the hook lines were removed but backup/hooks.json could not be updated "
+                                            + "(\(error)); delete its stale rows by hand"))
+            }
+        }
+        return outcomes
+    }
+
+    /// `--uninstall-hook` for a configuration without a `hooks.json` row: the two hook lines, when they are the file's
+    /// last two lines byte for byte, are removed; hook lines anywhere else are a hand edit (failed).
+    private static func unrecorded(_ model: ProjectModel, configuration: String, xcblameDir: URL) -> [Outcome] {
+        guard case let .success(sites) = sites(model, configuration: configuration) else {
+            return [Outcome(configuration: configuration, file: nil, status: .notInstalled,
+                            message: "no xcblame hook recorded for \(configuration)")]
+        }
+        var outcomes: [Outcome] = []
+        for site in sites {
+            let file = FixPaths.display(site.target, root: model.root)
+            guard let data = FileManager.default.contents(atPath: site.target.path) else { continue }
+            let bytes = [UInt8](data)
+            let hook = [UInt8](hookText(include: includePath(site, xcblameDir: xcblameDir)).utf8)
+            guard String(decoding: data, as: UTF8.self).contains(marker) else { continue }
+            let rest = bytes.dropLast(hook.count)
+            guard bytes.count >= hook.count, bytes.suffix(hook.count).elementsEqual(hook),
+                  rest.isEmpty || rest.last == UInt8(ascii: "\n") else {
+                outcomes.append(Outcome(configuration: configuration, file: file, status: .failed,
+                                        message: "\(file) has the xcblame hook lines but they are not its last two lines "
+                                            + "as xcblame wrote them, and there is no local backup: remove the two lines "
+                                            + "(the \"// xcblame hook\" comment and its #include?) by hand"))
+                continue
+            }
+            do {
+                try Data(rest).write(to: site.target, options: .atomic)
+                outcomes.append(Outcome(configuration: configuration, file: file, status: .uninstalled,
+                                        message: "hook lines removed from \(file) (no local backup: the two trailing "
+                                            + "lines xcblame appended)"))
+            } catch {
+                outcomes.append(Outcome(configuration: configuration, file: file, status: .failed,
+                                        message: "could not write \(file): \(error)"))
+            }
+        }
+        if outcomes.isEmpty {
+            outcomes.append(Outcome(configuration: configuration, file: nil, status: .notInstalled,
+                                    message: "no xcblame hook recorded for \(configuration)"))
+        }
+        return outcomes
+    }
+
+    // MARK: - Verifiers
+
+    /// The scratch-workspace oracle (`SettingsOracle.effectiveInScratch`: generated scheme, `-derivedDataPath` in the
+    /// oracle cache, nothing under `~/Library/Developer`) over `model` with the hook in place.
+    public static func xcodebuildVerifier(model: ProjectModel, cacheHome: URL? = nil,
+                                          xcodebuild: String = "/usr/bin/xcodebuild") -> Verifier {
+        { _, target, configuration, key in
+            let result = SettingsOracle.effectiveInScratch(project: model, configuration: configuration,
+                                                           cacheHome: cacheHome, xcodebuild: xcodebuild)
+            return result.settings?.targets[target]?[key]
+        }
+    }
+
+    /// The offline resolver over the project files as they are now (`--offline`).
+    public static func offlineVerifier(container: URL) -> Verifier {
+        { _, target, configuration, key in
+            guard let model = try? ProjectModel.load(container: container, scheme: nil) else { return nil }
+            return OfflineResolver.resolve(project: model, configuration: configuration).targets[target]?[key]
+        }
+    }
+
+    /// `git status --porcelain -- <file>` in the file's folder.
+    public static let gitDirty: DirtyCheck = { url in
+        guard let output = runProcess(["git", "-C", url.deletingLastPathComponent().path, "status", "--porcelain", "--",
+                                       url.lastPathComponent], timeout: 10), output.succeeded else { return nil }
+        return !output.stdoutString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+}
+
+extension XcblameError {
+    /// An include path xcconfig cannot express (a quote, `$(`, `${` or a line break).
+    static func requireXCConfigPath(_ path: String) throws {
+        try WrapperXCConfig.requireExpressible(path, what: "the overlay path")
+    }
+}

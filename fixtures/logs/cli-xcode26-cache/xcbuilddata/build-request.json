@@ -1,0 +1,68 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "cd74b7ba211e7a8f77a1e7546f3a3e8892478deefb66818ff2e223cb4de0b9ef"
+    }
+  ],
+  "containerPath" : "/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/acmeapp/AcmeApp.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx26.0",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/cache26/Build/Intermediates.noindex",
+      "buildProductsPath" : "/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/cache26/Build/Products",
+      "derivedDataPath" : "/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/cache26",
+      "indexDataStoreFolderPath" : "/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/cache26/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/cache26/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/dd/cache26/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "CLANG_ENABLE_COMPILE_CACHE" : "YES",
+          "CODE_SIGNING_ALLOWED" : "NO",
+          "COMPILATION_CACHE_CAS_PATH" : "/private/tmp/claude-501/-Users-ciuser--claude-spares-spare-TFCZwc/af624146-a990-430f-a625-aea8fae4b5e2/scratchpad/probe/cas26",
+          "COMPILATION_CACHE_ENABLE_CACHING" : "YES",
+          "OTHER_CFLAGS" : "$(inherited) -ftime-trace -ftime-trace-granularity=500",
+          "SWIFT_ENABLE_COMPILATION_CACHING" : "YES"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

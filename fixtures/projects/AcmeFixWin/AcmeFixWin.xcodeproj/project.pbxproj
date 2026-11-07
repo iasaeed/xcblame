@@ -1,0 +1,185 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXFileReference section */
+		AF0100000000000000000010 /* AcmeFixWin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcmeFixWin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0100000000000000000011 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		AF0100000000000000000012 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		AF0100000000000000000013 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AF0100000000000000000020 /* AcmeFixWin */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AcmeFixWin;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF0100000000000000000041 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF0100000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				AF0100000000000000000020 /* AcmeFixWin */,
+				AF0100000000000000000004 /* Config */,
+				AF0100000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF0100000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF0100000000000000000010 /* AcmeFixWin.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF0100000000000000000004 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AF0100000000000000000011 /* Shared.xcconfig */,
+				AF0100000000000000000012 /* Debug.xcconfig */,
+				AF0100000000000000000013 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF0100000000000000000030 /* AcmeFixWin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF01000000000000000000A5 /* Build configuration list for PBXNativeTarget "AcmeFixWin" */;
+			buildPhases = (
+				AF0100000000000000000040 /* Sources */,
+				AF0100000000000000000041 /* Frameworks */,
+				AF0100000000000000000042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AF0100000000000000000020 /* AcmeFixWin */,
+			);
+			name = AcmeFixWin;
+			productName = AcmeFixWin;
+			productReference = AF0100000000000000000010 /* AcmeFixWin.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF0100000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+			};
+			buildConfigurationList = AF01000000000000000000A2 /* Build configuration list for PBXProject "AcmeFixWin" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF0100000000000000000002;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AF0100000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF0100000000000000000030 /* AcmeFixWin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF0100000000000000000042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF0100000000000000000040 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AF01000000000000000000A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF0100000000000000000012 /* Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		AF01000000000000000000A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF0100000000000000000013 /* Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		AF01000000000000000000A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		AF01000000000000000000A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF01000000000000000000A2 /* Build configuration list for PBXProject "AcmeFixWin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF01000000000000000000A0 /* Debug */,
+				AF01000000000000000000A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF01000000000000000000A5 /* Build configuration list for PBXNativeTarget "AcmeFixWin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF01000000000000000000A3 /* Debug */,
+				AF01000000000000000000A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF0100000000000000000001 /* Project object */;
+}

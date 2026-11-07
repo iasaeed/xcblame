@@ -1,0 +1,7 @@
+# Workspace fixture: CocoaPods layout without a lockfile (podCount stays nil).
+platform :ios, '17.0'
+
+target 'Acme' do
+  project '../AcmeApp/AcmeApp.xcodeproj'
+  pod 'SnapKit', '~> 5.7'
+end

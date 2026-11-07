@@ -1,0 +1,13 @@
+// Project-level baseConfigurationReference (Debug and Release).
+#include "base.xcconfig"
+#include? "missing.xcconfig"
+
+ACME_PROBE_PROJECT_XCCONFIG = project-xcconfig
+ACME_PROBE_LAYER = project-xcconfig
+ACME_PROBE_INCLUDE_ORDER = project-xcconfig
+ACME_PROBE_SDK = any
+ACME_PROBE_SDK[sdk=iphonesimulator*] = simulator
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) FROM_PROJECT_XCCONFIG
+OTHER_SWIFT_FLAGS = $(inherited) -DPROJECT_XCCONFIG
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) PROJECT_XCCONFIG=1
+PRODUCT_NAME = ProbeFromProjectXCConfig

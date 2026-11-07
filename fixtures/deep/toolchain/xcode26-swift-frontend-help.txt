@@ -1,0 +1,12 @@
+OVERVIEW: Swift frontend
+
+USAGE: swift-frontend -frontend
+
+DEBUG/DEVELOPMENT OPTIONS:
+  -compiler-assertions Enable internal self-checks while compiling
+
+MODES:
+  -dump-ast              Parse and type-check input file(s) and dump AST(s)
+  -dump-availability-scopes
+                         Type-check input file(s) and dump availability scopes
+  -dump-parse            Parse input file(s) and dump AST(s)

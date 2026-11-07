@@ -1,0 +1,88 @@
+# Example: measure the build of an iOS app on every pull request, comment the result, fail a slower build.
+#
+# Copy this file to .github/workflows/xcblame.yml and replace the Acme* names (project, scheme, destination).
+#
+# - `xcblame build [xcblame options] -- <xcodebuild arguments>` runs xcodebuild with the arguments after `--` (do not
+#   repeat the word xcodebuild; `xcblame build --html -- -scheme AcmeApp build` is the shortest form), captures the
+#   log and analyzes it. `--format github` writes the PR comment body to -o, prints annotations for errors and
+#   warnings as workflow commands, and appends the body to the job summary. `--html` also writes the HTML report to
+#   .xcblame/reports/.
+# - Commit a baseline made on your main branch (`xcblame baseline save`, see `xcblame baseline --help`) as
+#   .xcblame/baseline.json. While the file is missing the build is analyzed without a verdict.
+# - Exit codes: xcodebuild's own code when the build fails, 3 when the build got slower than the baseline by more
+#   than --fail-if-slower percent (the noise model is in docs/DESIGN.md section 6.10).
+# - The comment and the artifact steps run `if: always()`, so a failed or slower build still reports.
+name: Build time
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: xcblame-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-time:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Select the latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: latest-stable
+
+      # Replace with how you install xcblame: a Homebrew tap, or a release tarball from your fork.
+      - name: Install xcblame
+        run: |
+          brew tap OWNER/tap
+          brew install xcblame
+          xcblame --version
+
+      - name: Build and analyze
+        id: build
+        run: |
+          args=(--html --format github -o xcblame-comment.md)
+          if [ -f .xcblame/baseline.json ]; then
+            args+=(--baseline .xcblame/baseline.json --fail-if-slower 10)
+          else
+            echo "::notice title=No baseline::.xcblame/baseline.json is missing; the build is analyzed without a verdict"
+          fi
+          xcblame build "${args[@]}" -- \
+            -project AcmeApp.xcodeproj \
+            -scheme AcmeApp \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 17' \
+            build
+
+      - name: Upload the HTML report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: xcblame-report
+          path: |
+            .xcblame/reports/*.html
+            xcblame-comment.md
+          if-no-files-found: warn
+
+      # The first line of the comment body is `<!-- xcblame:report -->`: the step edits the comment that carries it, so
+      # a PR has one xcblame comment, not one per push. Pull requests from forks get a read-only token and no comment.
+      - name: Comment on the pull request
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository && hashFiles('xcblame-comment.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          existing="$(gh api "repos/${{ github.repository }}/issues/${PR}/comments" --paginate \
+            --jq '.[] | select(.body | startswith("<!-- xcblame:report -->")) | .id' | head -n 1)"
+          if [ -n "$existing" ]; then
+            gh api --method PATCH "repos/${{ github.repository }}/issues/comments/${existing}" \
+              --field body=@xcblame-comment.md > /dev/null
+          else
+            gh pr comment "$PR" --body-file xcblame-comment.md
+          fi

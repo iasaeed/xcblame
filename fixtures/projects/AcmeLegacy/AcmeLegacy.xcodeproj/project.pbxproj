@@ -1,0 +1,373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B10000000000000000000101 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000201 /* AppDelegate.swift */; };
+		B10000000000000000000102 /* LegacyKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000202 /* LegacyKit.swift */; };
+		B10000000000000000000103 /* LKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000204 /* LKHelper.m */; };
+		B10000000000000000000104 /* LKHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = B10000000000000000000203 /* LKHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B10000000000000000000105 /* AcmeLegacyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10000000000000000000206 /* AcmeLegacyKit.framework */; };
+		B10000000000000000000106 /* AcmeLegacyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B10000000000000000000206 /* AcmeLegacyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B10000000000000000000601 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B10000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B10000000000000000000402;
+			remoteInfo = AcmeLegacyKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B10000000000000000000507 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B10000000000000000000106 /* AcmeLegacyKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B10000000000000000000201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B10000000000000000000202 /* LegacyKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyKit.swift; sourceTree = "<group>"; };
+		B10000000000000000000203 /* LKHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKHelper.h; sourceTree = "<group>"; };
+		B10000000000000000000204 /* LKHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKHelper.m; sourceTree = "<group>"; };
+		B10000000000000000000205 /* AcmeLegacy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcmeLegacy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10000000000000000000206 /* AcmeLegacyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AcmeLegacyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B10000000000000000000502 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000105 /* AcmeLegacyKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B10000000000000000000512 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B10000000000000000000301 = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000303 /* AcmeLegacy */,
+				B10000000000000000000304 /* AcmeLegacyKit */,
+				B10000000000000000000302 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B10000000000000000000302 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000205 /* AcmeLegacy.app */,
+				B10000000000000000000206 /* AcmeLegacyKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B10000000000000000000303 /* AcmeLegacy */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000201 /* AppDelegate.swift */,
+			);
+			path = AcmeLegacy;
+			sourceTree = "<group>";
+		};
+		B10000000000000000000304 /* AcmeLegacyKit */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000202 /* LegacyKit.swift */,
+				B10000000000000000000203 /* LKHelper.h */,
+				B10000000000000000000204 /* LKHelper.m */,
+			);
+			path = AcmeLegacyKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B10000000000000000000513 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000104 /* LKHelper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B10000000000000000000401 /* AcmeLegacy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B10000000000000000000703 /* Build configuration list for PBXNativeTarget "AcmeLegacy" */;
+			buildPhases = (
+				B10000000000000000000501 /* Sources */,
+				B10000000000000000000502 /* Frameworks */,
+				B10000000000000000000503 /* Resources */,
+				B10000000000000000000507 /* Embed Frameworks */,
+				B10000000000000000000504 /* Version Bump */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B10000000000000000000602 /* PBXTargetDependency */,
+			);
+			name = AcmeLegacy;
+			productName = AcmeLegacy;
+			productReference = B10000000000000000000205 /* AcmeLegacy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B10000000000000000000402 /* AcmeLegacyKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B10000000000000000000706 /* Build configuration list for PBXNativeTarget "AcmeLegacyKit" */;
+			buildPhases = (
+				B10000000000000000000513 /* Headers */,
+				B10000000000000000000511 /* Sources */,
+				B10000000000000000000512 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcmeLegacyKit;
+			productName = AcmeLegacyKit;
+			productReference = B10000000000000000000206 /* AcmeLegacyKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B10000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					B10000000000000000000401 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					B10000000000000000000402 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = B10000000000000000000700 /* Build configuration list for PBXProject "AcmeLegacy" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B10000000000000000000301;
+			productRefGroup = B10000000000000000000302 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B10000000000000000000401 /* AcmeLegacy */,
+				B10000000000000000000402 /* AcmeLegacyKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B10000000000000000000503 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B10000000000000000000504 /* Version Bump */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Version Bump";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%s)\" \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B10000000000000000000501 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000101 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B10000000000000000000511 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000102 /* LegacyKit.swift in Sources */,
+				B10000000000000000000103 /* LKHelper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B10000000000000000000602 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B10000000000000000000402 /* AcmeLegacyKit */;
+			targetProxy = B10000000000000000000601 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B10000000000000000000701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B10000000000000000000702 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B10000000000000000000704 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.acme.legacy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B10000000000000000000705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.acme.legacy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B10000000000000000000707 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.acme.legacykit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B10000000000000000000708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.acme.legacykit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B10000000000000000000700 /* Build configuration list for PBXProject "AcmeLegacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B10000000000000000000701 /* Debug */,
+				B10000000000000000000702 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B10000000000000000000703 /* Build configuration list for PBXNativeTarget "AcmeLegacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B10000000000000000000704 /* Debug */,
+				B10000000000000000000705 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B10000000000000000000706 /* Build configuration list for PBXNativeTarget "AcmeLegacyKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B10000000000000000000707 /* Debug */,
+				B10000000000000000000708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B10000000000000000000001 /* Project object */;
+}

@@ -1,0 +1,13 @@
+// Project-level base xcconfig of Debug (xcblame fix --install-hook appends its #include? here).
+// Planted no-op (SET-011): product validation runs only for install and archive, so turning
+// it off in Debug changes nothing measurable on this tiny app.
+#include "Shared.xcconfig"
+
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
+GCC_OPTIMIZATION_LEVEL = 0
+ONLY_ACTIVE_ARCH = YES
+ENABLE_TESTABILITY = YES
+COPY_PHASE_STRIP = NO
+DEBUG_INFORMATION_FORMAT = dwarf
+VALIDATE_PRODUCT = YES

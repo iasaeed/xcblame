@@ -1,0 +1,12 @@
+{
+	"Frontend.NumProcessFailures": 1,
+	"Frontend.NumInstructionsExecuted": 51232016523,
+	"AST.NumASTBytesAllocated": 1138194,
+	"AST.NumDepScanFilesystemLookups": 1228,
+	"Parse.NumFunctionsParsed": 103,
+	"Parse.NumIterableDeclContextParsed": 35,
+	"time.swift-frontend.AcmeApp-all-arm64_apple_macos14.0--Onone.wall": 5.0178289413452148e-01,
+	"time.swift-frontend.AcmeApp-all-arm64_apple_macos14.0--Onone.user": 1.2715950000000000e+00,
+	"time.swift-frontend.AcmeApp-all-arm64_apple_macos14.0--Onone.sys": 6.0165399999999991e-01,
+	"time.swift-frontend.AcmeApp-all-arm64_apple_macos14.0--Onone.instr": 1.1779578389000000e+10
+}

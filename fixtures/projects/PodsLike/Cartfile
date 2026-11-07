@@ -1,0 +1,2 @@
+github "ReactiveX/RxSwift" ~> 6.6
+github "realm/SwiftLint" == 0.54.0
