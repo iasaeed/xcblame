@@ -5,6 +5,8 @@ import XCTest
 
 /// Hand-built `ProjectModel`s (Lane A's reader is not in this lane) and the zero-writes tree hash.
 enum SettingsFixtures {
+    /// GitHub-hosted runners are ~3x slower than the developer hardware the wall-clock budgets are measured on.
+    static var isHostedCI: Bool { ProcessInfo.processInfo.environment["GITHUB_ACTIONS"] == "true" }
     static let projects = FixtureProjectTests.root
     static let precedence = projects.appendingPathComponent("Precedence")
     static let acme = projects.appendingPathComponent("AcmeApp")
