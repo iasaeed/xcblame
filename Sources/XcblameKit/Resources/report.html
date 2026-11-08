@@ -2398,7 +2398,7 @@ function renderHotspots() {
   cnt(sec, shown(rows.length, D.hotspotsTotal, D.hotspotsShownShare, 'type-check ms'));
   function hot(h) { return h.onPathWeight >= 1 || h.ms >= 100 ? 1 : 0; }
   var api = makeTable({
-    rows: rows.slice().sort((a, b) => hot(b) - hot(a) || b.ms - a.ms), sort: -1, top: 15, text: h => h.file + ' ' + h.declaration + ' ' + h.kind,
+    rows: rows.slice().sort((a, b) => hot(b) - hot(a) || b.ms - a.ms), sort: -1, top: Math.min(15, rows.filter(hot).length) || 15, text: h => h.file + ' ' + h.declaration + ' ' + h.kind,
     columns: [
       { label: 'Declaration', head: true, cls: 'path', sort: h => h.declaration, cell: h => h.declaration },
       { label: 'Location', cls: 'path', sort: h => h.file, cell: h => el('span', null, pathCell(h.file), tx('span', 'dir', ':' + h.line + ':' + h.col)) },
