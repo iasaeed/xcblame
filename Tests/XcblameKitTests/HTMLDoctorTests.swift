@@ -42,7 +42,7 @@ final class HTMLDoctorTests: XCTestCase {
         let doc = HTMLSample.doctor()
         let first = try render(doc).html
         XCTAssertEqual(first, try render(doc).html, "byte-identical renders")
-        XCTAssertLessThan(first.utf8.count, 370_000, "template budget (300 KB) + 70 KB of data")
+        XCTAssertLessThan(first.utf8.count, 270_000, "template budget (200 KB) + 70 KB of data")
         let context = Redactor.Context(home: NSHomeDirectory(), user: NSUserName(), host: "sample-host",
                                        repoRoot: RulesFixtures.root.deletingLastPathComponent().deletingLastPathComponent().path)
         let redacted = try Redactor.redact(doc, context: context)
@@ -55,7 +55,7 @@ final class HTMLDoctorTests: XCTestCase {
 
     func testTemplateCarriesTheDoctorVariant() {
         let template = ReportTemplate.html
-        XCTAssertLessThanOrEqual(template.utf8.count, 300_000, "template budget")
+        XCTAssertLessThanOrEqual(template.utf8.count, 200_000, "template budget")
         for marker in ["renderDoctorSummary", "doctor runs no build", "Copy xcblame command", "Copy the ",
                        "Not checked", "Did not apply", "Suppressed", "More about this rule", "Commit your changes first."] {
             XCTAssertTrue(template.contains(marker), marker)

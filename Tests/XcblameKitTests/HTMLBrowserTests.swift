@@ -48,6 +48,12 @@ final class HTMLBrowserTests: XCTestCase {
 
     private func rows(_ body: String) -> Int { body.components(separatedBy: " data-row=\"").count - 1 }
 
+    /// `tr.finding` rows (not the `tr.finding-detail` rows under them).
+    private func findingRows(_ body: String) -> Int {
+        let regex = try! NSRegularExpression(pattern: #"<tr\b[^>]*\bclass="finding""#)
+        return regex.numberOfMatches(in: body, range: NSRange(body.startIndex..., in: body))
+    }
+
     private func assertPage(_ doc: ReportDocument, _ index: TaskIndex?, file: StaticString = #filePath, line: UInt = #line) throws -> String {
         let dom = try dumpDOM(try render(doc, index))
         XCTAssertTrue(dom.contains("data-rendered=\"all\""), "every section rendered", file: file, line: line)
@@ -73,7 +79,7 @@ final class HTMLBrowserTests: XCTestCase {
             XCTAssertEqual(attribute("data-shown", in: tag), String(shown), "\(id) data-shown", file: file, line: line)
             switch id {
             case "findings":
-                XCTAssertEqual(body.components(separatedBy: "<article class=\"finding\"").count - 1, shown, file: file, line: line)
+                XCTAssertEqual(findingRows(body), shown, "one tr.finding per finding", file: file, line: line)
             case "timeline":
                 XCTAssertEqual(rows(body), min(200, shown) + min(200, doc.criticalPath?.waits.count ?? 0), id, file: file, line: line)
             case "environment":
@@ -117,7 +123,7 @@ final class HTMLBrowserTests: XCTestCase {
         XCTAssertTrue(try section("files", in: dom).body.contains("not applicable: "))
         XCTAssertTrue(try section("hotspots", in: dom).body.contains("not applicable: "))
         XCTAssertTrue(try section("findings", in: dom).body.contains("No findings: no rules ran for this report"))
-        XCTAssertTrue(try section("summary", in: dom).body.contains("Log span"))
+        XCTAssertTrue(try section("summary", in: dom).body.contains("data-kpi=\"span\""), "the span KPI tile")
     }
 
     func testPopulatedDocumentRendersRowsAndHostileTextAsText() throws {
@@ -134,22 +140,22 @@ final class HTMLBrowserTests: XCTestCase {
     func testDoctorPageRendersTheProjectVariant() throws {
         let doc = HTMLSample.doctor()
         let dom = try assertPage(doc, nil)
-        let summary = try section("summary", in: dom).body
-        for text in ["doctor · no build", "AcmeApp.xcodeproj", "objectVersion 77", "xcodebuild -showBuildSettings -json",
-                     "4 project targets", "Rules checked"] {
-            XCTAssertTrue(summary.contains(text), text)
+        // The cockpit: a doctor chip and the project facts (data), no build numbers.
+        XCTAssertTrue(dom.contains("data-chip=\"doctor\""), "doctor chip")
+        for text in ["AcmeApp.xcodeproj", "objectVersion 77", "xcodebuild -showBuildSettings -json"] {
+            XCTAssertTrue(dom.contains(text), text)
         }
         for id in ["timeline", "targets", "files", "hotspots"] {
             XCTAssertTrue(try section(id, in: dom).body.contains("doctor runs no build"), id)
         }
         let findings = try section("findings", in: dom).body
-        let outcomes = try XCTUnwrap(doc.doctor)
-        for text in ["Fix plan (\(doc.fixPlan.count) steps)", "COMPILATION_CACHE_ENABLE_CACHING = YES // xcblame SET-016",
-                     "xcblame verify --rules SET-016 --kind clean --mechanism hook", "Later with xcblame",
-                     "not available yet: make the change by hand", "Or with xcblame (verify measures it first, fix writes it):",
-                     "project settings (AcmeApp.xcodeproj)", "More about this rule",
-                     "Passed (\(outcomes.passed.count))", "Did not apply (",
-                     "Suppressed (\(outcomes.suppressed.count))", "deferred until PHASE-001"] {
+        let plan = try XCTUnwrap(findings.range(of: "<ol id=\"fix-plan\""), "ol#fix-plan")
+        XCTAssertEqual(findings[plan.lowerBound...].components(separatedBy: "</ol>")[0].components(separatedBy: "<li ").count - 1,
+                       doc.fixPlan.count, "one li per fix-plan step")
+        for text in ["COMPILATION_CACHE_ENABLE_CACHING = YES // xcblame SET-016",
+                     "xcblame verify --rules SET-016 --kind clean --mechanism hook", "project settings (AcmeApp.xcodeproj)",
+                     "More about this rule", "Commit your changes first.", "Did not apply", "Suppressed",
+                     "deferred until PHASE-001"] {
             XCTAssertTrue(findings.contains(text), text)
         }
         XCTAssertTrue(dom.contains("&lt;/script&gt;&lt;img src=x onerror=alert(1)&gt;"), "hostile text shown as text")
@@ -162,7 +168,7 @@ final class HTMLBrowserTests: XCTestCase {
         ReportBudget.apply(&doc, taskIndex: &thinned, maxBytes: 3_000_000, templateBytes: ReportTemplate.html.utf8.count)
         XCTAssertFalse(doc.truncation.steps.isEmpty)
         let dom = try assertPage(doc, thinned)
-        XCTAssertTrue(try section("summary", in: dom).body.contains("This report is truncated to fit its size cap."))
+        XCTAssertTrue(dom.contains("This report is truncated to fit its size cap."), "the banner (#truncation on the first screen)")
         XCTAssertTrue(dom.contains("--format json --top all"), "how to get every row (the CLI has no chrome-trace format)")
     }
 
@@ -185,7 +191,7 @@ final class HTMLBrowserTests: XCTestCase {
         let doc = result.document
         let index = TaskIndex.make(model: model, analysis: result.analysis, document: doc)
         let dom = try dumpDOM(try render(doc, index))
-        let title = "critical path up to this much shorter if the target took no time (build plan only)"
+        let title = "Path saving if this target took no time (build plan)"
         let regex = try NSRegularExpression(pattern: "<span title=\"\(NSRegularExpression.escapedPattern(for: title))\">([^<]*)</span>")
         let cells = regex.matches(in: dom, range: NSRange(dom.startIndex..., in: dom)).map {
             String(dom[Range($0.range(at: 1), in: dom)!])
@@ -218,7 +224,9 @@ final class HTMLBrowserTests: XCTestCase {
         XCTAssertTrue(dom.contains("data-rendered=\"all\""))
     }
 
-    /// `XCBLAME_HTML_SAMPLES=<dir> swift test --filter HTMLBrowserTests` writes the sample pages for a manual look.
+    /// `XCBLAME_HTML_SAMPLES=<dir> swift test --filter testWriteSamplesWhenAsked` writes the sample pages for a manual look:
+    /// every report variant plus the compare, trend, why, verify, verify-aborted, fix-plan and incremental pages (verify
+    /// cannot be produced through the CLI without xcodebuild).
     func testWriteSamplesWhenAsked() throws {
         guard let dir = ProcessInfo.processInfo.environment["XCBLAME_HTML_SAMPLES"] else { throw XCTSkip("set XCBLAME_HTML_SAMPLES") }
         let out = URL(fileURLWithPath: dir)
@@ -235,5 +243,38 @@ final class HTMLBrowserTests: XCTestCase {
         try render(HTMLSample.doctor(), nil).write(to: out.appendingPathComponent("doctor.html"))
         try render(HTMLSample.doctor(hostileStrings: false, generated: true), nil)
             .write(to: out.appendingPathComponent("doctor-xcodegen.html"))
+
+        // The other documents (plan §7): compare, trend, why, verify (kept and aborted), fix plan, incremental.
+        let compare = try Compare.run(a: .init(source: "a.xcactivitylog", documents: [CompareFixtures.xcode26.document],
+                                               taskRows: [CompareFixtures.xcode26.rows]),
+                                      b: .init(source: "b.xcactivitylog", documents: [CompareFixtures.xcode27.document],
+                                               taskRows: [CompareFixtures.xcode27.rows]), options: .init(top: .max))
+        try HTMLReporter.renderCompare(compare, taskIndexA: CompareFixtures.xcode26.index, taskIndexB: CompareFixtures.xcode27.index,
+                                       options: .init(redact: false, title: "xcblame compare"))
+            .write(to: out.appendingPathComponent("compare.html"))
+        let history = try makeHistoryDirectory()
+        for minute in 1...4 {
+            try TrendFixture.save(.init(minutes: Double(minute), wall: 20 + Double(minute), xcode: minute < 3 ? "26.0" : "26.1"), in: history)
+        }
+        try HTMLReporter.renderTrend(try Trend.run(history: history), options: .init(redact: false, title: "xcblame trend"))
+            .write(to: out.appendingPathComponent("trend.html"))
+        var (_, why) = try WhyFixtures.attributed(WhyFixtures.why26, test: self, topN: .max)
+        if var incremental = why.incremental {
+            incremental.procedure = .init(mode: "zeroChange", touched: nil, builds: [
+                .init(role: "settle", exitCode: 0, wall: 3, executedTasks: 575, executedWorkTasks: 200, historyId: "h1"),
+                .init(role: "measure", exitCode: 0, wall: 2, executedTasks: 79, executedWorkTasks: 50, historyId: nil),
+            ], backtraces: "on", showIncremental: false)
+            why = why.applying(incremental: incremental)
+        }
+        try HTMLReporter.renderWhy(why, taskIndex: nil, options: .init(redact: false, title: "xcblame why")).data
+            .write(to: out.appendingPathComponent("why.html"))
+        try HTMLReporter.renderVerify(FixVerifySamples.verify(), options: .init(redact: false, title: "xcblame verify"))
+            .write(to: out.appendingPathComponent("verify.html"))
+        try HTMLReporter.renderVerify(FixVerifySamples.aborted, options: .init(redact: false, title: "xcblame verify"))
+            .write(to: out.appendingPathComponent("verify-aborted.html"))
+        try HTMLReporter.renderFixPlan(FixVerifySamples.plan, options: .init(redact: false, title: "xcblame fix plan"))
+            .write(to: out.appendingPathComponent("fixplan.html"))
+        let (_, incremental) = try WhyFixtures.attributed(WhyFixtures.remarks27, test: self)
+        try render(incremental, nil).write(to: out.appendingPathComponent("incremental.html"))
     }
 }

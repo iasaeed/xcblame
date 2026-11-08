@@ -248,7 +248,7 @@ final class CompareHTMLTests: XCTestCase {
         XCTAssertTrue(String(dom[errors.lowerBound..<errorEnd.upperBound]).hasSuffix("></pre>"), String(dom[errors.lowerBound..<errorEnd.upperBound]))
     }
 
-    /// An ordinary build against a `build --deep` run: the Start-here box carries the deep note.
+    /// An ordinary build against a `build --deep` run: the cockpit carries the deep note.
     func testStartHereNamesTheDeepSide() throws {
         let plain = try CompareFixtures.report(span: 10)
         var deep = try CompareFixtures.report(span: 12)
@@ -256,8 +256,9 @@ final class CompareHTMLTests: XCTestCase {
                           derivedData: "/cache/deep/abc", derivedDataBytes: nil, wrapper: nil, exactFiles: nil, sources: nil, notes: [])
         let doc = try Compare.run(a: .init(source: "a.json", documents: [plain]), b: .init(source: "b.json", documents: [deep]))
         let dom = try dumpDOM(try HTMLReporter.renderCompare(doc, taskIndexA: nil, taskIndexB: nil, options: .init(redact: false, title: "t")))
-        let start = try XCTUnwrap(dom.range(of: "<div id=\"start-body\""))
-        let box = String(dom[start.lowerBound...].prefix(3000))
-        XCTAssertTrue(box.contains("b is a build --deep run: timing flags were injected, so its task times can be slower than a normal build"), box)
+        let start = try XCTUnwrap(dom.range(of: "<section id=\"start-here\""))
+        let end = try XCTUnwrap(dom.range(of: "</section>", range: start.upperBound..<dom.endIndex))
+        let box = String(dom[start.lowerBound..<end.lowerBound])
+        XCTAssertTrue(box.contains("b is a --deep build: its task times run slower."), box)
     }
 }
