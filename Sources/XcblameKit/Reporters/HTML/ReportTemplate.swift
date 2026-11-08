@@ -987,13 +987,13 @@ function vSentence(u, doc) {
 function verifyNext(doc) {
   function ids(f) { return [].concat.apply([], (doc.results || []).filter(f).map(u => u.ruleIds)).join(','); }
   var a = ids(u => u.verdict.status === 'kept' && u.mechanism !== 'cli'), c = ids(u => u.verdict.status === 'kept' && u.mechanism === 'cli'), i = ids(u => u.verdict.status === 'indicative');
-  return [a && ['Write the kept changes into the overlay', 'xcblame fix --rules ' + a + ' --apply'],
-    c && ['Kept on the command line only; measure it through the hook for Xcode', 'xcblame verify --rules ' + c + ' --mechanism hook'],
-    i && ['Too few runs to decide: measure again', 'xcblame verify --rules ' + i + ' --runs 5'],
-    doc.abort && ['Then run verify again', 'xcblame verify --plan ' + doc.planId]].filter(Boolean);
+  return [a && ['Write the kept changes into the overlay:', 'xcblame fix --rules ' + a + ' --apply'],
+    c && ['Kept on the command line only; for Xcode, measure it through the hook:', 'xcblame verify --rules ' + c + ' --mechanism hook'],
+    i && ['Too few runs to decide; measure again:', 'xcblame verify --rules ' + i + ' --runs 5'],
+    doc.abort && ['Then run verify again:', 'xcblame verify --plan ' + doc.planId]].filter(Boolean);
 }
 function commandList(id, pairs) {
-  return el('div', { class: 'plan', id: id }, tx('h3', null, 'Run next'), el('ol', null, pairs.map(c => el('li', null, c[0] ? c[0] + ': ' : null, code(c[1])))),
+  return el('div', { class: 'plan', id: id }, tx('h3', null, 'Run next'), el('ol', null, pairs.map(c => el('li', null, c[0] + ' ', code(c[1])))),
     el('button', { text: pairs.length === 1 ? 'Copy the command' : 'Copy the ' + pairs.length + ' commands', onclick: function () { copyText(pairs.map(c => c[1]).join('\n'), this); } }));
 }
 function verifyChart(res) {
@@ -1025,7 +1025,7 @@ function verifyChart(res) {
 }
 function renderVerifyDoc(doc) {
   var res = doc.results || [], kids = [], notes = [];
-  if (doc.abort) kids.push(el('p', { id: 'verify-abort', role: 'alert' }, strong('Stopped early (' + doc.abort.reason + '). '), (ABORT[doc.abort.reason] || '') + ' ' + doc.abort.detail + ' Finished rules keep their verdict.'));
+  if (doc.abort) kids.push(el('p', { id: 'verify-abort', role: 'alert' }, strong('The run stopped early (' + doc.abort.reason + '). '), (ABORT[doc.abort.reason] || '') + ' ' + doc.abort.detail + ' Finished rules keep their verdict.'));
   kids.push(verifyChart(res));
   function arms(u, f) { return el('div', null, u.arms.map(a => el('div', null, f(a)))); }
   function dot(r) {
@@ -1062,7 +1062,7 @@ function startVerify(doc) {
   if (doc.abort) lines.push(el('p', { class: 'alert', role: 'alert', text: ABORT[doc.abort.reason] || doc.abort.reason }));
   cockpit({ kind: 'verify', headline: 'Kept ' + n.kept + ', reverted ' + n.reverted + (n.indicative ? ', indicative ' + n.indicative : '') + (n.unverified ? ', unverified ' + n.unverified : '') + '.',
     lines: lines, title: 'Next', nothingId: false, nothing: 'Nothing to write: no change was faster beyond noise.',
-    actions: verifyNext(doc).map(c => ({ source: 'verify', what: c[0], savingText: /--apply/.test(c[1]) ? 'writes the kept changes' : 'measures again', cmd: c[1],
+    actions: verifyNext(doc).map(c => ({ source: 'verify', what: c[0].replace(/:$/, ''), savingText: /--apply/.test(c[1]) ? 'writes the kept changes' : 'measures again', cmd: c[1],
       undo: /--apply/.test(c[1]) ? 'Undo: xcblame fix --revert.' : MEASURE_ONLY })) });
 }
 var HOOK_WORDS = { installed: 'installed', notInstalled: 'not installed: xcblame fix --install-hook', unavailable: 'unavailable', generated: 'generated project: add the line in its source' };
@@ -1093,15 +1093,15 @@ function renderPlanDoc(doc) {
   cnt('fixplan', plural(steps.length, 'step'));
   setCounts('fixplan', steps.length, steps.length);
 }
-function planCmd(c) { return /--install-hook/.test(c) ? 'Install the hook so Xcode reads the overlay' : /^xcblame verify /.test(c) ? 'Measure the changes first' : /--apply-defaults/.test(c) ? 'Write the Xcode preferences' : /--apply/.test(c) ? 'Write the kept changes' : 'Run'; }
+function planCmd(c) { return /--install-hook/.test(c) ? 'Install the hook, so Xcode reads the overlay:' : /^xcblame verify /.test(c) ? 'Measure the changes before keeping them:' : /--apply-defaults/.test(c) ? 'Write the Xcode preference steps:' : /--apply/.test(c) ? 'Write the kept changes:' : 'Run:'; }
 function startPlan(doc) {
   var st = doc.steps || [], kept = st.filter(s => s.verify.status === 'kept').length, wait = st.filter(s => s.verify.status === 'unverified' && /^(hook|cli)$/.test(s.mechanism)).length;
   var f = doc.generatedFrom;
-  cockpit({ kind: 'fixplan', headline: [strong(plural(st.length, 'step') + ': '), kept + ' kept by verify, ' + wait + ' waiting to be measured'],
+  cockpit({ kind: 'fixplan', headline: [strong(plural(st.length, 'step') + ': '), kept + ' kept by verify, ' + wait + ' waiting to be measured.'],
     lines: [el('p', { class: 'lead' }, (doc.events || []).length ? ['Writes were made; ', code('xcblame fix --revert ' + doc.id), ' undoes them.'] : 'Nothing changes until xcblame fix --apply.',
       ' Planned from ' + (f.analysisId ? 'build ' + f.analysisId : f.analysisPath ? f.analysisPath : 'the settings only') + ' (' + f.settingsSource + ').')],
     title: 'Run in order', nothingId: false, nothing: 'Nothing to run: every step is a change by hand.',
-    actions: (doc.commands || []).map(c => ({ source: 'plan', what: planCmd(c) + (/--rules (\S+)/.test(c) ? ': ' + /--rules (\S+)/.exec(c)[1] : ''), savingText: /verify/.test(c) ? 'measures first' : 'writes only kept steps', cmd: c,
+    actions: (doc.commands || []).map(c => ({ source: 'plan', what: planCmd(c) + (/--rules (\S+)/.test(c) ? ' ' + /--rules (\S+)/.exec(c)[1] : ''), savingText: /verify/.test(c) ? 'measures first' : 'writes only kept steps', cmd: c,
       undo: /--apply|--install-hook/.test(c) ? 'Undo: xcblame fix --revert ' + doc.id + '.' : MEASURE_ONLY })) });
 }
 // xcblame:verify:js:end
@@ -1125,7 +1125,7 @@ var KIND = String(D.schemaVersion || '').split('/')[0];
 var VIEW = { 'xcblame.compare': ['compare', 'Compare', renderCompare, startCompare], 'xcblame.trend': ['trend', 'Trend', renderTrend, startTrend],
   'xcblame.verify': ['verify', 'Verify', renderVerifyDoc, startVerify], 'xcblame.fixplan': ['fixplan', 'Fix plan', renderPlanDoc, startPlan] }[KIND];
 if (VIEW) {
-  document.querySelectorAll('main > section').forEach(function (s) { s.hidden = [VIEW[0], 'start-here'].indexOf(s.id) < 0; });
+  document.querySelectorAll('main section').forEach(function (s) { s.hidden = [VIEW[0], 'start-here'].indexOf(s.id) < 0; });
   $('#details-group').hidden = true;
   $('#' + VIEW[0] + ' details').open = true;
   $('#h-scheme').textContent = VIEW[1];
