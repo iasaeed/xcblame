@@ -534,8 +534,17 @@ final class HTMLCockpitTests: XCTestCase {
         let causes = actions(dom).filter { attribute("data-source", in: $0.tag) == "cause" }
         XCTAssertFalse(causes.isEmpty, "the biggest cause is an action")
         let start = text(try section("start-here", in: dom).body)
-        for cause in incremental.causes.sorted(by: { $0.seconds > $1.seconds }).prefix(3) {
-            guard let fix = cause.whatToDo, cause.id != "unknown" else { continue }
+        // Xcode's own work (planning, the SDK stat cache, system modules) is named in "what changed" but has nothing to fix.
+        let xcodeClasses: Set<String> = ["planning", "sdkStatCache", "systemModules"]
+        let xcodeTargets: Set<String> = ["build system", "explicit modules"]
+        for cause in incremental.causes.sorted(by: { $0.seconds > $1.seconds }).prefix(3) where cause.id != "unknown" {
+            let xcodeOwn = xcodeClasses.contains(cause.class) || cause.tasks.contains { xcodeTargets.contains($0.target ?? "") }
+            if xcodeOwn {
+                XCTAssertTrue(start.contains(cause.cause.replacingOccurrences(of: #" since build \S+$"#, with: "", options: .regularExpression)),
+                              "the first screen names \(cause.id) in what changed")
+                continue
+            }
+            guard let fix = cause.whatToDo else { continue }
             XCTAssertTrue(start.contains(fix), "the first screen carries \(cause.id)'s what-to-do: \(fix)")
         }
     }
