@@ -205,6 +205,8 @@ enum SchemaTable {
         // v0.5 (docs/SCHEMA-v0.5.md)
         ref("incremental", "Incremental", null: true), list("fixedCosts", "FixedCost", null: true),
         ref("moduleGraph", "ModuleGraph", null: true), ref("deep", "Deep", null: true),
+        // v0.6 addition D1 (docs/SCHEMA-v0.6.md "report: previous")
+        ref("previous", "Previous", null: true),
         // HTML only: the page's task index (`--format html`); never in `--format json`.
         F("taskIndex", .ref("TaskIndex"), optional: true),
     ]
@@ -277,6 +279,7 @@ enum SchemaTable {
         "EvidenceItem": [s("kind"), s("ref"), s("value", null: true), s("provenance", null: true)],
         "RuleDoc": [s("title"), s("summary"), s("fix"), strings("sources"), s("id"), s("category"), strings("applyKinds"),
                     b("verifyOnly"), s("risk"), s("evidenceTag")],
+        "Previous": [n("span"), s("kind"), d("generatedAt"), s("id")],
         "Truncation": [list("steps", "TruncationStep")],
         "TruncationStep": [s("step"), i("kept"), i("total"), n("shownShare", null: true)],
         "ProjectSection": [

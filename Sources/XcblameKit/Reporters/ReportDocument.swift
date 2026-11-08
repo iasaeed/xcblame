@@ -1173,6 +1173,27 @@ public struct ReportDocument: Codable, Sendable, Equatable {
         }
     }
 
+    /// `previous` (D1, docs/SCHEMA-v0.6.md "report: previous", 2026-11-08): the newest older history entry of the same
+    /// build kind and scheme, not a `build --deep` run, so the HTML headline can say "12 % slower than the previous
+    /// clean build". Null when there is none or with `--no-history`.
+    public struct Previous: Codable, Sendable, Equatable {
+        /// The entry's log span in seconds.
+        public var span: Double
+        /// The entry's `build.kind` (the same as this report's).
+        public var kind: String
+        /// The entry's own `generatedAt`.
+        public var generatedAt: Date
+        /// The history entry id (`<yyyyMMdd-HHmmss>-<kind>`).
+        public var id: String
+
+        public init(span: Double, kind: String, generatedAt: Date, id: String) {
+            self.span = span
+            self.kind = kind
+            self.generatedAt = generatedAt
+            self.id = id
+        }
+    }
+
     public struct TruncationStep: Codable, Sendable, Equatable {
         /// `hotspots` / `files` / `taskIndex` / `moduleGraph` / `targets` / `findingsEvidence` / `diagnostics` /
         /// `lastResort` (§8.2.3).
@@ -1258,4 +1279,38 @@ public struct ReportDocument: Codable, Sendable, Equatable {
     @Added public var moduleGraph: ModuleGraph? = nil
     /// `build --deep` only (lane A); null without a note otherwise.
     @Added public var deep: Deep? = nil
+
+    // v0.6 addition (D1, docs/SCHEMA-v0.6.md "report: previous"). `@Added`: an older saved report decodes with it nil.
+    /// The previous comparable build in the local history (`Previous.lookup`); null without one, no note.
+    @Added public var previous: Previous? = nil
+}
+
+extension ReportDocument.Previous {
+    /// The newest entry of `historyDir` whose `build.kind` and `build.scheme` equal `document`'s, that is not a
+    /// `build --deep` run (`deep.enabled`) and has a span, skipping the entry of this same log (re-analyzing a log does
+    /// not compare it with itself). Call it before the document is saved. Nil when `document.build.kind` is unknown
+    /// or nothing qualifies.
+    public static func lookup(for document: ReportDocument, historyDir: URL) -> Self? {
+        guard let kind = document.build.kind else { return nil }
+        struct Light: Decodable {
+            struct Build: Decodable { var kind: String?; var scheme: String?; var span: Double? }
+            struct Deep: Decodable { var enabled: Bool }
+            var generatedAt: Date
+            var build: Build
+            var deep: Deep?
+        }
+        // Entry names carry the kind with anything but letters, digits and `-` replaced: compare names only then.
+        let plainKind = kind.unicodeScalars.allSatisfy { CharacterSet.alphanumerics.contains($0) || $0 == "-" }
+        let own = document.input.path.flatMap(History.logIdentity(path:))
+        let decoder = JSONReporter.decoder()
+        for item in History.list(directory: historyDir, details: false) where !plainKind || item.kind == kind {
+            guard let inflated = try? GzipFile.inflate(contentsOf: item.url),
+                  let entry = try? decoder.decode(Light.self, from: Data(inflated.bytes)),
+                  entry.build.kind == kind, entry.build.scheme == document.build.scheme, entry.deep?.enabled != true,
+                  let span = entry.build.span else { continue }
+            if let own, History.logIdentity(of: item.url) == own { continue }
+            return Self(span: span, kind: kind, generatedAt: entry.generatedAt, id: item.id)
+        }
+        return nil
+    }
 }
