@@ -192,7 +192,6 @@ pre{margin:4px 0;padding:6px 9px;background:var(--bg);border:1px solid var(--lin
 .legend i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
 .legend i.line{height:2px;vertical-align:3px}
 .legend i.hatch{background-image:repeating-linear-gradient(135deg,currentColor 0 1.5px,transparent 1.5px 4px);color:var(--wait)}
-.legend i.hatch.on{background-image:repeating-linear-gradient(135deg,var(--ink) 0 1px,transparent 1px 4px)}
 .canvas-wrap{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 canvas{display:block;width:100%;touch-action:none;cursor:grab}
 canvas:active{cursor:grabbing}
@@ -296,7 +295,6 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);color:v
 .trend-point{fill:var(--accent);stroke:var(--bg);stroke-width:1;cursor:pointer}
 .trend-point.trend-nowall{fill:none;stroke:var(--accent)}
 .trend-point:hover,.trend-point:focus{fill:var(--accent-ink);stroke:var(--ink);outline:none}
-.trend-readout{min-height:17px;color:var(--ink-2);font:12px var(--mono);overflow-wrap:anywhere}
 /* xcblame:trend:css:end */
 /* xcblame:why:css:start */
 .why-row-strip{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;margin:10px 0}
@@ -602,7 +600,6 @@ function makeTable(o) {
     var rows = rowsNow(), frag = document.createDocumentFragment(), count = Math.min(rows.length, state.limit), nx = 0, sx = 0, at = 0;
     for (var i = 0; i < count; i++) {
       var r = rows[i], xc = o.xcode && o.xcode(r);
-      if (o.group) { var g = o.group(r, rows[i - 1], state); if (g) frag.append(g); }
       if (xc) { nx++; sx += o.xcodeSecs ? o.xcodeSecs(r) || 0 : 0; } else at++;
       var tr = el('tr', Object.assign({ 'data-row': i, tabindex: i === 0 ? '0' : '-1', 'data-xcode': xc ? '1' : null,
         class: (o.rowClass ? o.rowClass(r) : '') + (o.open ? ' open-able' : '') + (!xc && at > top ? ' beyond-top' : '') }, o.rowAttrs ? o.rowAttrs(r) : null));
@@ -626,7 +623,6 @@ function makeTable(o) {
     more.textContent = !state.expanded ? 'Show all ' + int(mine) + ' rows' : 'Show ' + int(Math.min(PAGE, rows.length - count)) + ' more (' + int(rows.length) + ' rows in all)';
     more.hidden = visible >= mine && count >= rows.length;
     moreBox.hidden = mine <= top && count >= rows.length;
-    if (o.onRender) o.onRender(state, table);
     if (o.onShown) o.onShown(count);
   }
   tbody.addEventListener('keydown', function (e) {
@@ -675,12 +671,6 @@ function sv(tag, attrs) {
   for (var i = 2; i < arguments.length; i++) if (arguments[i] != null) n.append(arguments[i]);
   return n;
 }
-function hatchRect(g, x, y, w, h) {
-  for (var a = x - h; a < x + w; a += 5) {
-    var xs = Math.max(a, x), xe = Math.min(a + h, x + w);
-    if (xe > xs) g.append(sv('line', { class: 'hl', x1: xs.toFixed(1), y1: (y + h - (xs - a)).toFixed(1), x2: xe.toFixed(1), y2: (y + h - (xe - a)).toFixed(1) }));
-  }
-}
 function niceTicks(max, n) {
   if (!(max > 0)) return [0, 1];
   var raw = max / (n || 4), p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
@@ -690,7 +680,7 @@ function niceTicks(max, n) {
 }
 function legendList(items) {
   return el('ul', { class: 'legend' }, items.map(function (it) {
-    return el('li', null, el('i', { class: it[2] ? 'hatch on' : null, style: 'background-color: var(' + it[0] + ')' }), it[1]);
+    return el('li', null, el('i', { style: 'background-color: var(' + it[0] + ')' }), it[1]);
   }));
 }
 function figure(o, svgNode, shownRows) {
@@ -705,13 +695,12 @@ function stackBar(o) {
   segs.forEach(function (g) {
     var w = g.v / o.whole * W;
     s.append(sv('rect', { x: x.toFixed(1), y: 2, width: Math.max(0.5, w).toFixed(1), height: H - 4, style: 'fill: var(' + g.color + ')', 'data-part': g.label }, sv('title', null, g.label + ': ' + o.fmt(g.v))));
-    if (g.hatch) hatchRect(s, x, 2, w, H - 4);
     if (w > 40) s.append(sv('text', { class: 'in', x: (x + w / 2).toFixed(1), y: H / 2 + 4, 'text-anchor': 'middle' }, (g.v / o.whole * 100).toFixed(0) + '%'));
     x += w;
   });
   s.append(sv('line', { class: 'ax', x1: 0, x2: W, y1: H, y2: H }), sv('text', { x: 1, y: H + 13 }, '0'), sv('text', { x: W - 1, y: H + 13, 'text-anchor': 'end' }, o.fmt(o.whole)),
     sv('text', { class: 'at', x: W / 2, y: H + 26, 'text-anchor': 'middle' }, o.axis));
-  o.legend = segs.map(g => [g.color, g.label + ' ' + o.fmt(g.v) + ' (' + pct(g.v / o.whole) + ')', g.hatch]);
+  o.legend = segs.map(g => [g.color, g.label + ' ' + o.fmt(g.v) + ' (' + pct(g.v / o.whole) + ')']);
   return figure(o, s, segs.length);
 }
 function fullCmd() { return 'xcblame analyze ' + (D && D.input && D.input.path ? JSON.stringify(D.input.path) : '<same input>') + ' --format json --top all'; }
@@ -772,7 +761,7 @@ function actItem(a) {
   return el('li', { class: 'act', 'data-source': a.source, 'data-saving-seconds': a.saving != null ? String(Math.round(a.saving * 1000) / 1000) : null,
     'data-band': a.band || null, 'data-confidence': a.conf || null },
     el('span', { class: 'act-what' }, a.what),
-    el('span', { class: 'act-why' }, tx('span', 'act-saving', a.savingText), a.conf ? tx('span', 'act-conf', 'confidence ' + a.conf) : null),
+    el('span', { class: 'act-why' }, tx('span', 'act-saving', a.savingText), tx('span', 'act-conf', a.confText || 'confidence ' + (a.conf || 'n/a'))),
     a.fix ? tx('span', 'act-fix', 'Fix: ' + a.fix) : null,
     cmdBox(a.cmd), tx('span', 'act-undo', a.undo || MEASURE_ONLY));
 }
@@ -782,7 +771,7 @@ function cockpit(o) {
     !acts.length && o.nothing ? el('p', { id: o.nothingId === false ? null : 'nothing-to-fix', class: 'na', text: o.nothing }) : null);
   if (!acts.length) list.hidden = true;
   fill('#start-body', [
-    el('p', { id: 'headline', 'data-span': o.span != null ? String(o.span) : null, 'data-kind': o.kind || null, 'data-delta-pct': o.deltaPct != null ? String(o.deltaPct) : null }, o.headline),
+    el('p', { id: 'headline', 'data-span': o.span != null ? String(o.span) : null, 'data-kind': o.kind || null, 'data-delta-pct': o.deltaPct != null ? String(Math.round(o.deltaPct * 10000) / 100) : null }, o.headline),
     o.floor ? el('p', { id: 'floor', 'data-seconds': o.floorSeconds }, o.floor) : null,
     o.waste ? el('p', { id: 'waste', 'data-seconds': o.wasteSeconds }, o.waste) : null]
     .concat(o.lines || [], [el('div', { id: 'board', class: o.where && o.hot ? null : o.where || o.hot ? 'two' : 'one' }, o.where, todo, o.hot)]));
@@ -982,10 +971,10 @@ function vSentence(u, doc) {
 function verifyNext(doc) {
   function ids(f) { return [].concat.apply([], (doc.results || []).filter(f).map(u => u.ruleIds)).join(','); }
   var a = ids(u => u.verdict.status === 'kept' && u.mechanism !== 'cli'), c = ids(u => u.verdict.status === 'kept' && u.mechanism === 'cli'), i = ids(u => u.verdict.status === 'indicative');
-  return [a && ['Write the kept changes into the overlay:', 'xcblame fix --rules ' + a + ' --apply'],
-    c && ['Kept on the command line only; for Xcode, measure it through the hook:', 'xcblame verify --rules ' + c + ' --mechanism hook'],
-    i && ['Too few runs to decide; measure again:', 'xcblame verify --rules ' + i + ' --runs 5'],
-    doc.abort && ['Then run verify again:', 'xcblame verify --plan ' + doc.planId]].filter(Boolean);
+  return [a && ['Write the kept changes into the overlay:', 'xcblame fix --rules ' + a + ' --apply', 'kept'],
+    c && ['Kept on the command line only; for Xcode, measure it through the hook:', 'xcblame verify --rules ' + c + ' --mechanism hook', 'kept'],
+    i && ['Too few runs to decide; measure again:', 'xcblame verify --rules ' + i + ' --runs 5', 'indicative'],
+    doc.abort && ['Then run verify again:', 'xcblame verify --plan ' + doc.planId, 'unverified']].filter(Boolean);
 }
 function commandList(id, pairs) {
   return el('div', { class: 'plan', id: id }, tx('h3', null, 'Run next'), el('ol', null, pairs.map(c => el('li', null, c[0] + ' ', code(c[1])))),
@@ -1057,7 +1046,7 @@ function startVerify(doc) {
   if (doc.abort) lines.push(el('p', { class: 'alert', role: 'alert', text: ABORT[doc.abort.reason] || doc.abort.reason }));
   cockpit({ kind: 'verify', headline: 'Kept ' + n.kept + ', reverted ' + n.reverted + (n.indicative ? ', indicative ' + n.indicative : '') + (n.unverified ? ', unverified ' + n.unverified : '') + '.',
     lines: lines, title: 'Next', nothingId: false, nothing: 'Nothing to write: no change was faster beyond noise.',
-    actions: verifyNext(doc).map(c => ({ source: 'verify', what: c[0].replace(/:$/, ''), savingText: /--apply/.test(c[1]) ? 'writes the kept changes' : 'measures again', cmd: c[1],
+    actions: verifyNext(doc).map(c => ({ source: 'verify', what: c[0].replace(/:$/, ''), confText: c[2], savingText: /--apply/.test(c[1]) ? 'writes the kept changes' : 'measures again', cmd: c[1],
       undo: /--apply/.test(c[1]) ? 'Undo: xcblame fix --revert.' : MEASURE_ONLY })) });
 }
 var HOOK_WORDS = { installed: 'installed', notInstalled: 'not installed: xcblame fix --install-hook', unavailable: 'unavailable', generated: 'generated project: add the line in its source' };
@@ -1088,6 +1077,11 @@ function renderPlanDoc(doc) {
   cnt('fixplan', plural(steps.length, 'step'));
   setCounts('fixplan', steps.length, steps.length);
 }
+/** The verify state of the steps a plan command names (--rules), else of every step. */
+function planState(st, c) {
+  var ids = (/--rules (\S+)/.exec(c) || [])[1], hit = st.filter(s => !ids || ids.split(',').indexOf(s.ruleId) >= 0)[0];
+  return hit ? hit.verify.status : 'not measured';
+}
 function planCmd(c) { return /--install-hook/.test(c) ? 'Install the hook, so Xcode reads the overlay:' : /^xcblame verify /.test(c) ? 'Measure the changes before keeping them:' : /--apply-defaults/.test(c) ? 'Write the Xcode preference steps:' : /--apply/.test(c) ? 'Write the kept changes:' : 'Run:'; }
 function startPlan(doc) {
   var st = doc.steps || [], kept = st.filter(s => s.verify.status === 'kept').length, wait = st.filter(s => s.verify.status === 'unverified' && /^(hook|cli)$/.test(s.mechanism)).length;
@@ -1096,7 +1090,7 @@ function startPlan(doc) {
     lines: [el('p', { class: 'lead' }, (doc.events || []).length ? ['Writes were made; ', code('xcblame fix --revert ' + doc.id), ' undoes them.'] : 'Nothing changes until xcblame fix --apply.',
       ' Planned from ' + (f.analysisId ? 'build ' + f.analysisId : f.analysisPath ? f.analysisPath : 'the settings only') + ' (' + f.settingsSource + ').')],
     title: 'Run in order', nothingId: false, nothing: 'Nothing to run: every step is a change by hand.',
-    actions: (doc.commands || []).map(c => ({ source: 'plan', what: planCmd(c) + (/--rules (\S+)/.test(c) ? ' ' + /--rules (\S+)/.exec(c)[1] : ''), savingText: /verify/.test(c) ? 'measures first' : 'writes only kept steps', cmd: c,
+    actions: (doc.commands || []).map(c => ({ source: 'plan', confText: planState(st, c), what: planCmd(c) + (/--rules (\S+)/.test(c) ? ' ' + /--rules (\S+)/.exec(c)[1] : ''), savingText: /verify/.test(c) ? 'measures first' : 'writes only kept steps', cmd: c,
       undo: /--apply|--install-hook/.test(c) ? 'Undo: xcblame fix --revert ' + doc.id + '.' : MEASURE_ONLY })) });
 }
 // xcblame:verify:js:end
@@ -1162,7 +1156,7 @@ function renderCompare(doc) {
   var R = doc.regression || {}, body = $('#cmp-body'), envFields = {};
   (doc.env || []).forEach(function (d) { envFields[d.field] = true; });
   var sgn = sgnS;
-  function sgnPct(p) { return p == null ? '' : (p < 0 ? '−' : '+') + Math.abs(p * 100).toFixed(1) + '%'; }
+  function sgnPct(p) { return p == null ? '' : signedPct(p); }
   function small(pair) { return pair && Math.min(Math.abs(pair.a || 0), Math.abs(pair.b || 0)) < 0.1; }
   function deltaText(d) {
     if (!d || d.delta == null) return 'unknown';
@@ -1402,7 +1396,6 @@ function renderCompare(doc) {
 function renderTrend(doc) {
   var body = $('#trend-body');
   var by = doc.filter && doc.filter.by ? doc.filter.by : null;
-  function fmtTime(t) { return localTime(t); }
   function fmtDay(t) { var x = localTime(t); return /^\d{4}-/.test(x) ? x.slice(0, 10) : ''; }
   var gitWhy = 'none (see the notes)';
   function shortCommit(c) { return c ? String(c).slice(0, 8) : null; }
@@ -1413,7 +1406,7 @@ function renderTrend(doc) {
     return by === 'commit' ? shortCommit(key) : key;
   }
   function pointText(p) {
-    return [p.id, fmtTime(p.time), p.wall == null ? 'wall unknown' : 'wall ' + secs(p.wall), p.xcode ? 'Xcode ' + p.xcode : null,
+    return [p.id, localTime(p.time), p.wall == null ? 'wall unknown' : 'wall ' + secs(p.wall), p.xcode ? 'Xcode ' + p.xcode : null,
       p.commit ? 'commit ' + shortCommit(p.commit) : null].filter(Boolean).join(' · ');
   }
 
@@ -1421,7 +1414,7 @@ function renderTrend(doc) {
   var parts = [];
   if (f.kind) parts.push('kind ' + f.kind);
   if (f.scheme) parts.push('scheme ' + f.scheme);
-  if (f.since) parts.push('since ' + fmtTime(f.since));
+  if (f.since) parts.push('since ' + localTime(f.since));
   if (by) parts.push('grouped by ' + by);
   var filter = el('p', { id: 'trend-filter', class: 'muted', text: (parts.length ? 'Filter: ' + parts.join(', ') + '. ' : 'No filter. ')
     + int(doc.entriesUsed || 0) + ' of ' + int(doc.entriesTotal || 0) + ' history entries used.' });
@@ -1430,7 +1423,7 @@ function renderTrend(doc) {
     return el('span', { class: cls, 'data-value': value == null ? null : value, text: label + ' ' + (value == null ? 'n/a' : secs(value)) });
   }
 
-  function chart(series, readout) {
+  function chart(series) {
     var pts = series.points, W = 480, H = 146, L = 44, R = 34, T = 22, B = 30;
     var pw = W - L - R, ph = H - T - B;
     var walls = pts.map(p => p.wall).filter(v => v != null);
@@ -1485,11 +1478,7 @@ function renderTrend(doc) {
       var tip = pointText(p);
       var dot = sv('circle', { class: 'trend-point' + (p.wall == null ? ' trend-nowall' : ''), 'data-id': p.id, cx: x(i).toFixed(1),
         cy: (p.wall == null ? floor : y(p.wall)).toFixed(1), r: 3.4, tabindex: 0 }, sv('title', null, tip));
-      function show() { readout.textContent = tip; }
-      function clear() { readout.textContent = ''; }
-      dot.addEventListener('mouseover', show); dot.addEventListener('focus', show);
-      dot.addEventListener('mouseout', clear); dot.addEventListener('blur', clear);
-      dot.addEventListener('click', function () { copyText(p.id, null); readout.textContent = tip + ' (id copied)'; });
+      dot.addEventListener('click', function () { copyText(p.id, null); });
       root.append(dot);
     });
     if (pts.length) {
@@ -1504,7 +1493,7 @@ function renderTrend(doc) {
       rows: series.points, sort: -1, rowAttrs: function (p) { return { 'data-id': p.id }; },
       columns: [
         { label: 'Entry id', cls: 'mono', tip: 'xcblame compare accepts it', cell: p => p.id },
-        { label: 'Time', cell: p => fmtTime(p.time) },
+        { label: 'Time', cell: p => localTime(p.time) },
         { label: 'Wall', num: true, cell: p => p.wall == null ? 'unknown (not recorded)' : secs(p.wall) },
         { label: 'Busy', num: true, cell: p => p.busy == null ? 'unknown (not recorded)' : secs(p.busy) },
         { label: 'Xcode', cell: p => p.xcode || 'unknown' },
@@ -1519,13 +1508,12 @@ function renderTrend(doc) {
   var groups = (doc.groups || []).map(function (g, gi) {
     var figures = (g.series || []).map(function (series) {
       shownPoints += series.points.length;
-      var readout = el('div', { class: 'trend-readout', 'aria-live': 'polite' });
       var busy = series.busy || {};
       return el('figure', { class: 'trend-series', id: 'trend-series-' + gi + '-' + slug(series.kind), 'data-kind': series.kind, 'data-total': series.points.length },
         el('figcaption', null, tx('strong', null, series.kind), tx('span', 'muted', int(series.points.length) + (series.points.length === 1 ? ' build' : ' builds')),
           stat('trend-p50', 'p50', series.wall.p50), stat('trend-p75', 'p75', series.wall.p75), stat('trend-p95', 'p95', series.wall.p95),
           busy.p50 == null ? null : tx('span', 'muted trend-busy', 'busy p50 ' + secs(busy.p50))),
-        chart(series, readout), readout,
+        chart(series),
         legendList([['--accent', 'wall time per build'], ['--k3', 'p50: median'], ['--k4', 'p95: near the slowest'], ['--k1', 'dotted: Xcode changed']]),
         el('details', null, tx('summary', null, 'Every point (' + int(series.points.length) + ')'), pointsTable(series)));
     });
@@ -1614,7 +1602,7 @@ function renderWhy(doc) {
   causes.forEach(function (c) { if (!(c['class'] in byClass)) { byClass[c['class']] = 0; clsOrder.push(c['class']); } byClass[c['class']] += c.seconds; });
   var chart = exec ? stackBar({ id: 'chart-why', total: clsOrder.length, whole: exec, fmt: secs, axis: 'seconds of executed task time by cause',
     segs: clsOrder.sort((a, b) => (a === 'unknown') - (b === 'unknown') || byClass[b] - byClass[a]).map(function (k, i) {
-      return { label: CLASS_LABEL[k] || k, v: byClass[k], color: k === 'unknown' ? '--warn' : '--k' + Math.min(7, i + 1), hatch: k === 'unknown' }; }) }) : null;
+      return { label: CLASS_LABEL[k] || k, v: byClass[k], color: k === 'unknown' ? '--warn' : '--k' + Math.min(7, i + 1)}; }) }) : null;
   var classes = ['inputChanged', 'scriptPhase', 'settingsChanged', 'upstreamInterface', 'timestampChurn', 'planning', 'firstBuild', 'forced', 'driverRemark', 'unknown'];
   var tree = el('div', { id: 'why-tree' });
   classes.forEach(function (cls) {
@@ -1820,9 +1808,6 @@ function renderModuleGraph(doc) {
   frame.addEventListener('keydown', function (e) {
     var node = e.target.closest && e.target.closest('.mg-node');
     if (node && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openNode(node); }
-    else if (e.key === '+' || e.key === '=') { e.preventDefault(); zoomTo(zoom.k * 1.25); }
-    else if (e.key === '-') { e.preventDefault(); zoomTo(zoom.k * 0.8); }
-    else if (e.key === '0') { e.preventDefault(); reset(); }
   });
   if (!noEdges) parts.push(tools, mgLegend, frame);
   if (g.nodesTotal > plain) parts.push(tx('p', 'footnote', shown(plain, g.nodesTotal, g.nodesShownShare, 'the targets') + ' targets drawn; the rest fold into one dashed node per owner.'));
@@ -1952,7 +1937,7 @@ function noBuildSection(id, total) {
 }
 
 // --- critical path timeline
-var TL = { v0: 0, v1: 1, domain: 1, all: false, selected: null, rows: [], canvas: null, hits: null };
+var TL = { v0: 0, v1: 1, domain: 1, all: false, selected: null };
 var BASIS_WORDS = { dag: 'build plan', byTiming: 'timing', mixed: 'build plan and timing', inferred: 'timing only', none: 'nothing' };
 function timelineDomain() {
   var end = D.build.span || 0;
@@ -2014,7 +1999,6 @@ function renderTimeline() {
 }
 
 function setupCanvas(canvas, img) {
-  TL.canvas = canvas;
   var segs = CP ? CP.segments : [];
   var rowOf = {}, rows = [];
   segs.forEach(function (s) {
@@ -2022,11 +2006,9 @@ function setupCanvas(canvas, img) {
     if (!(k in rowOf)) { rowOf[k] = rows.length; rows.push({ name: k, segs: [] }); }
     rows[rowOf[k]].segs.push(s);
   });
-  TL.rows = rows;
   var lanes = [];
   if (TI) for (var i = 0; i < TI.start.length; i++) { var l = TI.lane[i]; (lanes[l] = lanes[l] || []).push(i); }
   for (var j = 0; j < lanes.length; j++) lanes[j] = lanes[j] || [];
-  TL.lanes = lanes;
   TL.droppedTotal = TI ? TI.dropped.reduce((a, d) => a + d.tasks, 0) : 0;
   var hatchCache = {};
   function hatch(ctx, color) {
@@ -2293,7 +2275,7 @@ function renderTargets() {
   var cpWhy = CP ? 'no on-path value' : 'no critical path: ' + (noteAbout([T.notes, D.graph.notes, D.notes], 'critical path') || 'no timing');
   var maxT = Math.max.apply(null, rows.map(r => r.taskTime || 0).concat([1e-9]));
   var api = makeTable({
-    caption: 'Select a row for its tasks.', rows: rows, sort: 3, top: 15, text: r => r.name + ' ' + (r.owner || '') + ' ' + (r.project || ''),
+    caption: 'Select a row for its tasks.', rows: rows, sort: -1, top: 15, text: r => r.name + ' ' + (r.owner || '') + ' ' + (r.project || ''),
     pin: r => r.isOther, rowClass: r => r.isOther ? 'other' : '', xcode: r => !r.isOther && isPseudo(r.name), xcodeSecs: r => r.onPathSeconds,
     open: function (r) { location.hash = 'target=' + encodeURIComponent(r.name); },
     columns: [
