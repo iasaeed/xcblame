@@ -2106,7 +2106,7 @@ function setupCanvas(canvas, img) {
         var w = Math.max(1, x1 - x0);
         ctx.globalAlpha = TL.selected && TL.selected !== row.name ? 0.25 : 1;
         ctx.fillStyle = C.path; ctx.fillRect(x0, y, w, ROW);
-        if (s.basis !== 'dag') { ctx.fillStyle = hatch(ctx, C.pathInk); ctx.globalAlpha *= 0.6; ctx.fillRect(x0, y, w, ROW); }
+        if (s.basis !== 'dag') { ctx.fillStyle = hatch(ctx, C.pathInk); ctx.globalAlpha *= 0.25; ctx.fillRect(x0, y, w, ROW); }
         ctx.globalAlpha = 1;
         var text = secs(s.seconds), room = w - 10;
         if (room > ctx.measureText(text).width) {
@@ -2635,6 +2635,8 @@ function allRendered() {
 }
 function reveal(t) {
   for (var n = t; n; n = n.parentElement) if (n.tagName === 'DETAILS') n.open = true;
+  var own = t.tagName === 'SECTION' && $(':scope > details', t);
+  if (own) own.open = true;
   if (t._flip && t.getAttribute('aria-expanded') !== 'true') t._flip();
   if (t.getAttribute('data-housekeeping') === '1') $('#findings-table').classList.add('hk-open');
 }
