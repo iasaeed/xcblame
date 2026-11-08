@@ -36,6 +36,13 @@ final class WhyHTMLTests: XCTestCase {
 
     private func count(_ needle: String, in text: String) -> Int { text.components(separatedBy: needle).count - 1 }
 
+    /// The body of the cockpit, `<section id="start-here" …>` … `</section>`.
+    private func startHere(_ dom: String) throws -> String {
+        let start = try XCTUnwrap(dom.range(of: "<section id=\"start-here\""))
+        let end = try XCTUnwrap(dom.range(of: "</section>", range: start.upperBound..<dom.endIndex))
+        return String(dom[start.lowerBound..<end.lowerBound])
+    }
+
     /// The body of `<ol id="…">` … `</ol>`.
     private func list(_ id: String, in dom: String) throws -> String {
         let start = try XCTUnwrap(dom.range(of: "<ol id=\"\(id)\""))
@@ -69,6 +76,8 @@ final class WhyHTMLTests: XCTestCase {
         XCTAssertTrue(try tag("<span id=\"why-v15\"", in: dom).contains("data-status=\"pass\""))
         XCTAssertTrue(try tag("<div id=\"why-unknown\"", in: dom).contains("data-share=\"0\""))
         XCTAssertTrue(dom.contains("xcblame why --backtraces -- &lt;xcodebuild args&gt;"), "copyable hint")
+        XCTAssertTrue(dom.contains("Fix:"), "the cause label is Fix:")
+        XCTAssertFalse(dom.contains("What to do:"), "the old label is gone")
         XCTAssertTrue(dom.contains("id=\"why-summary\""))
         let tabs = try tag("<div id=\"why-tabs\"", in: dom)
         XCTAssertTrue(tabs.contains("role=\"tablist\""))
@@ -102,7 +111,8 @@ final class WhyHTMLTests: XCTestCase {
         for id in ["files", "hotspots", "findings"] { XCTAssertTrue(try tag("<section id=\"\(id)\"", in: dom).contains(" hidden"), id) }
     }
 
-    /// `why --touch`: the Start-here box says the touch changed only the timestamp; a zero-change run does not.
+    /// `why --touch`: the cockpit says the touch changed only the timestamp, with the command for a real edit; a
+    /// zero-change run does not.
     func testStartHereSaysWhatATouchSimulates() throws {
         var (_, document) = try WhyFixtures.attributed(WhyFixtures.why27, test: self)
         var incremental = try XCTUnwrap(document.incremental)
@@ -111,16 +121,14 @@ final class WhyHTMLTests: XCTestCase {
         ], backtraces: "on", showIncremental: false)
         document = document.applying(incremental: incremental)
         let touch = try dumpDOM(try HTMLReporter.renderWhy(document, taskIndex: nil, options: .init(redact: false, title: "")).data)
-        let start = try XCTUnwrap(touch.range(of: "<div id=\"start-body\""))
-        let box = String(touch[start.lowerBound...].prefix(4000))
-        XCTAssertTrue(box.contains("--touch changes only the file's timestamp, so Swift recompiled just this file. To see what one real edit rebuilds, add a line to the file and run: "), box)
+        let box = try startHere(touch)
+        XCTAssertTrue(box.contains("Touch changed only the timestamp. For a real rebuild, edit a line:"), box)
         XCTAssertTrue(box.contains("xcblame why --backtraces -- "), box)
         incremental.procedure?.mode = "zeroChange"
         incremental.procedure?.touched = nil
         let zero = try dumpDOM(try HTMLReporter.renderWhy(document.applying(incremental: incremental), taskIndex: nil,
                                                           options: .init(redact: false, title: "")).data)
-        let zeroStart = try XCTUnwrap(zero.range(of: "<div id=\"start-body\""))
-        XCTAssertFalse(String(zero[zeroStart.lowerBound...].prefix(4000)).contains("--touch changes only the file"))
+        XCTAssertFalse(try startHere(zero).contains("Touch changed only the timestamp"))
     }
 
     func testAnalyzeReportShowsWhyWithoutProcedure() throws {

@@ -23,7 +23,8 @@ The probe lane answered MV-3 (remaining v0.6 part) and MV-9 in [research/probes-
 ## General rules (v0.2-v0.5 rules unchanged)
 
 - Both documents are new top-level documents next to `xcblame.report/1`, `xcblame.compare/1`, `xcblame.trend/1` and
-  `xcblame.baseline/1`; the report schema is unchanged. `tool` is the report's `Tool`; `tool.version` becomes `0.6.0` at
+  `xcblame.baseline/1`; the report schema is unchanged (one additive member since 2026-11-08: `previous`, see
+  "report: previous"). `tool` is the report's `Tool`; `tool.version` becomes `0.6.0` at
   integration (phase 1 leaves `XcblameVersion.current` at `0.5.0`).
 - §8.1 null+note: a nil member serializes as an explicit `null` (`@Null`); the reason sits in the nearest `notes`.
 - Times are seconds rounded to 6 decimals (`ReportDocument.round6`); ratios are fractions (`deltaPct` −0.124 = 12.4 %
@@ -339,19 +340,53 @@ text|json|html|markdown|agent] [-o <file>] [--open] [-- <xcodebuild args>]`
   template with the document's pretty JSON as `#xcblame-data`, byte-equal to `--format json` apart from script escapes
   (the `renderTrend` pattern; no budget pass needed: a verify document is a few KB). The page dispatches on
   `KIND === 'xcblame.verify'` and `'xcblame.fixplan'` like compare/trend.
-- DOM contract, verify (`#verify`): `<section id="verify" data-total="<results count>">`; a Start-here box `#verify-start`
+- DOM contract, verify (`#verify`): `<section id="verify" data-total="<results count>">`; in the cockpit (amended
+  2026-11-08: `#headline` "Kept N, reverted M." and the next command in `#start-actions`) the block `#verify-start`
   with one plain sentence per unit ("Turning on SET-004 made clean builds 2.0 s faster (12 %), more than the noise
   band: kept."); `#verify-abort` banner when `abort` is set (reason in plain words and what to do); table
   `#verify-results`, one `tr[data-rule="<ids joined by +>"][data-verdict="kept|reverted|indicative|unverified"]`
   `[data-reason]` per unit with arm rows: runs ok/total, one dot per run `span.verify-run[data-arm][data-ok][data-settle]`
-  (title: wall seconds), p50 ± MAD, noise band, verdict, mechanism, scope; a "what this shows" paragraph above the
-  table.
+  (title: wall seconds), p50 ± MAD, noise band, verdict, mechanism, scope. (The "what this shows" paragraph above the
+  table was removed on 2026-11-08.)
 - Fix plan view: section 6's renderer over `steps[]` (`#fixplan`, `tr[data-rule][data-state][data-verify]`), the
   guards, the hook state per configuration, and copy buttons for `commands`.
-- Junior-reader standard of v0.5: Start-here box, plain sentences, "what this shows" per section, glossary entries for
-  `arm`, `p50`, `MAD`, `noise band`, `mechanism`, `overlay`, `hook`, `revert`, `settle build`, `indicative`; checked by
-  `HTMLClarityTests` additions.
-- Template budget 280 KB (269 KB now): lane C has about 11 KB; `make template` after editing `report.html`.
+- ~~Junior-reader standard of v0.5: Start-here box, plain sentences, "what this shows" per section, glossary entries
+  for `arm`, `p50`, `MAD`, `noise band`, `mechanism`, `overlay`, `hook`, `revert`, `settle build`, `indicative`;
+  checked by `HTMLClarityTests` additions.~~ **Amended 2026-11-08 (cockpit, DESIGN §8.2.5 "Cockpit decision"):** every
+  page opens with `#headline` and at most three `#start-actions` (`li.act` with what, saving, confidence, one copyable
+  command and how to undo it); the page's own section starts open, the rest is collapsed; no "what this shows" lines and
+  no glossary on the page: those entries moved to [REPORT.md](REPORT.md). Checked by `HTMLCockpitTests` and
+  `HTMLTemplateTests.testProseBudget`.
+- Template budget 280 KB (269 KB now): lane C has about 11 KB; `make template` after editing `report.html`. (Raised to
+  300 KB on 2026-11-05, lowered to 200 KB on 2026-11-08, DESIGN §8.2.1 #4.)
+
+## report: previous (D1, 2026-11-08)
+
+One additive member of `xcblame.report/1`, for the HTML headline's delta clause ("12 % slower than the previous clean
+build (16.2 s, 3 days ago)"). It always serializes; `null` when there is no previous build, with no note (the
+`regression` precedent).
+
+```json
+"previous": { "span": 16.2, "kind": "clean", "generatedAt": "2026-11-05T10:15:00Z", "id": "20261105-101500-clean" }
+```
+
+| Member | Type | Meaning |
+|---|---|---|
+| `previous` | object or null | The previous comparable build in the local history. |
+| `previous.span` | number | That entry's `build.span` (log span, seconds). |
+| `previous.kind` | string | That entry's `build.kind`, equal to this report's. |
+| `previous.generatedAt` | date-time | That entry's own `generatedAt`. |
+| `previous.id` | string | The history entry id (`history show` and `analyze <id>` take it). |
+
+- Filled by `analyze` (on a log) and `build` from `<xcblame-dir>/history` before the new entry is written
+  (`ReportDocument.Previous.lookup`): the newest entry with the same `build.kind` and the same `build.scheme` (both
+  null counts as the same), that is not a `build --deep` run (`deep.enabled`), has a span, and is not the entry of the
+  same log (re-analyzing a log never compares it with itself).
+- `null` when the report's kind is unknown, when no entry qualifies, with `--no-history`, for `--model-json` input and
+  for doctor documents. A saved report or history entry re-rendered with `analyze <file|id>` keeps the value it was
+  written with; one written before the member existed decodes with `null`.
+- `xcblame schema --document report` lists it (`$defs/Previous`, nullable, required like every always-serialized
+  member). The HTML page uses it before `regression` (DESIGN §8.2.4 "First screen").
 
 ## Lane ownership
 

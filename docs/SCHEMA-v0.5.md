@@ -300,6 +300,10 @@ longest chain, top blockers, variants summary (`64 modules, 79 redundant PCM tas
 
 ## HTML views (DESIGN §8.2.4 #7-#9)
 
+> **Amended 2026-11-08 (cockpit, DESIGN §8.2.5 "Cockpit decision"):** the ids, `data-*` attributes and
+> `data-total` / `data-shown` contracts below are unchanged; only the presentation changed (light theme, sections
+> collapsed under a first screen, no index bar, no glossary or what-lines, definitions in docs/REPORT.md).
+
 Template regions (each lane edits only its own; `make template` regenerates `ReportTemplate.swift`, a conflict there is
 resolved by regenerating, never by hand): markup `<!-- xcblame:why:start -->` … `end` (and `fixedcosts`,
 `modulegraph`) between `#findings` and `#environment`; CSS `/* xcblame:<name>:css:start */` … `end` after the trend CSS;

@@ -33,6 +33,9 @@ final class SchemaTests: XCTestCase {
         unevaluated.regression = nil
         unevaluated.environment = nil
         try assertValid(try json(unevaluated), .report, "report without regression or environment")
+        var compared = populated
+        compared.previous = .init(span: 16.2, kind: "clean", generatedAt: V04Samples.date, id: "20231114-221320-clean")
+        try assertValid(try json(compared), .report, "report with a previous build (D1)")
     }
 
     func testHTMLTaskIndexIsDocumentedAndOptional() throws {

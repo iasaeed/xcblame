@@ -223,6 +223,10 @@ struct BuildCommand: ParsableCommand {
         // v0.5 lane B (begin): incremental causes against the previous history entry, before this build is saved.
         analyzed.document = CauseEngine.attach(to: analyzed.document, model: loaded.model,
                                                historyDir: stateURL.appendingPathComponent("history"), project: nil)
+        // D1 (docs/SCHEMA-v0.6.md "report: previous"): the previous comparable build, before this one is saved.
+        let previous = noHistory ? nil : ReportDocument.Previous.lookup(
+            for: analyzed.document, historyDir: stateURL.appendingPathComponent("history"))
+        analyzed.document.previous = previous
         analyzed.document = try analyzed.document.remeasuringSize(budgetBytes: budget)
         // v0.5 lane B (end)
         // v0.5 lane C (begin): fixed costs re-based on history frequency and builds per day.
@@ -266,7 +270,8 @@ struct BuildCommand: ParsableCommand {
 
         // `--html` next to a text or json report: the html document wants every row, so it is built on its own.
         if html, format != .html {
-            let full = try pipeline(topN: global.top?.value ?? .max, budget: HTMLReporter.defaultMaxBytes, html: true)
+            var full = try pipeline(topN: global.top?.value ?? .max, budget: HTMLReporter.defaultMaxBytes, html: true)
+            full.document.previous = previous
             try writeHTML(model: loaded.model, analysis: full,
                           document: try ReportPipeline.prepareForOutput(full.document, redact: global.redact ?? true))
         }
