@@ -384,6 +384,10 @@ DESIGN §8.4 unchanged; code **3** is now live: `analyze` or `build` with `--bas
 
 ## HTML views
 
+> **Amended 2026-11-08 (cockpit, DESIGN §8.2.5 "Cockpit decision"):** the ids, `data-*` attributes and
+> `data-total` / `data-shown` contracts below are unchanged; only the presentation changed (light theme, sections
+> collapsed under a first screen, no index bar, no glossary or what-lines, definitions in docs/REPORT.md).
+
 One template, three kinds of document. The page dispatches on `schemaVersion`'s name part: `xcblame.report` renders the
 report sections (unchanged); `xcblame.compare` shows only `<section id="compare">` and calls `renderCompare(doc)`;
 `xcblame.trend` shows only `<section id="trend">` and calls `renderTrend(doc)`; any other name shows "this page cannot show

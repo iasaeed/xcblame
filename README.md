@@ -79,10 +79,11 @@ edited) or cached.
   overlay file that you can revert at any time. Your `.xcodeproj` file is never edited.
 - **It works the same in CI.** A committed baseline turns any CI build into a regression check.
 
-The HTML report opens with a "Start here" box: what was measured, the number that matters, and what to do next.
+The HTML report's first screen says how long the build took, how much of that is the floor and how much is waste, and
+what to do first.
 
 <p align="center">
-  <img src="docs/assets/report-start-here.png" alt="The Start here box of an xcblame HTML report for the AcmeApp fixture: build time, critical path, and three ranked next steps" width="900">
+  <img src="docs/assets/report-start-here.png" alt="First screen of an xcblame HTML report for the AcmeApp fixture: the headline build time, the floor and the waste, and the Do this first actions with copyable commands" width="900">
 </p>
 
 ## Get started in 5 minutes
@@ -209,18 +210,24 @@ for every format. If a report cannot be redacted, nothing is written and xcblame
 
 ## Reading the report
 
-- **Build kind**: clean, incremental, zero-change or cached. Only compare builds of the same kind.
-- **Critical path**: the chain of tasks that set the total time. Shortening anything off this chain does not make the
-  build finish sooner.
-- **Xcode's own work**: planning and system modules. Shown separately, with what (if anything) you can do about it.
-- **Fix plan**: concrete changes in a safe order. Each names the Xcode setting and the measured or estimated saving.
-- **Glossary**: every term in the report is explained at the bottom of the page.
+- **Headline**: how long the build took and its kind ("18.1 s clean build"), and how it compares with the previous
+  build of the same kind and scheme in your history, or with `--baseline`. Only compare builds of the same kind.
+- **Floor and waste**: the floor is the critical path, the chain of tasks that set the total time; shortening anything
+  off this chain does not make the build finish sooner. The waste is the rest of the time.
+- **Do this first**: at most three actions, each with the saving, how sure xcblame is, one command or Xcode setting to
+  copy, and how to undo it.
+- **Sections**: the critical path, targets, files, hotspots and findings sit below, collapsed except Findings. Open one
+  to see its table; long tables show the top rows with "Show all N rows".
+- **Show Xcode work**: Xcode's own work (planning, system modules) is folded into one row, since editing your targets
+  does not change it. The toggle shows it.
+- **Details**: diagnostics, the environment, the self-checks and notes, closed at the bottom.
+- **Terms**: the page has no glossary; [docs/REPORT.md](docs/REPORT.md) defines every term it uses.
 
-The critical-path timeline shows one row per target. Each bar is one step of the chain. The strip at the bottom shows
-how many tasks ran at once; "serial" marks stretches where almost nothing ran in parallel.
+Open the critical-path section for the timeline: one row per target, each bar one step of the chain. The strip under
+it shows how many tasks ran at once; "serial" marks stretches where almost nothing ran in parallel.
 
 <p align="center">
-  <img src="docs/assets/report-critical-path.png" alt="Critical path timeline of the AcmeApp fixture build: one row per target, bars for each step, and a strip of tasks running at once" width="900">
+  <img src="docs/assets/report-critical-path.png" alt="The opened critical-path section of the AcmeApp fixture report: one row per target, a bar for each step, Xcode's own work folded, and a strip of tasks running at once" width="900">
 </p>
 
 ## Exit codes
@@ -259,6 +266,7 @@ and manifest edits).
 
 - [docs/DESIGN.md](docs/DESIGN.md): command surface, architecture, data formats, algorithms, roadmap.
 - [docs/RULES.md](docs/RULES.md): the rule catalog (detection, fix, apply policy, evidence).
+- [docs/REPORT.md](docs/REPORT.md): how to read the HTML report, and every term it uses.
 - [docs/SCHEMA-v0.4.md](docs/SCHEMA-v0.4.md): the report, compare, trend and baseline documents.
 - [docs/SCHEMA-v0.6.md](docs/SCHEMA-v0.6.md): the fix plan and verify documents, the overlay file and the hook.
 - [fixtures/ANONYMIZATION.md](fixtures/ANONYMIZATION.md): how the test fixtures were made synthetic or anonymised.
