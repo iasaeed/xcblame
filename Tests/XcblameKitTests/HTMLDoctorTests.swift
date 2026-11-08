@@ -42,7 +42,7 @@ final class HTMLDoctorTests: XCTestCase {
         let doc = HTMLSample.doctor()
         let first = try render(doc).html
         XCTAssertEqual(first, try render(doc).html, "byte-identical renders")
-        XCTAssertLessThan(first.utf8.count, 270_000, "template budget (200 KB) + 70 KB of data")
+        XCTAssertLessThan(first.utf8.count, 280_000, "template budget (200 KB) + 80 KB of sample data (72 KB today)")
         let context = Redactor.Context(home: NSHomeDirectory(), user: NSUserName(), host: "sample-host",
                                        repoRoot: RulesFixtures.root.deletingLastPathComponent().deletingLastPathComponent().path)
         let redacted = try Redactor.redact(doc, context: context)

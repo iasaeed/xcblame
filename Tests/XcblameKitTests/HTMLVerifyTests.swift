@@ -3,7 +3,7 @@ import XCTest
 
 /// `verify --format html` and `fix --format html` (docs/SCHEMA-v0.6.md "HTML"): the template with the document's JSON,
 /// byte-equal to `--format json` apart from the script-data escapes; the page dispatches on the schema kind. The DOM
-/// is checked in headless Chrome by `HTMLClarityTests.testVerifyPage` / `testFixPlanPage`.
+/// is checked in headless Chrome by `HTMLCockpitTests.testVerifyPage` / `testFixPlanPage`.
 final class HTMLVerifyTests: XCTestCase {
     private func blob(_ html: Data) throws -> String { try HTMLBlob.extract(String(decoding: html, as: UTF8.self)) }
 
