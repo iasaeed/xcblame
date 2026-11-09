@@ -574,7 +574,7 @@ function makeTable(o) {
       th.append(el('button', { text: c.label, onclick: function () {
         if (state.sort === i) state.dir = state.dir === 'descending' ? 'ascending' : 'descending';
         else { state.sort = i; state.dir = c.num ? 'descending' : 'ascending'; }
-        headRow.children.forEach(function (h, j) { if (h.hasAttribute('aria-sort')) h.setAttribute('aria-sort', j === state.sort ? state.dir : 'none'); });
+        Array.prototype.forEach.call(headRow.children, function (h, j) { if (h.hasAttribute('aria-sort')) h.setAttribute('aria-sort', j === state.sort ? state.dir : 'none'); });
         render();
       } }));
     } else th.textContent = c.label;
@@ -597,12 +597,15 @@ function makeTable(o) {
     return rows;
   }
   function render() {
-    var rows = rowsNow(), frag = document.createDocumentFragment(), count = Math.min(rows.length, state.limit), nx = 0, sx = 0, at = 0;
+    var rows = rowsNow(), frag = document.createDocumentFragment(), count = Math.min(rows.length, state.limit), nx = 0, sx = 0, at = 0, np = 0;
+    // The roving tab stop is the first row a reader sees: Xcode's folded rows are skipped (row 0 when every row is Xcode's).
+    var first = rows.slice(0, count).findIndex(r => !(o.xcode && o.xcode(r)));
+    if (first < 0) first = 0;
     for (var i = 0; i < count; i++) {
-      var r = rows[i], xc = o.xcode && o.xcode(r);
-      if (xc) { nx++; sx += o.xcodeSecs ? o.xcodeSecs(r) || 0 : 0; } else at++;
-      var tr = el('tr', Object.assign({ 'data-row': i, tabindex: i === 0 ? '0' : '-1', 'data-xcode': xc ? '1' : null,
-        class: (o.rowClass ? o.rowClass(r) : '') + (o.open ? ' open-able' : '') + (!xc && at > top ? ' beyond-top' : '') }, o.rowAttrs ? o.rowAttrs(r) : null));
+      var r = rows[i], xc = o.xcode && o.xcode(r), pinned = o.pin && o.pin(r);
+      if (xc) { nx++; sx += o.xcodeSecs ? o.xcodeSecs(r) || 0 : 0; } else if (pinned) np++; else at++;
+      var tr = el('tr', Object.assign({ 'data-row': i, tabindex: i === first ? '0' : '-1', 'data-xcode': xc ? '1' : null,
+        class: (o.rowClass ? o.rowClass(r) : '') + (o.open ? ' open-able' : '') + (!xc && !pinned && at > top ? ' beyond-top' : '') }, o.rowAttrs ? o.rowAttrs(r) : null));
       o.columns.forEach(function (c) {
         var td = el(c.head ? 'th' : 'td', { class: (c.num ? 'num ' : '') + (typeof c.cls === 'function' ? c.cls(r) : (c.cls || '')), scope: c.head ? 'row' : null });
         var v = c.cell(r, td);
@@ -617,7 +620,7 @@ function makeTable(o) {
       'Xcode\'s own work: ' + plural(nx, 'row') + (sx ? ', ' + secs(sx) : '') + ' ', xcToggle(nx))));
     tbody.replaceChildren(frag);
     if (tfoot) tfoot.replaceChildren.apply(tfoot, o.footer(rows));
-    var mine = rows.length - nx, visible = state.expanded ? count - nx : Math.min(count - nx, top);
+    var mine = rows.length - nx, visible = state.expanded ? count - nx : Math.min(count - nx - np, top) + np;
     wrap.classList.toggle('topped', !state.expanded);
     status.textContent = visible < mine ? 'Showing ' + int(visible) + ' of ' + int(mine) + ' rows.' : 'Showing all ' + int(mine) + ' rows.';
     more.textContent = !state.expanded ? 'Show all ' + int(mine) + ' rows' : 'Show ' + int(Math.min(PAGE, rows.length - count)) + ' more (' + int(rows.length) + ' rows in all)';
@@ -630,7 +633,7 @@ function makeTable(o) {
     if (!tr || e.target !== tr) return;
     var step = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
     if (step) {
-      var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr[data-row]')), at = rows.indexOf(tr), next = rows[at + step];
+      var rows = Array.prototype.filter.call(tbody.querySelectorAll('tr[data-row]'), shownNow), at = rows.indexOf(tr), next = rows[at + step];
       if (next) { tr.tabIndex = -1; next.tabIndex = 0; next.focus(); }
       e.preventDefault();
     } else if (e.key === 'Enter' || e.key === ' ') {
@@ -716,6 +719,8 @@ function code(text) {
 function isFuture(cmd) { return /--edit-project/.test(cmd); }
 var FUTURE = 'not available yet: make the change by hand';
 function manualPrefix(cmd) { return /^(Build Settings|Target |Project ›|Xcode ›)/.test(cmd) ? 'By hand in Xcode: ' : 'By hand: '; }
+/** One shell word: single quotes, an embedded quote as '\''. */
+function shq(t) { return "'" + String(t).replace(/'/g, "'\\''") + "'"; }
 function cmdBox(c) {
   return el('div', { class: 'cmd' }, code(c), el('button', { 'data-copy': c.replace(/<[^<>]+>/g, '').replace(/\s+$/, ' '), text: 'Copy' }));
 }
@@ -827,7 +832,7 @@ function startReport() {
     var exec = inc.v15 ? inc.v15.executedSeconds : null, changed = [];
     inc.causes.filter(c => c.id !== 'unknown').sort((x, y) => y.seconds - x.seconds).forEach(function (c) {
       if (!c.whatToDo || /^Nothing to change/.test(c.whatToDo)) { changed.push(c.cause.replace(/ since build \S+$/, '') + ' (' + secs(c.seconds) + ')'); return; }
-      acts.push({ source: 'cause', tier: 0, saving: c.pathSeconds != null ? c.pathSeconds : c.seconds, conf: c.source === 'backtrace' ? 'high' : 'medium', what: c.cause,
+      acts.push({ source: 'cause', tier: 0, saving: c.seconds, top: true, conf: c.source === 'backtrace' ? 'high' : 'medium', what: c.cause,
         savingText: secs(c.seconds) + ' of task time' + (c.pathSeconds ? ', ' + secs(c.pathSeconds) + ' on path' : ''), fix: c.whatToDo, cmd: CAUSE_CMD[c['class']] || WHY_HINT,
         undo: c['class'] === 'scriptPhase' ? 'Undo: clear the Output Files list.' : MEASURE_ONLY });
     });
@@ -842,12 +847,16 @@ function startReport() {
     var s = longest[t], file = s.label.slice(8), hot = (D.hotspots || []).filter(h => base(h.file) === file && h.ms >= 100).sort((x, y) => y.ms - x.ms)[0];
     acts.push({ source: hot ? 'hotspot' : 'path', tier: 0, saving: s.seconds, conf: 'medium', savingText: 'up to ' + secs(s.seconds) + ' off the floor',
       what: hot ? ['Shorten ' + s.label + ' (' + t + '): ' + declName(hot.declaration) + ' type-checks in ' + msText(hot.ms)] : ['Shorten ' + s.label + ' (' + t + '), the longest step of ' + t + ' on the path'],
-      cmd: hot ? 'xed -l ' + hot.line + ' ' + hot.file : 'xcblame build --deep -- -scheme ' + scheme, undo: hot ? 'Undo: git checkout the file.' : MEASURE_ONLY });
+      cmd: hot ? 'xed -l ' + hot.line + ' ' + shq(hot.file) : 'xcblame build --deep -- -scheme ' + scheme, undo: hot ? 'Undo: git checkout the file.' : MEASURE_ONLY });
   });
   var idle = (T.idleGaps || []).reduce((a, g) => a + g.end - g.start, 0);
-  if (span && idle > 0.05 * span) acts.push({ source: 'path', tier: 0, saving: idle, conf: 'low', what: secs(idle) + ' with nothing running (' + pct(idle / span) + ' idle)',
+  if (span && idle > 0.05 * span) acts.push({ source: 'path', tier: 1, saving: idle, conf: 'low', what: secs(idle) + ' with nothing running (' + pct(idle / span) + ' idle)',
     savingText: 'up to ' + secs(idle), fix: 'a script phase everything waits for is the usual cause', cmd: CAUSE_CMD.scriptPhase, undo: 'Undo: clear the Output Files list.' });
+  // Measured work first (findings, path steps, causes by their own seconds), then estimates and the idle guess; an
+  // incremental page keeps one of the three slots for its biggest actionable cause.
   acts.sort((x, y) => x.tier - y.tier || (y.saving || 0) - (x.saving || 0));
+  var topCause = acts.filter(a => a.top && a.cmd)[0], shown = acts.filter(a => a.cmd);
+  if (topCause && shown.indexOf(topCause) > 2) { acts.splice(acts.indexOf(topCause), 1); acts.splice(acts.indexOf(shown[2]), 0, topCause); }
   cockpit({ kind: b.kind, span: span, deltaPct: delta, headline: head, floor: floor, floorSeconds: cps, waste: waste, wasteSeconds: waste ? Math.max(0, span - cps) : null,
     lines: lines, actions: acts, where: wherePanel(), hot: hotPanel(),
     nothing: 'Nothing to fix at this build: the floor is ' + (CP ? s1(cps) : 'unknown') + (top ? ', set by ' + (top.target || '(no target)') + ' ' + top.label : '') + '.' });
