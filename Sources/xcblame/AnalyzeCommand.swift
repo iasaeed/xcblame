@@ -110,8 +110,9 @@ struct AnalyzeCommand: ParsableCommand {
             // D1 (docs/SCHEMA-v0.6.md "report: previous"): the previous comparable build, before this one is saved; the
             // V13 pass below measures it.
             if !noHistory, logURL != nil {
-                document.previous = ReportDocument.Previous.lookup(for: document,
-                                                                   historyDir: stateURL.appendingPathComponent("history"))
+                document.previous = ReportDocument.Previous.lookup(
+                    for: document, buildStart: ReportDocument.Previous.buildStart(of: loaded.model),
+                    historyDir: stateURL.appendingPathComponent("history"))
             }
             // v0.5 lane B (begin): incremental causes against the previous history entry, before this log is saved.
             if logURL != nil {

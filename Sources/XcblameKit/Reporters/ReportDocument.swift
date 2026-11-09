@@ -1286,31 +1286,43 @@ public struct ReportDocument: Codable, Sendable, Equatable {
 }
 
 extension ReportDocument.Previous {
-    /// The newest entry of `historyDir` whose `build.kind` and `build.scheme` equal `document`'s, that is not a
-    /// `build --deep` run (`deep.enabled`) and has a span, skipping the entry of this same log (re-analyzing a log does
-    /// not compare it with itself). Call it before the document is saved. Nil when `document.build.kind` is unknown
-    /// or nothing qualifies.
-    public static func lookup(for document: ReportDocument, historyDir: URL) -> Self? {
-        guard let kind = document.build.kind else { return nil }
+    /// When the build of `model` started (the log's session start), nil when the log has no plausible time. History
+    /// entries store it (`buildStart`) so `lookup` can order builds by when they ran, not by when they were analyzed.
+    public static func buildStart(of model: BuildModel) -> Date? {
+        Timing.isPlausible(model.sessionStart) && model.sessionStart > 0 ? Date(timeIntervalSince1970: model.sessionStart) : nil
+    }
+
+    /// The newest entry of `historyDir` strictly older than `document`, whose `build.kind` and `build.scheme` equal
+    /// `document`'s, that is not a `build --deep` run (`deep.enabled`) and has a span, skipping the entry of this same
+    /// log (re-analyzing a log does not compare it with itself). "Older" compares build starts (`buildStart`, the entry's
+    /// stored one); without one on either side it compares `generatedAt`. Call it before the document is saved. Nil
+    /// when `document.build.kind` is unknown, when `document` is itself a deep build, or when nothing qualifies.
+    public static func lookup(for document: ReportDocument, buildStart: Date?, historyDir: URL) -> Self? {
+        guard let kind = document.build.kind, document.deep?.enabled != true else { return nil }
         struct Light: Decodable {
             struct Build: Decodable { var kind: String?; var scheme: String?; var span: Double? }
             struct Deep: Decodable { var enabled: Bool }
             var generatedAt: Date
             var build: Build
             var deep: Deep?
+            var buildStart: Date?
         }
         // Entry names carry the kind with anything but letters, digits and `-` replaced: compare names only then.
         let plainKind = kind.unicodeScalars.allSatisfy { CharacterSet.alphanumerics.contains($0) || $0 == "-" }
         let own = document.input.path.flatMap(History.logIdentity(path:))
         let decoder = JSONReporter.decoder()
+        var best: (when: Date, previous: Self)?
         for item in History.list(directory: historyDir, details: false) where !plainKind || item.kind == kind {
             guard let inflated = try? GzipFile.inflate(contentsOf: item.url),
                   let entry = try? decoder.decode(Light.self, from: Data(inflated.bytes)),
                   entry.build.kind == kind, entry.build.scheme == document.build.scheme, entry.deep?.enabled != true,
                   let span = entry.build.span else { continue }
+            let (when, now) = buildStart.flatMap { mine in entry.buildStart.map { ($0, mine) } }
+                ?? (entry.generatedAt, document.generatedAt)
+            guard when < now, best.map({ when > $0.when }) ?? true else { continue }
             if let own, History.logIdentity(of: item.url) == own { continue }
-            return Self(span: span, kind: kind, generatedAt: entry.generatedAt, id: item.id)
+            best = (when, Self(span: span, kind: kind, generatedAt: entry.generatedAt, id: item.id))
         }
-        return nil
+        return best?.previous
     }
 }

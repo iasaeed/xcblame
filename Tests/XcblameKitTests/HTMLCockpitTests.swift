@@ -111,6 +111,26 @@ final class HTMLCockpitTests: XCTestCase {
         }
     }
 
+    /// Xcode's own pseudo-targets: never something to shorten.
+    static let pseudoTargets: Set<String> = ["build system", "explicit modules", "no target", "(no target)"]
+
+    /// The targets an action names in parentheses (`Shorten compile A.swift (AcmeApp)`) that are Xcode's own work: the
+    /// pseudo-targets plus `extra` (the document's bucket targets).
+    static func xcodeTargets(inAction text: String, extra: Set<String> = []) -> [String] {
+        let regex = try! NSRegularExpression(pattern: #"\(([^()]+)\)"#)
+        return regex.matches(in: text, range: NSRange(text.startIndex..., in: text)).compactMap {
+            Range($0.range(at: 1), in: text).map { String(text[$0]).trimmingCharacters(in: .whitespaces) }
+        }.filter { pseudoTargets.contains($0.lowercased()) || extra.contains($0) }
+    }
+
+    /// The `tr[data-row]` rows of a section body that show on first load: not past the top N, not folded Xcode rows.
+    private func visibleRows(_ body: String) -> [String] {
+        body.components(separatedBy: "<tr ").dropFirst().map { "<tr " + $0 }.filter { row in
+            let tag = row.prefix { $0 != ">" }
+            return tag.contains(" data-row=\"") && !tag.contains("beyond-top") && !tag.contains("data-xcode=\"1\"")
+        }
+    }
+
     private func render(_ doc: ReportDocument, _ index: TaskIndex?) throws -> Data {
         try HTMLReporter.render(doc, taskIndex: index, options: .init(redact: false, title: "xcblame report"))
     }
@@ -174,9 +194,7 @@ final class HTMLCockpitTests: XCTestCase {
             XCTAssertTrue(cmd.contains("<code"), "\(kind): .cmd holds a code: \(what)", file: file, line: line)
             XCTAssertNotNil(matches("(<button[^>]*data-copy[^>]*>Copy</button>)", in: cmd).first, "\(kind): Copy button: \(what)",
                             file: file, line: line)
-            for pseudo in ["explicit modules", "build system"] {
-                XCTAssertFalse(what.lowercased().contains("target \(pseudo)"), "\(kind): an action names \(pseudo)", file: file, line: line)
-            }
+            XCTAssertEqual(Self.xcodeTargets(inAction: what), [], "\(kind): an action names Xcode's own work: \(what)", file: file, line: line)
         }
 
         // Collapsed sections: only `open` starts open (the cockpit and the KPI strip are the first screen either way);
@@ -230,6 +248,11 @@ final class HTMLCockpitTests: XCTestCase {
         if actions(dom).isEmpty {
             let nothing = try XCTUnwrap(element("nothing-to-fix", in: dom), "\(kind): no action means #nothing-to-fix", file: file, line: line)
             XCTAssertTrue(text(nothing.body).hasPrefix("Nothing to fix at this build: the floor is "), text(nothing.body), file: file, line: line)
+        }
+        // No action names a bucket target of this document (Xcode's own work).
+        let buckets = Set((doc.targets ?? []).filter { $0.isBucket == true || ["systemModules", "buildSystem"].contains($0.owner ?? "") }.map(\.name))
+        for act in actions(dom) {
+            XCTAssertEqual(Self.xcodeTargets(inAction: text(act.body), extra: buckets), [], "\(kind): \(text(act.body))", file: file, line: line)
         }
         // Measured findings come in impact order.
         let measured = actions(dom).filter { attribute("data-source", in: $0.tag) == "finding" }
@@ -340,16 +363,63 @@ final class HTMLCockpitTests: XCTestCase {
         XCTAssertTrue(try section("targets", in: dom).body.contains("data-xcode=\"1\""), "bucket targets carry data-xcode")
         XCTAssertTrue(dom.contains("id=\"where\""), "#where: path seconds by target")
         XCTAssertTrue(dom.contains("id=\"hot5\""), "table#hot5 on the board")
-        // Top-N: files 10, hotspots 15, targets 15.
-        let files = try section("files", in: dom).body
-        let fileCount = doc.files?.count ?? 0
-        if fileCount > 10 {
-            XCTAssertTrue(files.contains(">Show all \(fileCount) rows</button>"), "files: show-all with the count")
-            XCTAssertTrue(files.contains("Showing 10 of \(fileCount) rows."), "files: top 10")
-        }
-        if (doc.hotspots?.count ?? 0) > 15 { XCTAssertTrue(try section("hotspots", in: dom).body.contains("Showing 15 of "), "hotspots: top 15") }
-        if (doc.targets?.count ?? 0) > 15 { XCTAssertTrue(try section("targets", in: dom).body.contains("Showing 15 of "), "targets: top 15") }
+        // Top-N on this fixture (88 files): files 10; the synthetic sample checks every table (testTopNTables…).
+        let fileCount = try XCTUnwrap(doc.files?.count)
+        XCTAssertGreaterThan(fileCount, 10, "the fixture has more files than the top 10")
+        XCTAssertEqual(visibleRows(try section("files", in: dom).body).count, 10, "files: top 10")
+        XCTAssertTrue(try section("files", in: dom).body.contains(">Show all \(fileCount) rows</button>"), "files: show-all with the count")
         XCTAssertTrue(try section("targets", in: dom).body.contains("id=\"chart-kinds\""), "#chart-kinds moved to Targets")
+    }
+
+    /// Top-N on the synthetic sample (300 targets, 200 files, 4,000 hotspots): every table shows exactly its top rows,
+    /// and hotspots that are on the path or take at least 100 ms come first, whatever their ms.
+    func testTopNTablesOnTheSyntheticSample() throws {
+        var (doc, index) = try HTMLSample.synthetic(tasks: 2_000, labels: 500, files: 200, hotspots: 4_000)
+        var hotspots = try XCTUnwrap(doc.hotspots)
+        // The 20 largest are off the path and under 100 ms (not hot); one further down is off the path at 150 ms (hot).
+        for i in 0..<20 { hotspots[i].onPathWeight = 0.25 }
+        hotspots[30].onPathWeight = 0.25
+        hotspots[30].ms = 150
+        doc.hotspots = hotspots
+        XCTAssertGreaterThan(doc.targets?.count ?? 0, 15)
+        XCTAssertGreaterThan(doc.files?.count ?? 0, 10)
+        let dom = try assertCockpit(try render(doc, index), kind: "synthetic", open: ["findings"])
+        XCTAssertEqual(visibleRows(try section("files", in: dom).body).count, 10, "files: top 10")
+        XCTAssertEqual(visibleRows(try section("targets", in: dom).body).count, 15, "targets: top 15")
+        let hot = visibleRows(try section("hotspots", in: dom).body)
+        XCTAssertEqual(hot.count, 15, "hotspots: top 15")
+        XCTAssertTrue(try section("hotspots", in: dom).body.contains("Showing 15 of 4,000 rows."), "hotspots: the count")
+        XCTAssertTrue(hot.first?.contains(">150 ms<") == true && hot.first?.contains("×0.25") == true,
+                      "the 150 ms hotspot off the path is hot, so it comes first: \(hot.first?.prefix(400) ?? "")")
+        for row in hot.dropFirst() {
+            XCTAssertTrue(row.contains("×1.00"), "only on-path hotspots after it, not the larger ones off the path: \(row.prefix(400))")
+        }
+    }
+
+    /// The check of Xcode's own work in actions can fail: it finds a pseudo-target in the text the template writes.
+    func testThePseudoTargetCheckCatchesAnXcodeStep() {
+        XCTAssertEqual(Self.xcodeTargets(inAction: "Shorten PCM Darwin (explicit modules), the longest step of explicit modules"),
+                       ["explicit modules"])
+        XCTAssertEqual(Self.xcodeTargets(inAction: "Shorten CreateBuildDescription (build system): up to 1.41 s"), ["build system"])
+        XCTAssertEqual(Self.xcodeTargets(inAction: "Shorten compile Models.swift (Core)", extra: ["Core"]), ["Core"])
+        XCTAssertEqual(Self.xcodeTargets(inAction: "Shorten compile StudioView.swift (AcmeApp): body type-checks in 425 ms"), [])
+    }
+
+    /// The longest compile step on the path belongs to Xcode's own work: it is never offered as an action.
+    func testXcodeStepsAreNeverActions() throws {
+        let model = try GraphFixtures.model(GraphFixtures.clean26)
+        var doc = try GraphFixtures.report(model, description: try BuildDescription.load(directory: GraphFixtures.description26)).document
+        var path = try XCTUnwrap(doc.criticalPath)
+        let at = try XCTUnwrap(path.segments.indices.filter { path.segments[$0].label.hasPrefix("compile ") }
+            .max { path.segments[$0].seconds < path.segments[$1].seconds })
+        let label = path.segments[at].label
+        path.segments[at].target = "explicit modules"
+        path.segments[at].seconds += 30
+        doc.criticalPath = path
+        let dom = try assertCockpit(try render(doc, nil), kind: "xcode step", open: ["findings"])
+        for act in actions(dom) {
+            XCTAssertFalse(text(act.body).contains(label + " (explicit modules)"), "the Xcode step is an action: \(text(act.body))")
+        }
     }
 
     /// The delta clause: the previous build (D1) wins over a baseline regression; neither leaves the first clause alone.

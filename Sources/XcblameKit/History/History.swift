@@ -97,19 +97,23 @@ public enum History {
     }
 
     /// What is stored: the report's own members at top level (so an entry still decodes as a `ReportDocument`) plus
-    /// `taskIndexRows` and `logId` (the identity of the log, see `logIdentity(path:)`; absent when unknown).
+    /// `taskIndexRows`, `logId` (the identity of the log, see `logIdentity(path:)`; absent when unknown) and
+    /// `buildStart` (when the build started; absent when the log has no plausible time).
     private struct Entry: Encodable {
         var document: ReportDocument
         var rows: [TaskIndexRow]
         var logId: String?
+        /// When the build started (`ReportDocument.Previous.buildStart`); absent when the log has no plausible time.
+        var buildStart: Date?
 
-        private enum Key: String, CodingKey { case taskIndexRows, logId }
+        private enum Key: String, CodingKey { case taskIndexRows, logId, buildStart }
 
         func encode(to encoder: Encoder) throws {
             try document.encode(to: encoder)
             var container = encoder.container(keyedBy: Key.self)
             try container.encode(rows, forKey: .taskIndexRows)
             try container.encodeIfPresent(logId, forKey: .logId)
+            try container.encodeIfPresent(buildStart, forKey: .buildStart)
         }
     }
 
@@ -161,7 +165,8 @@ public enum History {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
         encoder.dateEncodingStrategy = .iso8601
-        let json = try encoder.encode(Entry(document: trimmed(document), rows: taskIndexRows(document, model), logId: identity))
+        let json = try encoder.encode(Entry(document: trimmed(document), rows: taskIndexRows(document, model), logId: identity,
+                                               buildStart: ReportDocument.Previous.buildStart(of: model)))
         let staging = directory.appendingPathComponent(".\(UUID().uuidString).json")
         defer { try? fm.removeItem(at: staging) }
         try json.write(to: staging)
