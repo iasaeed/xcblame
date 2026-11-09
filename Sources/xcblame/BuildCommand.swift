@@ -225,7 +225,8 @@ struct BuildCommand: ParsableCommand {
                                                historyDir: stateURL.appendingPathComponent("history"), project: nil)
         // D1 (docs/SCHEMA-v0.6.md "report: previous"): the previous comparable build, before this one is saved.
         let previous = noHistory ? nil : ReportDocument.Previous.lookup(
-            for: analyzed.document, historyDir: stateURL.appendingPathComponent("history"))
+            for: analyzed.document, buildStart: ReportDocument.Previous.buildStart(of: loaded.model),
+            historyDir: stateURL.appendingPathComponent("history"))
         analyzed.document.previous = previous
         analyzed.document = try analyzed.document.remeasuringSize(budgetBytes: budget)
         // v0.5 lane B (end)
