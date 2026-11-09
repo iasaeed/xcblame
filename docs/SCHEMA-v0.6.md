@@ -379,9 +379,11 @@ build (16.2 s, 3 days ago)"). It always serializes; `null` when there is no prev
 | `previous.id` | string | The history entry id (`history show` and `analyze <id>` take it). |
 
 - Filled by `analyze` (on a log) and `build` from `<xcblame-dir>/history` before the new entry is written
-  (`ReportDocument.Previous.lookup`): the newest entry with the same `build.kind` and the same `build.scheme` (both
-  null counts as the same), that is not a `build --deep` run (`deep.enabled`), has a span, and is not the entry of the
-  same log (re-analyzing a log never compares it with itself).
+  (`ReportDocument.Previous.lookup`): the newest entry that started strictly earlier than this build (history entries
+  carry `buildStart`, the log's start time, since 2026-11-09; older entries fall back to `generatedAt`), with the same
+  `build.kind` and the same `build.scheme` (both null counts as the same), that is not a `build --deep` run
+  (`deep.enabled`), has a span, and is not the entry of the same log (re-analyzing a log never compares it with
+  itself). A deep build itself gets `null` (its task times are not comparable).
 - `null` when the report's kind is unknown, when no entry qualifies, with `--no-history`, for `--model-json` input and
   for doctor documents. A saved report or history entry re-rendered with `analyze <file|id>` keeps the value it was
   written with; one written before the member existed decodes with `null`.
