@@ -7,13 +7,19 @@ final class HTMLBrowserTests: XCTestCase {
     private static let chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
     /// Runs headless Chrome on `html` and returns the DOM after scripts ran.
-    private func dumpDOM(_ html: Data, fragment: String? = nil) throws -> String {
+    /// `script` (test only) runs in the page after it rendered: it goes in as an extra inline script before `</body>`
+    /// (the CSP allows inline scripts), so clicks can be driven without a WebDriver.
+    private func dumpDOM(_ html: Data, fragment: String? = nil, script: String? = nil) throws -> String {
         guard FileManager.default.isExecutableFile(atPath: Self.chrome) else { throw XCTSkip("Google Chrome not installed") }
         let dir = FileManager.default.temporaryDirectory.appendingPathComponent("xcblame-dom-\(UUID().uuidString)")
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         addTeardownBlock { try? FileManager.default.removeItem(at: dir) }
         let file = dir.appendingPathComponent("report.html")
-        try html.write(to: file)
+        var page = html
+        if let script, let page0 = String(data: html, encoding: .utf8), let end = page0.range(of: "</body>", options: .backwards) {
+            page = Data(page0.replacingCharacters(in: end, with: "<script>" + script + "</script></body>").utf8)
+        }
+        try page.write(to: file)
         let process = Process()
         process.executableURL = URL(fileURLWithPath: Self.chrome)
         process.arguments = ["--headless=new", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
@@ -212,6 +218,65 @@ final class HTMLBrowserTests: XCTestCase {
         let summary = try section("summary", in: dom).body + dom
         XCTAssertTrue(summary.contains(" pass · 1 warn<"), "header counts")
         XCTAssertFalse(dom.contains(">degraded<"), "no degraded badge on a report that is not degraded")
+    }
+
+    /// Clicks, driven by a script added to the page: "Show Xcode work" reveals the folded rows and presses the toggle; a
+    /// sortable header sets `aria-sort` and reorders the rows. Results come back as `data-t-*` attributes on `body`.
+    func testXcodeToggleAndHeaderSortWorkWhenClicked() throws {
+        let model = try GraphFixtures.model(GraphFixtures.clean26)
+        let result = try GraphFixtures.report(model, description: BuildDescription.load(directory: GraphFixtures.description26))
+        let index = TaskIndex.make(model: model, analysis: result.analysis, document: result.document)
+        let script = #"""
+        (function () {
+          function set(k, v) { document.body.setAttribute('data-t-' + k, String(v)); }
+          function shown(rows) { return Array.prototype.filter.call(rows, function (r) { return r.offsetParent !== null; }).length; }
+          function go() {
+            if (document.body.getAttribute('data-rendered') !== 'all') return setTimeout(go, 20);
+            var sec = document.getElementById('targets');
+            sec.querySelectorAll('details').forEach(function (d) { d.open = true; });
+            var xc = sec.querySelectorAll('tr[data-xcode="1"]'), toggle = sec.querySelector('button.xc-toggle');
+            set('xc-total', xc.length); set('xc-before', shown(xc)); set('toggle', toggle ? 1 : 0);
+            if (toggle) { toggle.click(); set('xc-after', shown(xc)); set('pressed', toggle.getAttribute('aria-pressed')); }
+            var th = Array.prototype.filter.call(sec.querySelectorAll('th[aria-sort]'), function (h) { return h.textContent === 'Target'; })[0];
+            function names() {
+              return Array.prototype.filter.call(sec.querySelectorAll('tbody tr[data-row]'), function (r) { return !r._row.isOther; })
+                .map(function (r) { return r._row.name; }).join('\n');
+            }
+            set('names-before', names());
+            if (th) {
+              try { th.querySelector('button').click(); } catch (e) { set('click-error', e.message); }
+              set('sort', th.getAttribute('aria-sort')); set('names-after', names());
+            }
+            set('done', 1);
+          }
+          setTimeout(go, 0);
+        })();
+        """#
+        let dom = try dumpDOM(try render(result.document, index), script: script)
+        let body = try XCTUnwrap(dom.range(of: "<body").map { String(dom[$0.lowerBound...].prefix { $0 != ">" }) })
+        func value(_ name: String) -> String? {
+            attribute("data-t-" + name, in: body)?.replacingOccurrences(of: "&#10;", with: "\n").replacingOccurrences(of: "&amp;", with: "&")
+        }
+        XCTAssertEqual(value("done"), "1", "the test script ran: \(body.prefix(600))")
+        let total = Int(value("xc-total") ?? "") ?? 0
+        XCTAssertGreaterThan(total, 0, "the clean fixture has Xcode rows in Targets")
+        XCTAssertEqual(value("toggle"), "1", "a Show Xcode work toggle")
+        XCTAssertEqual(value("xc-before"), "0", "Xcode rows start hidden")
+        XCTAssertEqual(value("xc-after"), String(total), "the toggle reveals every Xcode row")
+        XCTAssertEqual(value("pressed"), "true", "the toggle is pressed")
+
+        // Sorting needs the report.html fix of review-cockpit #1 (HTMLCollection has no forEach); runs once it is merged.
+        if ReportTemplate.html.contains("headRow.children.forEach(") {
+            throw XCTSkip("header sort throws until report.html uses Array.prototype.forEach.call(headRow.children, …) (review-cockpit #1)")
+        }
+        XCTAssertNil(value("click-error"), "the header click threw")
+        XCTAssertEqual(value("sort"), "ascending", "aria-sort on the clicked header")
+        let before = (value("names-before") ?? "").components(separatedBy: "\n"), after = (value("names-after") ?? "").components(separatedBy: "\n")
+        XCTAssertEqual(Set(before), Set(after), "the same rows")
+        XCTAssertEqual(after, after.sorted { $0.lowercased() < $1.lowercased() }, "rows sorted by target name")
+        XCTAssertNotEqual(before, after, "the click reordered the rows")
+        let errors = try XCTUnwrap(dom.range(of: "<pre id=\"js-errors\""))
+        XCTAssertTrue(dom[errors.lowerBound...].prefix { $0 != ">" }.contains("hidden"), "no js error after the clicks")
     }
 
     /// Code review v0.2 #13: a malformed `#target=` hash is ignored without a script error.
