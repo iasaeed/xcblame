@@ -31,7 +31,7 @@ def squeeze(l):
 
 
 analyze = pick(load("analyze.txt"), [
-    "xcblame 0.6.0 · ",
+    "xcblame 0.6.1 · ",
     "  build   CLEAN",
     "TIME  log span",
     "      ≤ 2 lanes busy",
@@ -51,7 +51,7 @@ analyze = pick(load("analyze.txt"), [
     "checks 12 pass",
 ])
 doctor = pick(load("doctor.txt"), [
-    "xcblame 0.6.0 doctor",
+    "xcblame 0.6.1 doctor",
     "  graph ",
     "",
     "FINDINGS ",
@@ -155,7 +155,7 @@ text{{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;fo
 <rect width="{W}" height="{H}" rx="10" fill="#0F172A"/>
 <rect width="{W}" height="30" rx="10" fill="#1E293B"/><rect y="20" width="{W}" height="10" fill="#1E293B"/>
 <circle cx="20" cy="15" r="5.5" fill="#F87171"/><circle cx="38" cy="15" r="5.5" fill="#FBBF24"/><circle cx="56" cy="15" r="5.5" fill="#34D399"/>
-<text x="{W / 2}" y="19" text-anchor="middle" class="ttl">xcblame 0.6.0 · Acme fixture projects</text>
+<text x="{W / 2}" y="19" text-anchor="middle" class="ttl">xcblame 0.6.1 · Acme fixture projects</text>
 {chr(10).join(body)}
 </svg>
 '''
