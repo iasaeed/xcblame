@@ -99,7 +99,7 @@ final class ReportersTextTests: XCTestCase {
     }
 
     private let expectedSnapshot = """
-    xcblame 0.6.0 · synthetic
+    xcblame 0.6.1 · synthetic
       log     SLF v11 · reader slf · layout commandLine
       xcode   26.0 (inferred: log format version 11 (written by Xcode >= 26.0))
       build   CLEAN (build description created (signature 01234567), 0 reused task(s)) · 1 warning

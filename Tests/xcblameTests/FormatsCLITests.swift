@@ -101,7 +101,7 @@ final class FormatsCLITests: XCTestCase {
     func testAgentStaysUnderItsCapAndMaxReportBytesOverridesIt() throws {
         let result = try analyze("agent")
         XCTAssertEqual(result.status, 0, result.err)
-        XCTAssertTrue(result.out.hasPrefix("xcblame 0.6.0 agent report (xcblame.report/1)\nresult: "), result.out)
+        XCTAssertTrue(result.out.hasPrefix("xcblame 0.6.1 agent report (xcblame.report/1)\nresult: "), result.out)
         XCTAssertLessThanOrEqual(result.out.utf8.count, 8192)
         let tiny = try analyze("agent", ["--max-report-bytes", "300"])
         XCTAssertLessThanOrEqual(tiny.out.utf8.count, 301, "the final newline the CLI adds at most")

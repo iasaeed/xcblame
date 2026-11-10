@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![Release](https://img.shields.io/badge/release-0.6.0-F97316)](https://github.com/iasaeed/xcblame/releases)
+[![Release](https://img.shields.io/badge/release-0.6.1-F97316)](https://github.com/iasaeed/xcblame/releases)
 [![CI](https://github.com/iasaeed/xcblame/actions/workflows/ci.yml/badge.svg)](https://github.com/iasaeed/xcblame/actions/workflows/ci.yml)
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-lightgrey)
 ![Xcode 26+](https://img.shields.io/badge/Xcode-26%2B-147EFB)
@@ -26,7 +26,7 @@ xcblame is a command-line tool for macOS. It reads your Xcode build log and tell
 time went and what to change first. It can then test a change for you and keep it only if the build really got faster.
 It is one Swift binary. Nothing leaves your machine.
 
-Status: 0.6.0, macOS 14+, Xcode 26+.
+Status: 0.6.1, macOS 14+, Xcode 26+.
 
 ## Why is my Xcode build slow?
 
@@ -95,7 +95,7 @@ what to do first.
    brew install xcblame
    ```
 
-   `xcblame --version` should print `0.6.0`. The tap is
+   `xcblame --version` should print `0.6.1`. The tap is
    [iasaeed/homebrew-tap](https://github.com/iasaeed/homebrew-tap). It installs a prebuilt universal binary (arm64 and
    x86_64). From source: `swift build -c release`.
 

@@ -10,7 +10,7 @@ final class FormatsAgentTests: XCTestCase {
     func testSectionsAppearInTheDocumentedOrder() throws {
         let text = try render(FormatsFixtures.redacted(try FormatsFixtures.report()))
         let lines = text.components(separatedBy: "\n")
-        XCTAssertEqual(lines[0], "xcblame 0.6.0 agent report (xcblame.report/1)")
+        XCTAssertEqual(lines[0], "xcblame 0.6.1 agent report (xcblame.report/1)")
         XCTAssertEqual(lines[1], "result: failed (3 errors, 6 warnings)")
         let headings = ["ERRORS (3 unique, 6 occurrences)", "WARNINGS (6 unique, 13 occurrences)", "BUILD", "CRITICAL PATH (top 3 of 17 segments)",
                         "FINDINGS (top 1 of 1)", "NOTES", "next: "]
@@ -99,7 +99,7 @@ final class FormatsAgentTests: XCTestCase {
             XCTAssertLessThanOrEqual(text.utf8.count, cap, "cap \(cap)")
             if cap >= 100 {
                 XCTAssertTrue(text.contains("[truncated]\n"), "cap \(cap): \(text.suffix(60))")
-                XCTAssertTrue(text.hasPrefix("xcblame 0.6.0 agent report"))
+                XCTAssertTrue(text.hasPrefix("xcblame 0.6.1 agent report"))
                 // A cap that leaves room for the summary keeps all of it (the diagnostics are clipped, not the tail).
                 XCTAssertTrue(text.contains("\nnext: ") || text.hasSuffix("[truncated]\n"), "cap \(cap)")
             }
@@ -118,7 +118,7 @@ final class FormatsAgentTests: XCTestCase {
     func testTheFloorClipsTheDiagnosticsNotTheSummary() throws {
         let document = FormatsFixtures.redacted(try FormatsFixtures.large())
         let summary = try render(document, cap: .max).components(separatedBy: "\nBUILD\n").last ?? ""
-        let cap = "xcblame 0.6.0 agent report".utf8.count + summary.utf8.count + 900
+        let cap = "xcblame 0.6.1 agent report".utf8.count + summary.utf8.count + 900
         let text = try render(document, cap: cap)
         XCTAssertLessThanOrEqual(text.utf8.count, cap)
         for part in ["\nBUILD\n", "CRITICAL PATH", "FINDINGS (top 3", "\nnext: "] { XCTAssertTrue(text.contains(part), "\(part)\n\(text)") }

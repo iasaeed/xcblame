@@ -90,7 +90,7 @@ final class SchemaV05ContractTests: XCTestCase {
     }
 
     func testVersionAndNullMembersOfAPipelineReport() throws {
-        XCTAssertEqual(XcblameVersion.current, "0.6.0")
+        XCTAssertEqual(XcblameVersion.current, "0.6.1")
         let json = try XCTUnwrap(JSONSerialization.jsonObject(with: try JSONReporter.render(try syntheticReport()))
             as? [String: Any])
         // v0.5 integration: the lanes fill fixedCosts and moduleGraph inside the pipeline; incremental needs the

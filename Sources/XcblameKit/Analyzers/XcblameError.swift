@@ -2,7 +2,7 @@ import Foundation
 
 /// Tool version shared by the CLI and the report `tool` block.
 public enum XcblameVersion {
-    public static let current = "0.6.0"
+    public static let current = "0.6.1"
 }
 
 /// Errors the CLI maps onto exit codes (the table lives in `Sources/xcblame/ExitCode.swift`).

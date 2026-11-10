@@ -24,7 +24,7 @@ final class FormatsMarkdownTests: XCTestCase {
         XCTAssertEqual(lines[0], "<!-- xcblame:report -->")
         XCTAssertEqual(lines[1], "## xcblame: App clean, 19.00 s wall")
         let order = ["### Critical path", "### Findings", "<details><summary>Details</summary>", "#### Targets", "#### Attribution",
-                     "#### Diagnostics", "#### Environment and validation", "</details>", "<sub>xcblame 0.6.0, xcblame.report/1, redacted</sub>"]
+                     "#### Diagnostics", "#### Environment and validation", "</details>", "<sub>xcblame 0.6.1, xcblame.report/1, redacted</sub>"]
         let positions = order.map { text.range(of: $0)?.lowerBound }
         XCTAssertFalse(positions.contains { $0 == nil }, "\(order.filter { text.range(of: $0) == nil })")
         XCTAssertEqual(positions.compactMap { $0 }, positions.compactMap { $0 }.sorted())

@@ -73,7 +73,7 @@ final class SchemaV04ContractTests: XCTestCase {
         XCTAssertEqual(CompareDocument.schemaVersion, "xcblame.compare/1")
         XCTAssertEqual(TrendDocument.schemaVersion, "xcblame.trend/1")
         XCTAssertEqual(Baseline.schemaVersion, "xcblame.baseline/1")
-        XCTAssertEqual(XcblameVersion.current, "0.6.0")
+        XCTAssertEqual(XcblameVersion.current, "0.6.1")
     }
 
     func testRegressionKeys() throws {
